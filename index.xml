@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My New Hugo Site</title>
+    <link>https://keithmork.github.io/</link>
+    <description>Recent content on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 17 Jul 2016 23:00:47 +0800</lastBuildDate>
+    <atom:link href="https://keithmork.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>first</title>
+      <link>https://keithmork.github.io/post/first/</link>
+      <pubDate>Sun, 17 Jul 2016 23:00:47 +0800</pubDate>
+      
+      <guid>https://keithmork.github.io/post/first/</guid>
+      <description>
+
+&lt;h3 id=&#34;hello-hugo&#34;&gt;Hello Hugo&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;aaa&lt;/li&gt;
+&lt;li&gt;bbb&lt;/li&gt;
+&lt;li&gt;cccc&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>about</title>
+      <link>https://keithmork.github.io/about/</link>
+      <pubDate>Sun, 17 Jul 2016 19:07:56 +0800</pubDate>
+      
+      <guid>https://keithmork.github.io/about/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
