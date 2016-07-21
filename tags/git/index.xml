@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on </title>
+    <link>https://keithmork.github.io/tags/git/</link>
+    <description>Recent content in Git on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 20 Jul 2016 02:16:04 +0800</lastBuildDate>
+    <atom:link href="https://keithmork.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>GitHub &#43; Hugo搭建个人博客(1) - 基础</title>
+      <link>https://keithmork.github.io/post/2016/07/2016-07-20-build-your-own-blog1</link>
+      <pubDate>Wed, 20 Jul 2016 02:16:04 +0800</pubDate>
+      
+      <guid>https://keithmork.github.io/post/2016/07/2016-07-20-build-your-own-blog1</guid>
+      <description>
+
+&lt;h2 id=&#34;自己搭博客的n个理由&#34;&gt;自己搭博客的N个理由&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;你的笔记非常值钱，丢了就等于丢了N年工作经验&lt;/li&gt;
+&lt;li&gt;大多数博客网站都满足不了你
+
+&lt;ul&gt;
+&lt;li&gt;倒闭/停止服务/被删库时，你多半没备份&lt;/li&gt;
+&lt;li&gt;格式互不兼容，导入导出困难，复制粘贴会乱&lt;/li&gt;
+&lt;li&gt;编辑器极其难用&lt;/li&gt;
+&lt;li&gt;可配置的地方不够，你讨厌的功能一堆&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;可以使用Markdown写博文
+
+&lt;ul&gt;
+&lt;li&gt;任何一个文本编辑器都能写，随时随地&lt;/li&gt;
+&lt;li&gt;足够沉浸，让你忘记格式，专注内容&lt;/li&gt;
+&lt;li&gt;备份容易
+
+&lt;ul&gt;
+&lt;li&gt;CSDN、博客园、简书、有道云笔记等都支持，到处复制粘贴也能得到大致相同的格式&lt;/li&gt;
+&lt;li&gt;纯文本本身也有足够可读性，网站/软件不支持也无所谓&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;GitHub提供免费空间和CDN，站点放GitHub仓库也方便做版本控制&lt;/li&gt;
+&lt;li&gt;可以作为学习新技术的试验田&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;准备工作&#34;&gt;准备工作&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-注册github&#34;&gt;1. 注册GitHub&lt;/h3&gt;
+
+&lt;p&gt;行内没几个人还没有 &lt;a href=&#34;https://github.com/&#34;&gt;GitHub&lt;/a&gt; 账号了吧&lt;br /&gt;
+&lt;del&gt;很惭愧，我所有的提交记录全是博文……&lt;/del&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;用户名会成为网址的一部分，最好全英文小写，没空格，不太长&lt;br /&gt;
+例：用户名&lt;code&gt;keithmork&lt;/code&gt;，对应网址&lt;code&gt;keithmork.github.io&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;2-安装git&#34;&gt;2. 安装Git&lt;/h3&gt;
+
+&lt;h4 id=&#34;mac&#34;&gt;Mac&lt;/h4&gt;
+
+&lt;h4 id=&#34;pc&#34;&gt;PC&lt;/h4&gt;
+
+&lt;p&gt;下载安装 &lt;a href=&#34;https://git-scm.com/&#34;&gt;Git&lt;/a&gt; ，全用默认设置，然后打开Git终端&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;默认工作目录是Git安装目录下的&lt;code&gt;mingw64&lt;/code&gt;文件夹&lt;/li&gt;
+&lt;li&gt;路径分隔符请使用&lt;code&gt;/&lt;/code&gt;或&lt;code&gt;\\&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;3-设置git用户信息&#34;&gt;3. 设置Git用户信息&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;git config --global user.name &amp;quot;keithmork&amp;quot;
+git config --global user.email &amp;quot;keith.mork@gmail.com&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;使用GitHub注册的邮箱和用户名&lt;br /&gt;
+这台机器上的每个项目提交时都会用这些信息&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;4-创建github个人主页&#34;&gt;4. 创建GitHub个人主页&lt;/h3&gt;
+
+&lt;p&gt;在GitHub上新建仓库(repository)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;名字&lt;strong&gt;必须&lt;/strong&gt;为 &lt;em&gt;username&lt;/em&gt;.github.io ，如：&lt;code&gt;keithmork.github.io&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;只要往里面提交一个&lt;code&gt;index.html&lt;/code&gt;文件，就能通过 &lt;a href=&#34;https://keithmork.github.io&#34;&gt;https://keithmork.github.io&lt;/a&gt; 访问了&lt;br /&gt;
+不过先不急，继续往下看&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;使用静态网站生成器搭建站点&#34;&gt;使用静态网站生成器搭建站点&lt;/h2&gt;
+
+&lt;p&gt;个人网站/博客只需要简单的静态页面，什么数据库、后台服务、前端框架统统可以抛开&lt;br /&gt;
+&lt;a href=&#34;https://www.staticgen.com/&#34;&gt;这类工具&lt;/a&gt;可以把Markdown文档转换成网页，&lt;/p&gt;
+
+&lt;p&gt;这里选择 &lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;，特点是生成速度非常快，安装配置简单，还带实时预览&lt;/p&gt;
+
+&lt;h3 id=&#34;安装&#34;&gt;安装&lt;/h3&gt;
+
+&lt;p&gt;下载后解压，把&lt;code&gt;hugo&lt;/code&gt;（Windows下是&lt;code&gt;hugo.exe&lt;/code&gt;）的路径加进环境变量&lt;code&gt;PATH&lt;/code&gt;就行&lt;br /&gt;
+命令行运行&lt;code&gt;hugo version&lt;/code&gt;不报错就是成功了&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;新建站点&#34;&gt;新建站点&lt;/h3&gt;
+
+&lt;p&gt;假设想放在用户家目录的&lt;code&gt;site/blog/&lt;/code&gt;下&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mkdir -p ~/site/blog
+hugo new site ~/site/blog
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;会在指定目录下生成如下内容&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;archetypes/&lt;br /&gt;
+content/&lt;br /&gt;
+data/&lt;br /&gt;
+layouts/&lt;br /&gt;
+static/&lt;br /&gt;
+themes/&lt;br /&gt;
+config.toml&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;创建页面&#34;&gt;创建页面&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;hugo new post/2016-07-19-first.md
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以看到在&lt;code&gt;content/&lt;/code&gt;下生成了指定的目录和文件&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;content/&lt;/code&gt;下的文件夹默认代表类型&lt;/li&gt;
+&lt;li&gt;博文按上面那样取名比较容易管理，推荐&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;用文本编辑器打开可以看见如下模板：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+++
+date = &amp;quot;2016-07-19T00:12:34+08:00&amp;quot;
+draft = true
+title = &amp;quot;2016 07 19 first&amp;quot;
+
++++
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在模板下面的空白处写正文，如&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+++
+date = &amp;quot;2016-07-19T00:12:34+08:00&amp;quot;
+draft = true
+title = &amp;quot;第一篇博文&amp;quot;
+
++++
+
+## Hello Hugo
+
+坚持写博客的好处：
+
+- 记录心得
+- 整理思路
+- 分享交流
+- 求职展示
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;下载主题&#34;&gt;下载主题&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;默认不带主题，要从 &lt;a href=&#34;https://github.com/spf13/hugoThemes&#34;&gt;这里&lt;/a&gt; 挑喜欢的下载&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;cd themes
+git clone https://github.com/digitalcraftsman/hugo-steam-theme.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://themes.gohugo.io/steam/&#34;&gt;Steam&lt;/a&gt;这主题用了2016年国外流行的&lt;a href=&#34;http://www.b12.cn/article/NDI2MGIxMg.html&#34;&gt;CR&lt;/a&gt;风格，看着还不错&lt;/p&gt;
+
+&lt;h3 id=&#34;本地预览&#34;&gt;本地预览&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;cd ..
+hugo server -Dw -t hugo-steam-theme
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-D&lt;/code&gt; 或 &lt;code&gt;--buildDraft&lt;/code&gt;，加上这参数才会生成页面&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-w&lt;/code&gt; 或 &lt;code&gt;--watch&lt;/code&gt;，文件有改动时自动重新生成并刷新浏览器页面&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-t&lt;/code&gt; 或 &lt;code&gt;--theme&lt;/code&gt;，指定主题
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;之后对文章的改动都能在浏览器实时看到，样式跟发布到线上完全相同&lt;br /&gt;
+默认网址为&lt;code&gt;localhost:1313&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;当前工作目录必须为站点根目录，否则提示&lt;code&gt;Error: Unable to locate Config file.&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;必须指定theme，如果没下载或没指定，只能看到一片空白&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl + c&lt;/code&gt;结束hugo server&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;生成发布页面&#34;&gt;生成发布页面&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;hugo -D -b &amp;quot;https://keithmork.github.io&amp;quot; -t hyde
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-b&lt;/code&gt; 也作 &lt;code&gt;--baseURL&lt;/code&gt; ，要发布到的网站目录地址&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;执行后会生成&lt;code&gt;public/&lt;/code&gt;目录，可以看到之前的.md文件转换成了文件夹 + HTML&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;部署到github&#34;&gt;部署到GitHub&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;cd public
+git init
+git remote add origin &amp;quot;https://github.com/keithmork/keithmork.github.io&amp;quot;
+git add -A
+git commit -a -m &amp;quot;first commit&amp;quot;
+git push -u origin master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;之后会提示输入在GitHub注册的邮箱和密码&lt;br /&gt;
+提交成功后，浏览器打开&lt;code&gt;https://keithmork.github.io&lt;/code&gt;，就能看到刚才的页面了&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;使用ssh密钥登录github&#34;&gt;使用SSH密钥登录GitHub&lt;/h2&gt;
+
+&lt;p&gt;可以免去每次SSH连接GitHub时都输用户名密码&lt;/p&gt;
+
+&lt;h3 id=&#34;生成ssh密钥对&#34;&gt;生成SSH密钥对&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;mkdir ~/.ssh
+cd ~/.ssh
+ssh-keygen -t rsa -C &amp;quot;keith.mork@gmail.com&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;提示&lt;code&gt;Enter file in which to save the key&lt;/code&gt;时直接回车，使用默认设置&lt;/li&gt;
+&lt;li&gt;提示&lt;code&gt;Enter passphrase&lt;/code&gt;和&lt;code&gt;Enter same passphrase again&lt;/code&gt;时，可以直接回车，不使用加密串（否则每次提交时会验证加密串）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://help.github.com/articles/generating-an-ssh-key/&#34;&gt;详细教程&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;添加ssh公钥到github&#34;&gt;添加SSH公钥到GitHub&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;用Vim编辑公钥文件&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;vim id_rsa.pub
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;输入&lt;code&gt;yy&lt;/code&gt;复制整行，&lt;code&gt;:q&lt;/code&gt;退出&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;登上GitHub，在个人设置里找到&lt;code&gt;SSH and GPG keys&lt;/code&gt;，新建SSH key，粘贴进去&lt;br /&gt;
+取个容易识别的名字，如&lt;code&gt;Mac-Home&lt;/code&gt; &lt;code&gt;PC-Work&lt;/code&gt;等，保存&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;测试是否成功&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;ssh -T git@github.com    # 就这样不用改
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;看到&lt;code&gt;Are you sure you want to continue connecting&lt;/code&gt;时输&lt;code&gt;yes&lt;/code&gt;回车，然后就可以了&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;修改配置文件&#34;&gt;修改配置文件&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;config.toml&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;baseurl = &amp;quot;https://keithmork.github.io/&amp;quot;
+languageCode = &amp;quot;en-us&amp;quot;
+title = &amp;quot;Haunted Hovel - 闹鬼小屋&amp;quot;
+
+[Params]
+  author = &amp;quot;Keith Mo&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;http://gohugo.io/overview/usage/&#34;&gt;http://gohugo.io/overview/usage/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;参考
+&amp;gt; &lt;a href=&#34;https://pages.github.com/&#34;&gt;GitHub Pages&lt;/a&gt; &lt;code&gt;User or organization site&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
