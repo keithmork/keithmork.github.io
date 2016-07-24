@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>用github搭建个人博客 on </title>
-    <link>https://keithmork.github.io/series/%E7%94%A8github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+    <link>https://www.keithmo.me/series/%E7%94%A8github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
     <description>Recent content in 用github搭建个人博客 on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jul 2016 02:16:04 +0800</lastBuildDate>
-    <atom:link href="https://keithmork.github.io/series/%E7%94%A8github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.keithmo.me/series/%E7%94%A8github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>GitHub &#43; Hugo搭建个人博客(1) - 基础</title>
-      <link>https://keithmork.github.io/post/2016/07/2016-07-20-build-your-own-blog1</link>
+      <title>GitHub &#43; Hugo搭建个人博客(1) - 发布第一篇博文</title>
+      <link>https://www.keithmo.me/post/2016/07/2016-07-20-build-your-own-blog1</link>
       <pubDate>Wed, 20 Jul 2016 02:16:04 +0800</pubDate>
       
-      <guid>https://keithmork.github.io/post/2016/07/2016-07-20-build-your-own-blog1</guid>
+      <guid>https://www.keithmo.me/post/2016/07/2016-07-20-build-your-own-blog1</guid>
       <description>
 
 &lt;h2 id=&#34;自己搭博客的n个理由&#34;&gt;自己搭博客的N个理由&lt;/h2&gt;
@@ -49,7 +49,7 @@
 
 &lt;h2 id=&#34;准备工作&#34;&gt;准备工作&lt;/h2&gt;
 
-&lt;h3 id=&#34;1-注册github&#34;&gt;1. 注册GitHub&lt;/h3&gt;
+&lt;h3 id=&#34;注册github&#34;&gt;注册GitHub&lt;/h3&gt;
 
 &lt;p&gt;行内没几个人还没有 &lt;a href=&#34;https://github.com/&#34;&gt;GitHub&lt;/a&gt; 账号了吧&lt;br /&gt;
 &lt;del&gt;很惭愧，我所有的提交记录全是博文……&lt;/del&gt;&lt;/p&gt;
@@ -61,7 +61,7 @@
 
 &lt;hr /&gt;
 
-&lt;h3 id=&#34;2-安装git&#34;&gt;2. 安装Git&lt;/h3&gt;
+&lt;h3 id=&#34;安装git&#34;&gt;安装Git&lt;/h3&gt;
 
 &lt;h4 id=&#34;mac&#34;&gt;Mac&lt;/h4&gt;
 
@@ -76,7 +76,7 @@
 
 &lt;hr /&gt;
 
-&lt;h3 id=&#34;3-设置git用户信息&#34;&gt;3. 设置Git用户信息&lt;/h3&gt;
+&lt;h3 id=&#34;设置git用户信息&#34;&gt;设置Git用户信息&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;git config --global user.name &amp;quot;keithmork&amp;quot;
 git config --global user.email &amp;quot;keith.mork@gmail.com&amp;quot;
@@ -89,7 +89,7 @@ git config --global user.email &amp;quot;keith.mork@gmail.com&amp;quot;
 
 &lt;hr /&gt;
 
-&lt;h3 id=&#34;4-创建github个人主页&#34;&gt;4. 创建GitHub个人主页&lt;/h3&gt;
+&lt;h3 id=&#34;创建github个人主页&#34;&gt;创建GitHub个人主页&lt;/h3&gt;
 
 &lt;p&gt;在GitHub上新建仓库(repository)&lt;/p&gt;
 
@@ -104,8 +104,7 @@ git config --global user.email &amp;quot;keith.mork@gmail.com&amp;quot;
 
 &lt;h2 id=&#34;使用静态网站生成器搭建站点&#34;&gt;使用静态网站生成器搭建站点&lt;/h2&gt;
 
-&lt;p&gt;个人网站/博客只需要简单的静态页面，什么数据库、后台服务、前端框架统统可以抛开&lt;br /&gt;
-&lt;a href=&#34;https://www.staticgen.com/&#34;&gt;这类工具&lt;/a&gt;可以把Markdown文档转换成网页，&lt;/p&gt;
+&lt;p&gt;个人网站/博客通常只需要简单的静态页面，&lt;a href=&#34;https://www.staticgen.com/&#34;&gt;这类工具&lt;/a&gt;正好可以把Markdown文档转换成网页，非常方便&lt;/p&gt;
 
 &lt;p&gt;这里选择 &lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;，特点是生成速度非常快，安装配置简单，还带实时预览&lt;/p&gt;
 
@@ -165,7 +164,7 @@ title = &amp;quot;2016 07 19 first&amp;quot;
 &lt;pre&gt;&lt;code&gt;+++
 date = &amp;quot;2016-07-19T00:12:34+08:00&amp;quot;
 draft = true
-title = &amp;quot;第一篇博文&amp;quot;
+title = &amp;quot;我的第一篇博文&amp;quot;
 
 +++
 
@@ -179,6 +178,8 @@ title = &amp;quot;第一篇博文&amp;quot;
 - 求职展示
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;hr /&gt;
+
 &lt;h3 id=&#34;下载主题&#34;&gt;下载主题&lt;/h3&gt;
 
 &lt;ul&gt;
@@ -190,6 +191,8 @@ git clone https://github.com/digitalcraftsman/hugo-steam-theme.git
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://themes.gohugo.io/steam/&#34;&gt;Steam&lt;/a&gt;这主题用了2016年国外流行的&lt;a href=&#34;http://www.b12.cn/article/NDI2MGIxMg.html&#34;&gt;CR&lt;/a&gt;风格，看着还不错&lt;/p&gt;
+
+&lt;hr /&gt;
 
 &lt;h3 id=&#34;本地预览&#34;&gt;本地预览&lt;/h3&gt;
 
@@ -213,9 +216,11 @@ hugo server -Dw -t hugo-steam-theme
 &lt;li&gt;&lt;code&gt;ctrl + c&lt;/code&gt;结束hugo server&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;hr /&gt;
+
 &lt;h3 id=&#34;生成发布页面&#34;&gt;生成发布页面&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;hugo -D -b &amp;quot;https://keithmork.github.io&amp;quot; -t hyde
+&lt;pre&gt;&lt;code&gt;hugo -D -b &amp;quot;https://keithmork.github.io&amp;quot; -t hugo-steam-theme
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
@@ -226,24 +231,27 @@ hugo server -Dw -t hugo-steam-theme
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;部署到github&#34;&gt;部署到GitHub&lt;/h2&gt;
+&lt;h3 id=&#34;部署到github&#34;&gt;部署到GitHub&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;cd public
 git init
 git remote add origin &amp;quot;https://github.com/keithmork/keithmork.github.io&amp;quot;
 git add -A
-git commit -a -m &amp;quot;first commit&amp;quot;
+git commit -m &amp;quot;first commit&amp;quot;
 git push -u origin master
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;之后会提示输入在GitHub注册的邮箱和密码&lt;br /&gt;
 提交成功后，浏览器打开&lt;code&gt;https://keithmork.github.io&lt;/code&gt;，就能看到刚才的页面了&lt;/p&gt;
 
+&lt;p&gt;&lt;strong&gt;大功告成！&lt;/strong&gt;&lt;/p&gt;
+
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;使用ssh密钥登录github&#34;&gt;使用SSH密钥登录GitHub&lt;/h2&gt;
+&lt;h2 id=&#34;可选-使用ssh密钥登录github&#34;&gt;（可选）使用SSH密钥登录GitHub&lt;/h2&gt;
 
-&lt;p&gt;可以免去每次SSH连接GitHub时都输用户名密码&lt;/p&gt;
+&lt;p&gt;每次发博文都输用户名密码太麻烦，用密钥代替密码就方便多了&lt;br /&gt;
+前提是机器只有你一个人用&lt;/p&gt;
 
 &lt;h3 id=&#34;生成ssh密钥对&#34;&gt;生成SSH密钥对&lt;/h3&gt;
 
@@ -260,6 +268,8 @@ ssh-keygen -t rsa -C &amp;quot;keith.mork@gmail.com&amp;quot;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://help.github.com/articles/generating-an-ssh-key/&#34;&gt;详细教程&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
+
+&lt;hr /&gt;
 
 &lt;h3 id=&#34;添加ssh公钥到github&#34;&gt;添加SSH公钥到GitHub&lt;/h3&gt;
 
@@ -288,26 +298,13 @@ ssh-keygen -t rsa -C &amp;quot;keith.mork@gmail.com&amp;quot;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;修改配置文件&#34;&gt;修改配置文件&lt;/h2&gt;
-
-&lt;p&gt;&lt;code&gt;config.toml&lt;/code&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;baseurl = &amp;quot;https://keithmork.github.io/&amp;quot;
-languageCode = &amp;quot;en-us&amp;quot;
-title = &amp;quot;Haunted Hovel - 闹鬼小屋&amp;quot;
-
-[Params]
-  author = &amp;quot;Keith Mo&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;http://gohugo.io/overview/usage/&#34;&gt;http://gohugo.io/overview/usage/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://gohugo.io/overview/usage/&#34;&gt;Hugo官网例子&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&#34;https://pages.github.com/&#34;&gt;GitHub Pages&lt;/a&gt; 的&lt;code&gt;User or organization site&lt;/code&gt;下面有手把手教程&lt;br /&gt;
+&lt;a href=&#34;http://blog.coderzh.com/2015/08/29/hugo/&#34;&gt;使用hugo搭建个人博客站点&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-
-&lt;p&gt;参考
-&amp;gt; &lt;a href=&#34;https://pages.github.com/&#34;&gt;GitHub Pages&lt;/a&gt; &lt;code&gt;User or organization site&lt;/code&gt;&lt;/p&gt;
 </description>
     </item>
     

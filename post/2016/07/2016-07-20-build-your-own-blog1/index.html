@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>GitHub &#43; Hugo搭建个人博客(1) - 基础 &middot; </title>
+    <title>GitHub &#43; Hugo搭建个人博客(1) - 发布第一篇博文 &middot; </title>
     <meta name="author" content="Keith Mo">
     <meta name="description" content="Your description of the blog">
     <meta name="generator" content="Hugo 0.16" />
@@ -15,12 +15,12 @@
     <!-- RSS autodiscovery -->
     
 
-    <link rel="shortcut icon" href="https://keithmork.github.io/img/favicon.ico">
+    <link rel="shortcut icon" href="https://www.keithmo.meimg/favicon.ico">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/2.1.2/normalize.min.css">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="https://keithmork.github.io/css/screen.css">
-    <link rel="stylesheet" href="https://keithmork.github.io/css/github.css">
+    <link rel="stylesheet" href="https://www.keithmo.mecss/screen.css">
+    <link rel="stylesheet" href="https://www.keithmo.mecss/github.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/default.min.css">
 
     <!-- Stylesheet for theme color -->
@@ -38,10 +38,8 @@
 
     <header id="site-head">
 	
-	<h1 class="blog-title"><a href="https://keithmork.github.io/">Haunted Hovel - 闹鬼小屋</a></h1>
+	<h1 class="blog-title"><a href="https://www.keithmo.me">Haunted Hovel - 闹鬼小屋</a></h1>
 	
-	
-	<h1 class="blog-subtitle">当你对自己的要求高于别人对你的要求时，你就是自由的</h1>
 	
 </header>
     
@@ -49,7 +47,7 @@
     <main class="content" role="main">
 	    <article class="post">
 	        <header>
-	        <h1 class="post-title">GitHub &#43; Hugo搭建个人博客(1) - 基础</h1>
+	        <h1 class="post-title">GitHub &#43; Hugo搭建个人博客(1) - 发布第一篇博文</h1>
 	        <div class="post-meta"><time datetime="20 July 2016">20 July 2016</time></div>
 	        </header>
 
@@ -88,7 +86,7 @@
 
 <h2 id="准备工作">准备工作</h2>
 
-<h3 id="1-注册github">1. 注册GitHub</h3>
+<h3 id="注册github">注册GitHub</h3>
 
 <p>行内没几个人还没有 <a href="https://github.com/">GitHub</a> 账号了吧<br />
 <del>很惭愧，我所有的提交记录全是博文……</del></p>
@@ -100,7 +98,7 @@
 
 <hr />
 
-<h3 id="2-安装git">2. 安装Git</h3>
+<h3 id="安装git">安装Git</h3>
 
 <h4 id="mac">Mac</h4>
 
@@ -115,7 +113,7 @@
 
 <hr />
 
-<h3 id="3-设置git用户信息">3. 设置Git用户信息</h3>
+<h3 id="设置git用户信息">设置Git用户信息</h3>
 
 <pre><code>git config --global user.name &quot;keithmork&quot;
 git config --global user.email &quot;keith.mork@gmail.com&quot;
@@ -128,7 +126,7 @@ git config --global user.email &quot;keith.mork@gmail.com&quot;
 
 <hr />
 
-<h3 id="4-创建github个人主页">4. 创建GitHub个人主页</h3>
+<h3 id="创建github个人主页">创建GitHub个人主页</h3>
 
 <p>在GitHub上新建仓库(repository)</p>
 
@@ -143,8 +141,7 @@ git config --global user.email &quot;keith.mork@gmail.com&quot;
 
 <h2 id="使用静态网站生成器搭建站点">使用静态网站生成器搭建站点</h2>
 
-<p>个人网站/博客只需要简单的静态页面，什么数据库、后台服务、前端框架统统可以抛开<br />
-<a href="https://www.staticgen.com/">这类工具</a>可以把Markdown文档转换成网页，</p>
+<p>个人网站/博客通常只需要简单的静态页面，<a href="https://www.staticgen.com/">这类工具</a>正好可以把Markdown文档转换成网页，非常方便</p>
 
 <p>这里选择 <a href="http://gohugo.io/">Hugo</a>，特点是生成速度非常快，安装配置简单，还带实时预览</p>
 
@@ -204,7 +201,7 @@ title = &quot;2016 07 19 first&quot;
 <pre><code>+++
 date = &quot;2016-07-19T00:12:34+08:00&quot;
 draft = true
-title = &quot;第一篇博文&quot;
+title = &quot;我的第一篇博文&quot;
 
 +++
 
@@ -218,6 +215,8 @@ title = &quot;第一篇博文&quot;
 - 求职展示
 </code></pre>
 
+<hr />
+
 <h3 id="下载主题">下载主题</h3>
 
 <ul>
@@ -229,6 +228,8 @@ git clone https://github.com/digitalcraftsman/hugo-steam-theme.git
 </code></pre>
 
 <p><a href="http://themes.gohugo.io/steam/">Steam</a>这主题用了2016年国外流行的<a href="http://www.b12.cn/article/NDI2MGIxMg.html">CR</a>风格，看着还不错</p>
+
+<hr />
 
 <h3 id="本地预览">本地预览</h3>
 
@@ -252,9 +253,11 @@ hugo server -Dw -t hugo-steam-theme
 <li><code>ctrl + c</code>结束hugo server</li>
 </ul>
 
+<hr />
+
 <h3 id="生成发布页面">生成发布页面</h3>
 
-<pre><code>hugo -D -b &quot;https://keithmork.github.io&quot; -t hyde
+<pre><code>hugo -D -b &quot;https://keithmork.github.io&quot; -t hugo-steam-theme
 </code></pre>
 
 <ul>
@@ -265,24 +268,27 @@ hugo server -Dw -t hugo-steam-theme
 
 <hr />
 
-<h2 id="部署到github">部署到GitHub</h2>
+<h3 id="部署到github">部署到GitHub</h3>
 
 <pre><code>cd public
 git init
 git remote add origin &quot;https://github.com/keithmork/keithmork.github.io&quot;
 git add -A
-git commit -a -m &quot;first commit&quot;
+git commit -m &quot;first commit&quot;
 git push -u origin master
 </code></pre>
 
 <p>之后会提示输入在GitHub注册的邮箱和密码<br />
 提交成功后，浏览器打开<code>https://keithmork.github.io</code>，就能看到刚才的页面了</p>
 
+<p><strong>大功告成！</strong></p>
+
 <hr />
 
-<h2 id="使用ssh密钥登录github">使用SSH密钥登录GitHub</h2>
+<h2 id="可选-使用ssh密钥登录github">（可选）使用SSH密钥登录GitHub</h2>
 
-<p>可以免去每次SSH连接GitHub时都输用户名密码</p>
+<p>每次发博文都输用户名密码太麻烦，用密钥代替密码就方便多了<br />
+前提是机器只有你一个人用</p>
 
 <h3 id="生成ssh密钥对">生成SSH密钥对</h3>
 
@@ -299,6 +305,8 @@ ssh-keygen -t rsa -C &quot;keith.mork@gmail.com&quot;
 <blockquote>
 <p><a href="https://help.github.com/articles/generating-an-ssh-key/">详细教程</a></p>
 </blockquote>
+
+<hr />
 
 <h3 id="添加ssh公钥到github">添加SSH公钥到GitHub</h3>
 
@@ -327,26 +335,13 @@ ssh-keygen -t rsa -C &quot;keith.mork@gmail.com&quot;
 
 <hr />
 
-<h2 id="修改配置文件">修改配置文件</h2>
-
-<p><code>config.toml</code></p>
-
-<pre><code>baseurl = &quot;https://keithmork.github.io/&quot;
-languageCode = &quot;en-us&quot;
-title = &quot;Haunted Hovel - 闹鬼小屋&quot;
-
-[Params]
-  author = &quot;Keith Mo&quot;
-</code></pre>
-
-<hr />
+<h2 id="参考">参考</h2>
 
 <blockquote>
-<p><a href="http://gohugo.io/overview/usage/">http://gohugo.io/overview/usage/</a></p>
+<p><a href="http://gohugo.io/overview/usage/">Hugo官网例子</a><br />
+<a href="https://pages.github.com/">GitHub Pages</a> 的<code>User or organization site</code>下面有手把手教程<br />
+<a href="http://blog.coderzh.com/2015/08/29/hugo/">使用hugo搭建个人博客站点</a></p>
 </blockquote>
-
-<p>参考
-&gt; <a href="https://pages.github.com/">GitHub Pages</a> <code>User or organization site</code></p>
 
 	        </section>
 
@@ -354,11 +349,11 @@ title = &quot;Haunted Hovel - 闹鬼小屋&quot;
 	            <div class="post-meta tags">
 	            <i class="fa fa-fw fa-tag"></i>
 	            
-	            <a href="https://keithmork.github.io/tags/Git">Git </a>
+	            <a href="https://www.keithmo.metags/Git">Git </a>
 	            
-	            <a href="https://keithmork.github.io/tags/GitHub">GitHub </a>
+	            <a href="https://www.keithmo.metags/GitHub">GitHub </a>
 	            
-	            <a href="https://keithmork.github.io/tags/Hugo">Hugo </a>
+	            <a href="https://www.keithmo.metags/Hugo">Hugo </a>
 	            
 	            </div>
 	        </section>
@@ -366,10 +361,10 @@ title = &quot;Haunted Hovel - 闹鬼小屋&quot;
 			
 	        	<div id="disqus_thread"></div>
 <script type="text/javascript">
-    var disqus_shortname = 'spf13';
-    var disqus_identifier = 'https:\/\/keithmork.github.io\/post\/2016\/07\/2016-07-20-build-your-own-blog1';
-    var disqus_title = 'GitHub \x2b Hugo搭建个人博客(1) - 基础';
-    var disqus_url = 'https:\/\/keithmork.github.io\/post\/2016\/07\/2016-07-20-build-your-own-blog1';
+    var disqus_shortname = 'keithmo';
+    var disqus_identifier = 'https:\/\/www.keithmo.me\/post\/2016\/07\/2016-07-20-build-your-own-blog1';
+    var disqus_title = 'GitHub \x2b Hugo搭建个人博客(1) - 发布第一篇博文';
+    var disqus_url = 'https:\/\/www.keithmo.me\/post\/2016\/07\/2016-07-20-build-your-own-blog1';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -386,15 +381,15 @@ title = &quot;Haunted Hovel - 闹鬼小屋&quot;
 	        <section class="share">
 	            <p class="backtotop"><a data-scroll href="#site-head"><i class="fa fa-lg fa-fw fa-angle-double-up"></i></a><a data-scroll class="backtotoptext" href="#site-head"> Back to top</a></p>
 	            <p class="info prompt">Share</p>
-	            <a href="http://twitter.com/share?text=GitHub%20%2b%20Hugo%e6%90%ad%e5%bb%ba%e4%b8%aa%e4%ba%ba%e5%8d%9a%e5%ae%a2%281%29%20-%20%e5%9f%ba%e7%a1%80&url=https%3a%2f%2fkeithmork.github.io%2fpost%2f2016%2f07%2f2016-07-20-build-your-own-blog1" title="Share on Twitter"
+	            <a href="http://twitter.com/share?text=GitHub%20%2b%20Hugo%e6%90%ad%e5%bb%ba%e4%b8%aa%e4%ba%ba%e5%8d%9a%e5%ae%a2%281%29%20-%20%e5%8f%91%e5%b8%83%e7%ac%ac%e4%b8%80%e7%af%87%e5%8d%9a%e6%96%87&url=https%3a%2f%2fwww.keithmo.me%2fpost%2f2016%2f07%2f2016-07-20-build-your-own-blog1" title="Share on Twitter"
 	                onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
 	                <i class="fa fa-2x fa-fw fa-twitter-square"></i> <span class="hidden">Twitter</span>
 	            </a>
-	            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkeithmork.github.io%2fpost%2f2016%2f07%2f2016-07-20-build-your-own-blog1" title="Share on Facebook"
+	            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.keithmo.me%2fpost%2f2016%2f07%2f2016-07-20-build-your-own-blog1" title="Share on Facebook"
 	                onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
 	                <i class="fa fa-2x fa-fw fa-facebook-square" style="margin-left: -8px"></i> <span class="hidden">Facebook</span>
 	            </a>
-	            <a href="https://plus.google.com/share?url=https%3a%2f%2fkeithmork.github.io%2fpost%2f2016%2f07%2f2016-07-20-build-your-own-blog1" title="Share on Google+"
+	            <a href="https://plus.google.com/share?url=https%3a%2f%2fwww.keithmo.me%2fpost%2f2016%2f07%2f2016-07-20-build-your-own-blog1" title="Share on Google+"
 	               onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
 	                <i class="fa fa-2x fa-fw fa-google-plus-square" style="margin-left: -8px"></i> <span class="hidden">Google+</span>
 	            </a>
@@ -402,9 +397,9 @@ title = &quot;Haunted Hovel - 闹鬼小屋&quot;
 
 	        <footer class="post-footer">
 	            <section class="author">
-    <div class="authorimage" style="background: url(https://keithmork.github.io/img/avatar.jpg)"></div>
+    <div class="authorimage" style="background: url(https://www.keithmo.meimg/avatar.jpg)"></div>
     <h4>Keith Mo</h4>
-    <p class="bio">测试不止是点界面</p>
+    <p class="bio">不好好努力，连黑产都搞不了</p>
     <p class="meta">
       
     </p>
@@ -423,12 +418,12 @@ title = &quot;Haunted Hovel - 闹鬼小屋&quot;
 		    <a href="" target="_blank" title="RSS"><i class="fa fa-2x fa-fw fa-rss"></i> <span class="hidden">RSS</span></a>
 		</section>
 
-		<section class="copyright">&copy; 2016 <a href="https://keithmork.github.io/">Keith Mo</a>. Released under the MIT license.</section>
+		<section class="copyright">&copy; 2016 <a href="https://www.keithmo.me">Keith Mo</a>. Released under the MIT license.</section>
 	</div>
 </footer>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://keithmork.github.io/js/index.js"></script>
-<script src="https://keithmork.github.io/js/smooth-scroll.min.js"></script>
+<script src="https://www.keithmo.mejs/index.js"></script>
+<script src="https://www.keithmo.mejs/smooth-scroll.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js"></script>
 
 <script>
@@ -441,6 +436,14 @@ title = &quot;Haunted Hovel - 闹鬼小屋&quot;
 </script>
 <script>hljs.initHighlightingOnLoad();</script>
 
+
+<!-- Google Analytics -->
+<script>
+  var _gaq=[['_setAccount','UA-81240089-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
 
 
 </body>
