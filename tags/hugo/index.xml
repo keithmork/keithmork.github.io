@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hugo on </title>
-    <link>https://www.keithmo.me/tags/hugo/</link>
+    <link>https://keithmo.me/tags/hugo/</link>
     <description>Recent content in Hugo on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jul 2016 02:16:04 +0800</lastBuildDate>
-    <atom:link href="https://www.keithmo.me/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://keithmo.me/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>GitHub &#43; Hugo搭建个人博客(1) - 发布第一篇博文</title>
-      <link>https://www.keithmo.me/post/2016/07/2016-07-20-build-your-own-blog1</link>
+      <link>https://keithmo.me/post/2016/07/2016-07-20-build-your-own-blog1</link>
       <pubDate>Wed, 20 Jul 2016 02:16:04 +0800</pubDate>
       
-      <guid>https://www.keithmo.me/post/2016/07/2016-07-20-build-your-own-blog1</guid>
+      <guid>https://keithmo.me/post/2016/07/2016-07-20-build-your-own-blog1</guid>
       <description>
 
 &lt;h2 id=&#34;自己搭博客的n个理由&#34;&gt;自己搭博客的N个理由&lt;/h2&gt;
@@ -238,6 +238,7 @@ git init
 git remote add origin &amp;quot;https://github.com/keithmork/keithmork.github.io&amp;quot;
 git add -A
 git commit -m &amp;quot;first commit&amp;quot;
+git pull origin master
 git push -u origin master
 &lt;/code&gt;&lt;/pre&gt;
 
