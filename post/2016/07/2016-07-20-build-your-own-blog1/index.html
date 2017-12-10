@@ -1,58 +1,113 @@
-<!DOCTYPE html>
-<html lang="en-us">
+<!doctype html>
+
+<html lang="zh-cn">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-    <title>GitHub &#43; Hugo搭建个人博客(1) - 发布第一篇博文 &middot; </title>
-    <meta name="author" content="Keith Mo">
-    <meta name="description" content="Your description of the blog">
-    <meta name="generator" content="Hugo 0.16" />
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-
-    <!-- RSS autodiscovery -->
-    
-
-    <link rel="shortcut icon" href="http://keithmo.me/img/favicon.ico">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/2.1.2/normalize.min.css">
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="http://keithmo.me/css/screen.css">
-    <link rel="stylesheet" href="http://keithmo.me/css/github.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/default.min.css">
-
-    <!-- Stylesheet for theme color -->
-    <style type="text/css">
-    a, a:visited {color: #f05948;}
-    .pagination a {color: #f05948;}
-    .gist .gist-file .gist-meta a:visited {color: #f05948 !important;}
-    a:focus, a:hover {color: #c62310;}
-    h1.post-title a:focus, h1.post-title a:hover, h1.blog-title a:focus, h1.blog-title a:hover {color: #c62310;}
-    .older-posts:hover, .newer-posts:hover {color: #c62310;}
-</style>
+  <title>Haunted Hovel - 闹鬼小屋</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="Keith Mo" />
+  <meta name="generator" content="Hugo 0.31.1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="http://keithmo.me/css/styles.css" />
 </head>
 
-<body class="post-template">
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="http://keithmo.me/">Haunted Hovel - 闹鬼小屋</a>
+            </h1>
 
-    <header id="site-head">
-	
-	<h1 class="blog-title"><a href="http://keithmo.me/">Haunted Hovel - 闹鬼小屋</a></h1>
-	
-	
-</header>
+      <ul id="social-media">
+          
+        <li><a href="https://github.com/keithmork"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a></li>
+           
+      </ul>
+      
+      <p><em>守正出奇，一身邪气</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="http://keithmo.me/post/">
+                <i class="fa-li fa  fa-lg"></i><span>Posts</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="http://keithmo.me/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="http://keithmo.me/links/">
+                <i class="fa-li fa  fa-lg"></i><span>Links</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>GitHub &#43; Hugo 搭建个人博客(1) - 发布第一篇博文</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2016-07-20T02:16:04&#43;08:00">Jul 20, 2016</time>
+        </li>
+        
+        
+        <li>
+            Categories: 
+            <em>
+                
+                    
+                    <a href="http://keithmo.me/categories/10000-hours/">10000 hours</a>
+                
+            </em>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="http://keithmo.me/tags/Hugo/">#Hugo</a>
+                
+                    , 
+                    <a href="http://keithmo.me/tags/GitHub/">#GitHub</a>
+                
+                    , 
+                    <a href="http://keithmo.me/tags/Git/">#Git</a>
+                
+            </em>
+        </li>
+        
+
+        <li>4 min read</li>
+    </ul>
+</aside>
     
 
-    <main class="content" role="main">
-	    <article class="post">
-	        <header>
-	        <h1 class="post-title">GitHub &#43; Hugo搭建个人博客(1) - 发布第一篇博文</h1>
-	        <div class="post-meta"><time datetime="20 July 2016">20 July 2016</time></div>
-	        </header>
-
-	        <section class="post-content">
-	            
+    
 
 <h2 id="自己搭博客的n个理由">自己搭博客的N个理由</h2>
 
@@ -114,11 +169,8 @@
 <hr />
 
 <h3 id="设置git用户信息">设置Git用户信息</h3>
-
-<pre><code>git config --global user.name &quot;keithmork&quot;
-git config --global user.email &quot;keith.mork@gmail.com&quot;
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git config --global user.name <span style="color:#4070a0">&#34;keithmork&#34;</span>
+git config --global user.email <span style="color:#4070a0">&#34;keith.mork@gmail.com&#34;</span></code></pre></div>
 <ul>
 <li>使用GitHub注册的邮箱和用户名<br />
 这台机器上的每个项目提交时都会用这些信息</li>
@@ -155,11 +207,8 @@ git config --global user.email &quot;keith.mork@gmail.com&quot;
 <h3 id="新建站点">新建站点</h3>
 
 <p>假设想放在用户家目录的<code>site/blog/</code>下</p>
-
-<pre><code>mkdir -p ~/site/blog
-hugo new site ~/site/blog
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">mkdir -p ~/site/blog
+hugo new site ~/site/blog</pre></div>
 <p>会在指定目录下生成如下内容</p>
 
 <blockquote>
@@ -175,10 +224,7 @@ config.toml</p>
 <hr />
 
 <h3 id="创建页面">创建页面</h3>
-
-<pre><code>hugo new post/2016-07-19-first.md
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">hugo new post/2016-07-19-first.md</pre></div>
 <p>可以看到在<code>content/</code>下生成了指定的目录和文件</p>
 
 <ul>
@@ -187,34 +233,28 @@ config.toml</p>
 </ul>
 
 <p>用文本编辑器打开可以看见如下模板：</p>
-
-<pre><code>+++
-date = &quot;2016-07-19T00:12:34+08:00&quot;
-draft = true
-title = &quot;2016 07 19 first&quot;
-
-+++
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">+++<span style="">
+</span><span style=""></span>date = &#34;2016-07-19T00:12:34+08:00&#34;<span style="">
+</span><span style=""></span>draft = true<span style="">
+</span><span style=""></span>title = &#34;2016 07 19 first&#34;<span style="">
+</span><span style="">
+</span><span style=""></span>+++</code></pre></div>
 <p>在模板下面的空白处写正文，如</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">+++<span style="">
+</span><span style=""></span>date = &#34;2016-07-19T00:12:34+08:00&#34;<span style="">
+</span><span style=""></span>draft = true<span style="">
+</span><span style=""></span>title = &#34;我的第一篇博文&#34;<span style="">
+</span><span style="">
+</span><span style=""></span>+++<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#800080;font-weight:bold">##</span> Hello Hugo
+<span style="">
+</span><span style=""></span>坚持写博客的好处：
 
-<pre><code>+++
-date = &quot;2016-07-19T00:12:34+08:00&quot;
-draft = true
-title = &quot;我的第一篇博文&quot;
-
-+++
-
-## Hello Hugo
-
-坚持写博客的好处：
-
-- 记录心得
-- 整理思路
-- 分享交流
-- 求职展示
-</code></pre>
-
+<span style="color:#007020;font-weight:bold">-</span> 记录心得<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">-</span> 整理思路<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">-</span> 分享交流<span style="">
+</span><span style=""></span>- 求职展示</code></pre></div>
 <hr />
 
 <h3 id="下载主题">下载主题</h3>
@@ -222,21 +262,15 @@ title = &quot;我的第一篇博文&quot;
 <ul>
 <li>默认不带主题，要从 <a href="https://github.com/spf13/hugoThemes">这里</a> 挑喜欢的下载</li>
 </ul>
-
-<pre><code>cd themes
-git clone https://github.com/digitalcraftsman/hugo-steam-theme.git
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">cd themes
+git clone https://github.com/digitalcraftsman/hugo-steam-theme.git</pre></div>
 <p><a href="http://themes.gohugo.io/steam/">Steam</a>这主题用了2016年国外流行的<a href="http://www.b12.cn/article/NDI2MGIxMg.html">CR</a>风格，看着还不错</p>
 
 <hr />
 
 <h3 id="本地预览">本地预览</h3>
-
-<pre><code>cd ..
-hugo server -Dw -t hugo-steam-theme
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">cd ..
+hugo server -Dw -t hugo-steam-theme</pre></div>
 <ul>
 <li><code>-D</code> 或 <code>--buildDraft</code>，加上这参数才会生成页面</li>
 <li><code>-w</code> 或 <code>--watch</code>，文件有改动时自动重新生成并刷新浏览器页面</li>
@@ -256,10 +290,7 @@ hugo server -Dw -t hugo-steam-theme
 <hr />
 
 <h3 id="生成发布页面">生成发布页面</h3>
-
-<pre><code>hugo -D -b &quot;https://keithmork.github.io&quot; -t hugo-steam-theme
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">hugo -D -b &#34;https://keithmork.github.io&#34; -t hugo-steam-theme</pre></div>
 <ul>
 <li><code>-b</code> 也作 <code>--baseURL</code> ，要发布到的网站目录地址</li>
 </ul>
@@ -269,16 +300,13 @@ hugo server -Dw -t hugo-steam-theme
 <hr />
 
 <h3 id="部署到github">部署到GitHub</h3>
-
-<pre><code>cd public
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">cd public
 git init
-git remote add origin &quot;https://github.com/keithmork/keithmork.github.io&quot;
+git remote add origin &#34;https://github.com/keithmork/keithmork.github.io&#34;
 git add -A
-git commit -m &quot;first commit&quot;
-git pull origin master
-git push -u origin master
-</code></pre>
-
+git commit -m &#34;first commit&#34;
+git pull
+git push origin master</pre></div>
 <p>之后会提示输入在GitHub注册的邮箱和密码<br />
 提交成功后，浏览器打开<code>https://keithmork.github.io</code>，就能看到刚才的页面了</p>
 
@@ -292,12 +320,9 @@ git push -u origin master
 前提是机器只有你一个人用</p>
 
 <h3 id="生成ssh密钥对">生成SSH密钥对</h3>
-
-<pre><code>mkdir ~/.ssh
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">mkdir ~/.ssh
 cd ~/.ssh
-ssh-keygen -t rsa -C &quot;keith.mork@gmail.com&quot;
-</code></pre>
-
+ssh-keygen -t rsa -C &#34;keith.mork@gmail.com&#34;</pre></div>
 <ul>
 <li>提示<code>Enter file in which to save the key</code>时直接回车，使用默认设置</li>
 <li>提示<code>Enter passphrase</code>和<code>Enter same passphrase again</code>时，可以直接回车，不使用加密串（否则每次提交时会验证加密串）</li>
@@ -314,10 +339,7 @@ ssh-keygen -t rsa -C &quot;keith.mork@gmail.com&quot;
 <ol>
 <li>用Vim编辑公钥文件</li>
 </ol>
-
-<pre><code>vim id_rsa.pub
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">vim id_rsa.pub</pre></div>
 <ol>
 <li><p>输入<code>yy</code>复制整行，<code>:q</code>退出</p></li>
 
@@ -326,10 +348,7 @@ ssh-keygen -t rsa -C &quot;keith.mork@gmail.com&quot;
 
 <li><p>测试是否成功</p></li>
 </ol>
-
-<pre><code>ssh -T git@github.com    # 就这样不用改
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">ssh -T git@github.com    # 就这样不用改</pre></div>
 <ul>
 <li>看到<code>Are you sure you want to continue connecting</code>时输<code>yes</code>回车，然后就可以了</li>
 </ul>
@@ -344,108 +363,87 @@ ssh-keygen -t rsa -C &quot;keith.mork@gmail.com&quot;
 <a href="http://blog.coderzh.com/2015/08/29/hugo/">使用hugo搭建个人博客站点</a></p>
 </blockquote>
 
-	        </section>
 
-	        <section class="post-tags" style="padding-bottom:60px;">
-	            <div class="post-meta tags">
-	            <i class="fa fa-fw fa-tag"></i>
-	            
-	            <a href="http://keithmo.me/tags/Git">Git </a>
-	            
-	            <a href="http://keithmo.me/tags/GitHub">GitHub </a>
-	            
-	            <a href="http://keithmo.me/tags/Hugo">Hugo </a>
-	            
-	            </div>
-	        </section>
-			
-			
-	        	<div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_shortname = 'keithmo';
-    var disqus_identifier = 'http:\/\/keithmo.me\/post\/2016\/07\/2016-07-20-build-your-own-blog1';
-    var disqus_title = 'GitHub \x2b Hugo搭建个人博客(1) - 发布第一篇博文';
-    var disqus_url = 'http:\/\/keithmo.me\/post\/2016\/07\/2016-07-20-build-your-own-blog1';
+</article>
 
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-	        
-			
-			
 
-	        <section class="share">
-	            <p class="backtotop"><a data-scroll href="#site-head"><i class="fa fa-lg fa-fw fa-angle-double-up"></i></a><a data-scroll class="backtotoptext" href="#site-head"> Back to top</a></p>
-	            <p class="info prompt">Share</p>
-	            <a href="http://twitter.com/share?text=GitHub%20%2b%20Hugo%e6%90%ad%e5%bb%ba%e4%b8%aa%e4%ba%ba%e5%8d%9a%e5%ae%a2%281%29%20-%20%e5%8f%91%e5%b8%83%e7%ac%ac%e4%b8%80%e7%af%87%e5%8d%9a%e6%96%87&url=http%3a%2f%2fkeithmo.me%2fpost%2f2016%2f07%2f2016-07-20-build-your-own-blog1" title="Share on Twitter"
-	                onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-	                <i class="fa fa-2x fa-fw fa-twitter-square"></i> <span class="hidden">Twitter</span>
-	            </a>
-	            <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fkeithmo.me%2fpost%2f2016%2f07%2f2016-07-20-build-your-own-blog1" title="Share on Facebook"
-	                onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-	                <i class="fa fa-2x fa-fw fa-facebook-square" style="margin-left: -8px"></i> <span class="hidden">Facebook</span>
-	            </a>
-	            <a href="https://plus.google.com/share?url=http%3a%2f%2fkeithmo.me%2fpost%2f2016%2f07%2f2016-07-20-build-your-own-blog1" title="Share on Google+"
-	               onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-	                <i class="fa fa-2x fa-fw fa-google-plus-square" style="margin-left: -8px"></i> <span class="hidden">Google+</span>
-	            </a>
-	        </section>
-
-	        <footer class="post-footer">
-	            <section class="author">
-    <div class="authorimage" style="background: url(http://keithmo.me/img/avatar.jpg)"></div>
-    <h4>Keith Mo</h4>
-    <p class="bio">不好好努力，连黑产都搞不了</p>
-    <p class="meta">
-      
-    </p>
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="http://keithmo.me/post/2016/07/2016-07-19-first/"><i class="fa fa-chevron-circle-left"></i> 第1篇博文</a>
+        </li>
+        
+        
+    </ul>
 </section>
-	        </footer>
-	    </article>
-	</main>
+    
+        <section class="comments-block">
+      <button id="show-comments" style="display: none;"><i class="fa fa-comments-o"></i> Add/View Comments</button>
+</section>
 
-    <footer class="site-footer">
-	<div class="inner">
-		<section class="footer-social">
-			
-		    
-		    <a href="//github.com/keithmork" target="_blank" title="GitHub"><i class="fa fa-2x fa-fw fa-github"></i> <span class="hidden">GitHub</span></a>&nbsp;
-		    
-		    <a href="" target="_blank" title="RSS"><i class="fa fa-2x fa-fw fa-rss"></i> <span class="hidden">RSS</span></a>
-		</section>
-
-		<section class="copyright">&copy; 2016 <a href="http://keithmo.me/">Keith Mo</a>. Released under the MIT license.</section>
-	</div>
-</footer>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="http://keithmo.me/js/index.js"></script>
-<script src="http://keithmo.me/js/smooth-scroll.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js"></script>
+<section id="disqus_thread"></section>
 
 <script>
-    smoothScroll.init({
-        speed: 800,
-        easing: 'easeInOutCubic',
-        updateURL: false,
-        offset: 125,
-    });
+      (function () {
+            
+            
+            if (window.location.hostname == "localhost")
+                  return;
+
+            var disqus_loaded = false;
+            var disqus_shortname = 'keithmo';
+            var disqus_button = document.getElementById("show-comments");
+
+            disqus_button.style.display = "";
+            disqus_button.addEventListener("click", disqus, false);
+
+            function disqus() {
+
+                  if (!disqus_loaded) {
+                        disqus_loaded = true;
+
+                        var e = document.createElement("script");
+                        e.type = "text/javascript";
+                        e.async = true;
+                        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                        (document.getElementsByTagName("head")[0] ||
+                              document.getElementsByTagName("body")[0])
+                        .appendChild(e);
+
+                        
+                        document.getElementById("show-comments").style.display = "none";
+                  }
+            }
+
+            
+            var hash = window.location.hash.substr(1);
+            if (hash.length > 8) {
+                  if (hash.substring(0, 8) == "comment-") {
+                        disqus();
+                  }
+            }
+
+            
+            if (/bot|google|baidu|bing|msn|duckduckgo|slurp|yandex/i.test(navigator.userAgent)) {
+                  disqus();
+            }
+      })();
 </script>
-<script>hljs.initHighlightingOnLoad();</script>
+    
 
 
-<!-- Google Analytics -->
-<script>
-  var _gaq=[['_setAccount','UA-81240089-1'],['_trackPageview']];
-  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-  s.parentNode.insertBefore(g,s)}(document,'script'));
-</script>
 
 
+
+</main>
+    <footer>
+        <h6>Copyright &copy; 2016-2018 - Keith Mo | 
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="http://keithmo.me/index.xml">Subscribe</a></h6>
+    </footer>
+</div>
+<script src="http://keithmo.me/js/scripts.js"></script>
 </body>
+
 </html>
