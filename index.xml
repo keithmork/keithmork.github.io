@@ -14,10 +14,10 @@
     
     <item>
       <title>About</title>
-      <link>http://keithmo.me/About/</link>
+      <link>http://keithmo.me/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://keithmo.me/About/</guid>
+      <guid>http://keithmo.me/about/</guid>
       <description></description>
     </item>
     
@@ -37,15 +37,6 @@
       
       <guid>http://keithmo.me/guide/2017/12/2017-12-11-blood-bowl2-legendary-challenges-guide/</guid>
       <description>血碗2传奇版（Steam: Blood Bowl 2 - Legendary Edition）新增的挑战模式很有意思，很多都是来自N年前玩家碰</description>
-    </item>
-    
-    <item>
-      <title>GitHub &#43; Hugo 搭建个人博客(1) - 发布第一篇博文</title>
-      <link>http://keithmo.me/post/2016/07/2016-07-20-build-your-own-blog1/</link>
-      <pubDate>Wed, 20 Jul 2016 02:16:04 +0800</pubDate>
-      
-      <guid>http://keithmo.me/post/2016/07/2016-07-20-build-your-own-blog1/</guid>
-      <description>自己搭博客的N个理由 你的笔记非常值钱，丢了就等于丢了N年工作经验 大多数博客网站都满足不了你 倒闭/停止</description>
     </item>
     
     <item>
