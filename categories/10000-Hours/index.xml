@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Haunted Hovel - 闹鬼小屋</title>
-    <link>http://keithmo.me/post/</link>
-    <description>Recent content in Posts on Haunted Hovel - 闹鬼小屋</description>
+    <title>10000 Hours on Haunted Hovel - 闹鬼小屋</title>
+    <link>http://keithmo.me/categories/10000-Hours/</link>
+    <description>Recent content in 10000 Hours on Haunted Hovel - 闹鬼小屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Copyright &amp;copy; 2016-2018 - Keith Mo</copyright>
     <lastBuildDate>Wed, 20 Jul 2016 02:16:04 +0800</lastBuildDate>
     
-	<atom:link href="http://keithmo.me/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://keithmo.me/categories/10000-Hours/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,15 +19,6 @@
       
       <guid>http://keithmo.me/post/2016/07/2016-07-20-build-your-own-blog1/</guid>
       <description>自己搭博客的N个理由 你的笔记非常值钱，丢了就等于丢了N年工作经验 大多数博客网站都满足不了你 倒闭/停止</description>
-    </item>
-    
-    <item>
-      <title>第1篇博文</title>
-      <link>http://keithmo.me/post/2016/07/2016-07-19-first/</link>
-      <pubDate>Tue, 19 Jul 2016 00:12:34 +0800</pubDate>
-      
-      <guid>http://keithmo.me/post/2016/07/2016-07-19-first/</guid>
-      <description>Hello Hugo 坚持写博客的好处： 记录心得 整理思路 分享交流 求职展示</description>
     </item>
     
   </channel>

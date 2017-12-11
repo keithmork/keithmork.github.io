@@ -1,0 +1,455 @@
+<!doctype html>
+
+<html lang="zh-cn">
+
+<head>
+  <title>Haunted Hovel - 闹鬼小屋</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="Keith Mo" />
+  <meta name="generator" content="Hugo 0.31.1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="http://keithmo.me/css/styles.css" />
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="http://keithmo.me/">Haunted Hovel - 闹鬼小屋</a>
+            </h1>
+
+      <ul id="social-media">
+          
+        <li><a href="https://github.com/keithmork"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a></li>
+           
+      </ul>
+      
+      <p><em>守正出奇，一身邪气</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="http://keithmo.me/post/">
+                <i class="fa-li fa  fa-lg"></i><span>Posts</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="http://keithmo.me/guide/">
+                <i class="fa-li fa  fa-lg"></i><span>Guides</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="http://keithmo.me/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="http://keithmo.me/links/">
+                <i class="fa-li fa  fa-lg"></i><span>Links</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>GitHub &#43; Hugo 搭建个人博客(1) - 发布第一篇博文</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2016-07-20T02:16:04&#43;08:00">Jul 20, 2016</time>
+        </li>
+        
+        
+        <li>
+            Categories: 
+            <em>
+                
+                    
+                    <a href="http://keithmo.me/categories/10000-Hours/">10000 Hours</a>
+                
+            </em>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="http://keithmo.me/tags/Hugo/">#Hugo</a>
+                
+                    , 
+                    <a href="http://keithmo.me/tags/GitHub/">#GitHub</a>
+                
+                    , 
+                    <a href="http://keithmo.me/tags/Git/">#Git</a>
+                
+            </em>
+        </li>
+        
+
+        <li>4 min read</li>
+    </ul>
+</aside>
+    
+
+    
+
+<h2 id="自己搭博客的n个理由">自己搭博客的N个理由</h2>
+
+<ul>
+<li>你的笔记非常值钱，丢了就等于丢了N年工作经验</li>
+<li>大多数博客网站都满足不了你
+
+<ul>
+<li>倒闭/停止服务/被删库时，你多半没备份</li>
+<li>格式互不兼容，导入导出困难，复制粘贴会乱</li>
+<li>编辑器极其难用</li>
+<li>可配置的地方不够，你讨厌的功能一堆</li>
+</ul></li>
+<li>可以使用Markdown写博文
+
+<ul>
+<li>任何一个文本编辑器都能写，随时随地</li>
+<li>足够沉浸，让你忘记格式，专注内容</li>
+<li>备份容易
+
+<ul>
+<li>CSDN、博客园、简书、有道云笔记等都支持，到处复制粘贴也能得到大致相同的格式</li>
+<li>纯文本本身也有足够可读性，网站/软件不支持也无所谓</li>
+</ul></li>
+</ul></li>
+<li>GitHub提供免费空间和CDN，站点放GitHub仓库也方便做版本控制</li>
+<li>可以作为学习新技术的试验田</li>
+</ul>
+
+<hr />
+
+<h2 id="准备工作">准备工作</h2>
+
+<h3 id="注册github">注册GitHub</h3>
+
+<p>行内没几个人还没有 <a href="https://github.com/">GitHub</a> 账号了吧<br />
+<del>很惭愧，我所有的提交记录全是博文……</del></p>
+
+<ul>
+<li>用户名会成为网址的一部分，最好全英文小写，没空格，不太长<br />
+例：用户名<code>keithmork</code>，对应网址<code>keithmork.github.io</code></li>
+</ul>
+
+<hr />
+
+<h3 id="安装git">安装Git</h3>
+
+<h4 id="mac">Mac</h4>
+
+<h4 id="pc">PC</h4>
+
+<p>下载安装 <a href="https://git-scm.com/">Git</a> ，全用默认设置，然后打开Git终端</p>
+
+<ul>
+<li>默认工作目录是Git安装目录下的<code>mingw64</code>文件夹</li>
+<li>路径分隔符请使用<code>/</code>或<code>\\</code></li>
+</ul>
+
+<hr />
+
+<h3 id="设置git用户信息">设置Git用户信息</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git config --global user.name <span style="color:#4070a0">&#34;keithmork&#34;</span>
+git config --global user.email <span style="color:#4070a0">&#34;keith.mork@gmail.com&#34;</span></code></pre></div>
+<ul>
+<li>使用GitHub注册的邮箱和用户名<br />
+这台机器上的每个项目提交时都会用这些信息</li>
+</ul>
+
+<hr />
+
+<h3 id="创建github个人主页">创建GitHub个人主页</h3>
+
+<p>在GitHub上新建仓库(repository)</p>
+
+<ul>
+<li>名字<strong>必须</strong>为 <em>username</em>.github.io ，如：<code>keithmork.github.io</code></li>
+</ul>
+
+<p>只要往里面提交一个<code>index.html</code>文件，就能通过 <a href="https://keithmork.github.io">https://keithmork.github.io</a> 访问了<br />
+不过先不急，继续往下看</p>
+
+<hr />
+
+<h2 id="使用静态网站生成器搭建站点">使用静态网站生成器搭建站点</h2>
+
+<p>个人网站/博客通常只需要简单的静态页面，<a href="https://www.staticgen.com/">这类工具</a>正好可以把Markdown文档转换成网页，非常方便</p>
+
+<p>这里选择 <a href="http://gohugo.io/">Hugo</a>，特点是生成速度非常快，安装配置简单，还带实时预览</p>
+
+<h3 id="安装">安装</h3>
+
+<p>下载后解压，把<code>hugo</code>（Windows下是<code>hugo.exe</code>）的路径加进环境变量<code>PATH</code>就行<br />
+命令行运行<code>hugo version</code>不报错就是成功了</p>
+
+<hr />
+
+<h3 id="新建站点">新建站点</h3>
+
+<p>假设想放在用户家目录的<code>site/blog/</code>下</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">mkdir -p ~/site/blog
+hugo new site ~/site/blog</pre></div>
+<p>会在指定目录下生成如下内容</p>
+
+<blockquote>
+<p>archetypes/<br />
+content/<br />
+data/<br />
+layouts/<br />
+static/<br />
+themes/<br />
+config.toml</p>
+</blockquote>
+
+<hr />
+
+<h3 id="创建页面">创建页面</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">hugo new post/2016-07-19-first.md</pre></div>
+<p>可以看到在<code>content/</code>下生成了指定的目录和文件</p>
+
+<ul>
+<li><code>content/</code>下的文件夹默认代表类型</li>
+<li>博文按上面那样取名比较容易管理，推荐</li>
+</ul>
+
+<p>用文本编辑器打开可以看见如下模板：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">+++<span style="">
+</span><span style=""></span>date = &#34;2016-07-19T00:12:34+08:00&#34;<span style="">
+</span><span style=""></span>draft = true<span style="">
+</span><span style=""></span>title = &#34;2016 07 19 first&#34;<span style="">
+</span><span style="">
+</span><span style=""></span>+++</code></pre></div>
+<p>在模板下面的空白处写正文，如</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">+++<span style="">
+</span><span style=""></span>date = &#34;2016-07-19T00:12:34+08:00&#34;<span style="">
+</span><span style=""></span>draft = true<span style="">
+</span><span style=""></span>title = &#34;我的第一篇博文&#34;<span style="">
+</span><span style="">
+</span><span style=""></span>+++<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#800080;font-weight:bold">##</span> Hello Hugo
+<span style="">
+</span><span style=""></span>坚持写博客的好处：
+
+<span style="color:#007020;font-weight:bold">-</span> 记录心得<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">-</span> 整理思路<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">-</span> 分享交流<span style="">
+</span><span style=""></span>- 求职展示</code></pre></div>
+<hr />
+
+<h3 id="下载主题">下载主题</h3>
+
+<ul>
+<li>默认不带主题，要从 <a href="https://github.com/spf13/hugoThemes">这里</a> 挑喜欢的下载</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">cd themes
+git clone https://github.com/digitalcraftsman/hugo-steam-theme.git</pre></div>
+<p><a href="http://themes.gohugo.io/steam/">Steam</a>这主题用了2016年国外流行的<a href="http://www.b12.cn/article/NDI2MGIxMg.html">CR</a>风格，看着还不错</p>
+
+<hr />
+
+<h3 id="本地预览">本地预览</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">cd ..
+hugo server -Dw -t hugo-steam-theme</pre></div>
+<ul>
+<li><code>-D</code> 或 <code>--buildDraft</code>，加上这参数才会生成页面</li>
+<li><code>-w</code> 或 <code>--watch</code>，文件有改动时自动重新生成并刷新浏览器页面</li>
+<li><code>-t</code> 或 <code>--theme</code>，指定主题
+<br /></li>
+</ul>
+
+<p>之后对文章的改动都能在浏览器实时看到，样式跟发布到线上完全相同<br />
+默认网址为<code>localhost:1313</code></p>
+
+<ul>
+<li>当前工作目录必须为站点根目录，否则提示<code>Error: Unable to locate Config file.</code></li>
+<li>必须指定theme，如果没下载或没指定，只能看到一片空白</li>
+<li><code>ctrl + c</code>结束hugo server</li>
+</ul>
+
+<hr />
+
+<h3 id="生成发布页面">生成发布页面</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">hugo -D -b &#34;https://keithmork.github.io&#34; -t hugo-steam-theme</pre></div>
+<ul>
+<li><code>-b</code> 也作 <code>--baseURL</code> ，要发布到的网站目录地址</li>
+</ul>
+
+<p>执行后会生成<code>public/</code>目录，可以看到之前的.md文件转换成了文件夹 + HTML</p>
+
+<hr />
+
+<h3 id="部署到github">部署到GitHub</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">cd public
+git init
+git remote add origin &#34;https://github.com/keithmork/keithmork.github.io&#34;
+git add -A
+git commit -m &#34;first commit&#34;
+git pull
+git push origin master</pre></div>
+<p>之后会提示输入在GitHub注册的邮箱和密码<br />
+提交成功后，浏览器打开<code>https://keithmork.github.io</code>，就能看到刚才的页面了</p>
+
+<p><strong>大功告成！</strong></p>
+
+<hr />
+
+<h2 id="可选-使用ssh密钥登录github">（可选）使用SSH密钥登录GitHub</h2>
+
+<p>每次发博文都输用户名密码太麻烦，用密钥代替密码就方便多了<br />
+前提是机器只有你一个人用</p>
+
+<h3 id="生成ssh密钥对">生成SSH密钥对</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">mkdir ~/.ssh
+cd ~/.ssh
+ssh-keygen -t rsa -C &#34;keith.mork@gmail.com&#34;</pre></div>
+<ul>
+<li>提示<code>Enter file in which to save the key</code>时直接回车，使用默认设置</li>
+<li>提示<code>Enter passphrase</code>和<code>Enter same passphrase again</code>时，可以直接回车，不使用加密串（否则每次提交时会验证加密串）</li>
+</ul>
+
+<blockquote>
+<p><a href="https://help.github.com/articles/generating-an-ssh-key/">详细教程</a></p>
+</blockquote>
+
+<hr />
+
+<h3 id="添加ssh公钥到github">添加SSH公钥到GitHub</h3>
+
+<ol>
+<li>用Vim编辑公钥文件</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">vim id_rsa.pub</pre></div>
+<ol>
+<li><p>输入<code>yy</code>复制整行，<code>:q</code>退出</p></li>
+
+<li><p>登上GitHub，在个人设置里找到<code>SSH and GPG keys</code>，新建SSH key，粘贴进去<br />
+取个容易识别的名字，如<code>Mac-Home</code> <code>PC-Work</code>等，保存</p></li>
+
+<li><p>测试是否成功</p></li>
+</ol>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">ssh -T git@github.com    # 就这样不用改</pre></div>
+<ul>
+<li>看到<code>Are you sure you want to continue connecting</code>时输<code>yes</code>回车，然后就可以了</li>
+</ul>
+
+<hr />
+
+<h2 id="参考">参考</h2>
+
+<blockquote>
+<p><a href="http://gohugo.io/overview/usage/">Hugo官网例子</a><br />
+<a href="https://pages.github.com/">GitHub Pages</a> 的<code>User or organization site</code>下面有手把手教程<br />
+<a href="http://blog.coderzh.com/2015/08/29/hugo/">使用hugo搭建个人博客站点</a></p>
+</blockquote>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="http://keithmo.me/post/2016/07/2016-07-19-first/"><i class="fa fa-chevron-circle-left"></i> 第1篇博文</a>
+        </li>
+        
+        
+    </ul>
+</section>
+    
+        <section class="comments-block">
+      <button id="show-comments" style="display: none;"><i class="fa fa-comments-o"></i> Add/View Comments</button>
+</section>
+
+<section id="disqus_thread"></section>
+
+<script>
+      (function () {
+            
+            
+            if (window.location.hostname == "localhost")
+                  return;
+
+            var disqus_loaded = false;
+            var disqus_shortname = 'keithmo';
+            var disqus_button = document.getElementById("show-comments");
+
+            disqus_button.style.display = "";
+            disqus_button.addEventListener("click", disqus, false);
+
+            function disqus() {
+
+                  if (!disqus_loaded) {
+                        disqus_loaded = true;
+
+                        var e = document.createElement("script");
+                        e.type = "text/javascript";
+                        e.async = true;
+                        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                        (document.getElementsByTagName("head")[0] ||
+                              document.getElementsByTagName("body")[0])
+                        .appendChild(e);
+
+                        
+                        document.getElementById("show-comments").style.display = "none";
+                  }
+            }
+
+            
+            var hash = window.location.hash.substr(1);
+            if (hash.length > 8) {
+                  if (hash.substring(0, 8) == "comment-") {
+                        disqus();
+                  }
+            }
+
+            
+            if (/bot|google|baidu|bing|msn|duckduckgo|slurp|yandex/i.test(navigator.userAgent)) {
+                  disqus();
+            }
+      })();
+</script>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6>Copyright &copy; 2016-2018 - Keith Mo | 
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="http://keithmo.me/index.xml">Subscribe</a></h6>
+    </footer>
+</div>
+<script src="http://keithmo.me/js/scripts.js"></script>
+</body>
+
+</html>

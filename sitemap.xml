@@ -4,12 +4,12 @@
   
   <url>
     <loc>http://keithmo.me/post/</loc>
-    <lastmod>2016-07-19T00:12:34+08:00</lastmod>
+    <lastmod>2016-07-20T02:16:04+08:00</lastmod>
   </url>
   
   <url>
     <loc>http://keithmo.me/guide/</loc>
-    <lastmod>2017-12-11T00:00:00+00:00</lastmod>
+    <lastmod>2017-12-11T19:45:10+08:00</lastmod>
   </url>
   
   <url>
@@ -22,7 +22,12 @@
   
   <url>
     <loc>http://keithmo.me/guide/2017/12/2017-12-11-blood-bowl2-legendary-challenges-guide/</loc>
-    <lastmod>2017-12-11T00:00:00+00:00</lastmod>
+    <lastmod>2017-12-11T19:45:10+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://keithmo.me/post/2016/07/2016-07-20-build-your-own-blog1/</loc>
+    <lastmod>2016-07-20T02:16:04+08:00</lastmod>
   </url>
   
   <url>
@@ -31,37 +36,62 @@
   </url>
   
   <url>
+    <loc>http://keithmo.me/categories/10000-Hours/</loc>
+    <lastmod>2016-07-20T02:16:04+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://keithmo.me/tags/Blood-Bowl/</loc>
-    <lastmod>2017-12-11T00:00:00+00:00</lastmod>
+    <lastmod>2017-12-11T19:45:10+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://keithmo.me/tags/Board-Game/</loc>
-    <lastmod>2017-12-11T00:00:00+00:00</lastmod>
+    <lastmod>2017-12-11T19:45:10+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://keithmo.me/categories/</loc>
+    <lastmod>2016-07-20T02:16:04+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://keithmo.me/categories/Games/</loc>
-    <lastmod>2017-12-11T00:00:00+00:00</lastmod>
+    <lastmod>2017-12-11T19:45:10+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://keithmo.me/tags/Games-Workshop/</loc>
-    <lastmod>2017-12-11T00:00:00+00:00</lastmod>
+    <lastmod>2017-12-11T19:45:10+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://keithmo.me/tags/Git/</loc>
+    <lastmod>2016-07-20T02:16:04+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://keithmo.me/tags/GitHub/</loc>
+    <lastmod>2016-07-20T02:16:04+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://keithmo.me/</loc>
-    <lastmod>2017-12-11T00:00:00+00:00</lastmod>
+    <lastmod>2017-12-11T19:45:10+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://keithmo.me/tags/Hugo/</loc>
+    <lastmod>2016-07-20T02:16:04+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -72,13 +102,13 @@
   
   <url>
     <loc>http://keithmo.me/tags/</loc>
-    <lastmod>2017-12-11T00:00:00+00:00</lastmod>
+    <lastmod>2017-12-11T19:45:10+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://keithmo.me/tags/Video-Game/</loc>
-    <lastmod>2017-12-11T00:00:00+00:00</lastmod>
+    <lastmod>2017-12-11T19:45:10+08:00</lastmod>
     <priority>0</priority>
   </url>
   
