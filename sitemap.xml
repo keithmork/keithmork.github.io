@@ -8,11 +8,21 @@
   </url>
   
   <url>
+    <loc>http://keithmo.me/guide/</loc>
+    <lastmod>2017-12-11T19:45:10+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://keithmo.me/about/</loc>
   </url>
   
   <url>
     <loc>http://keithmo.me/links/</loc>
+  </url>
+  
+  <url>
+    <loc>http://keithmo.me/guide/2017-12-11-blood-bowl2-legendary-challenges-guide/</loc>
+    <lastmod>2017-12-11T19:45:10+08:00</lastmod>
   </url>
   
   <url>
@@ -51,7 +61,7 @@
   
   <url>
     <loc>http://keithmo.me/</loc>
-    <lastmod>2016-07-20T02:16:04+08:00</lastmod>
+    <lastmod>2017-12-11T19:45:10+08:00</lastmod>
     <priority>0</priority>
   </url>
   
