@@ -21,7 +21,7 @@
   </url>
   
   <url>
-    <loc>http://keithmo.me/guide/2017-12-11-blood-bowl2-legendary-challenges-guide/</loc>
+    <loc>http://keithmo.me/guide/2017/12/2017-12-11-blood-bowl2-legendary-challenges-guide/</loc>
     <lastmod>2017-12-11T19:45:10+08:00</lastmod>
   </url>
   
@@ -42,8 +42,32 @@
   </url>
   
   <url>
+    <loc>http://keithmo.me/tags/Blood-Bowl/</loc>
+    <lastmod>2017-12-11T19:45:10+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://keithmo.me/tags/Board-Game/</loc>
+    <lastmod>2017-12-11T19:45:10+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://keithmo.me/categories/</loc>
     <lastmod>2016-07-20T02:16:04+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://keithmo.me/categories/Games/</loc>
+    <lastmod>2017-12-11T19:45:10+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://keithmo.me/tags/Games-Workshop/</loc>
+    <lastmod>2017-12-11T19:45:10+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -78,7 +102,13 @@
   
   <url>
     <loc>http://keithmo.me/tags/</loc>
-    <lastmod>2016-07-20T02:16:04+08:00</lastmod>
+    <lastmod>2017-12-11T19:45:10+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://keithmo.me/tags/Video-Game/</loc>
+    <lastmod>2017-12-11T19:45:10+08:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Copyright &amp;copy; 2016-2018 - Keith Mo</copyright>
-    <lastBuildDate>Wed, 20 Jul 2016 02:16:04 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 11 Dec 2017 19:45:10 +0800</lastBuildDate>
     
 	<atom:link href="http://keithmo.me/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Blood Bowl</title>
+      <link>http://keithmo.me/tags/Blood-Bowl/</link>
+      <pubDate>Mon, 11 Dec 2017 19:45:10 +0800</pubDate>
+      
+      <guid>http://keithmo.me/tags/Blood-Bowl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Board Game</title>
+      <link>http://keithmo.me/tags/Board-Game/</link>
+      <pubDate>Mon, 11 Dec 2017 19:45:10 +0800</pubDate>
+      
+      <guid>http://keithmo.me/tags/Board-Game/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Games Workshop</title>
+      <link>http://keithmo.me/tags/Games-Workshop/</link>
+      <pubDate>Mon, 11 Dec 2017 19:45:10 +0800</pubDate>
+      
+      <guid>http://keithmo.me/tags/Games-Workshop/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Git</title>
@@ -36,6 +63,15 @@
       <pubDate>Wed, 20 Jul 2016 02:16:04 +0800</pubDate>
       
       <guid>http://keithmo.me/tags/Hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Video Game</title>
+      <link>http://keithmo.me/tags/Video-Game/</link>
+      <pubDate>Mon, 11 Dec 2017 19:45:10 +0800</pubDate>
+      
+      <guid>http://keithmo.me/tags/Video-Game/</guid>
       <description></description>
     </item>
     
