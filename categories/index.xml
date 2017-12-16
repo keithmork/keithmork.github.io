@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Copyright &amp;copy; 2016-2018 - Keith Mo</copyright>
-    <lastBuildDate>Wed, 20 Jul 2016 02:16:04 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 16 Dec 2017 20:04:19 +0800</lastBuildDate>
     
 	<atom:link href="http://keithmo.me/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>10000 Hours</title>
       <link>http://keithmo.me/categories/10000-Hours/</link>
-      <pubDate>Wed, 20 Jul 2016 02:16:04 +0800</pubDate>
+      <pubDate>Sat, 16 Dec 2017 20:04:19 +0800</pubDate>
       
       <guid>http://keithmo.me/categories/10000-Hours/</guid>
       <description></description>
@@ -27,6 +27,15 @@
       <pubDate>Mon, 11 Dec 2017 19:45:10 +0800</pubDate>
       
       <guid>http://keithmo.me/categories/Games/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Load Test</title>
+      <link>http://keithmo.me/categories/Load-Test/</link>
+      <pubDate>Sat, 16 Dec 2017 20:04:19 +0800</pubDate>
+      
+      <guid>http://keithmo.me/categories/Load-Test/</guid>
       <description></description>
     </item>
     

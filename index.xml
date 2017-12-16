@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Copyright &amp;copy; 2016-2018 - Keith Mo</copyright>
-    <lastBuildDate>Mon, 11 Dec 2017 19:45:10 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 16 Dec 2017 20:04:19 +0800</lastBuildDate>
     
 	<atom:link href="http://keithmo.me/index.xml" rel="self" type="application/rss+xml" />
     
@@ -28,6 +28,15 @@
       
       <guid>http://keithmo.me/links/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>JMeter 实时监控仪表板配置 (Grafana &#43; InfluxDB)</title>
+      <link>http://keithmo.me/post/2017/12/2017-12-16-jmeter-grafana-dashboard/</link>
+      <pubDate>Sat, 16 Dec 2017 20:04:19 +0800</pubDate>
+      
+      <guid>http://keithmo.me/post/2017/12/2017-12-16-jmeter-grafana-dashboard/</guid>
+      <description>在服务器上跑 JMeter 做压测的话，给工具本身也配上实时监控是必须的，命令行输出能提供的信息太少。 JMeter</description>
     </item>
     
     <item>

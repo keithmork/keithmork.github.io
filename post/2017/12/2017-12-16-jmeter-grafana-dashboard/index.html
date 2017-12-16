@@ -1,0 +1,821 @@
+<!doctype html>
+
+<html lang="zh-cn">
+
+<head>
+  <title>Haunted Hovel - 闹鬼小屋</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="Keith Mo" />
+  <meta name="generator" content="Hugo 0.31.1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="http://keithmo.me/css/styles.css" />
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="http://keithmo.me/">Haunted Hovel - 闹鬼小屋</a>
+            </h1>
+
+      <ul id="social-media">
+          
+        <li><a href="https://github.com/keithmork"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a></li>
+           
+      </ul>
+      
+      <p><em>守正出奇，一身邪气</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="http://keithmo.me/post/">
+                <i class="fa-li fa  fa-lg"></i><span>Posts</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="http://keithmo.me/guide/">
+                <i class="fa-li fa  fa-lg"></i><span>Guides</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="http://keithmo.me/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="http://keithmo.me/links/">
+                <i class="fa-li fa  fa-lg"></i><span>Links</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>JMeter 实时监控仪表板配置 (Grafana &#43; InfluxDB)</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2017-12-16T20:04:19&#43;08:00">Dec 16, 2017</time>
+        </li>
+        
+        
+        <li>
+            Categories: 
+            <em>
+                
+                    
+                    <a href="http://keithmo.me/categories/10000-Hours/">10000 Hours</a>
+                
+                    , 
+                    <a href="http://keithmo.me/categories/Load-Test/">Load Test</a>
+                
+            </em>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="http://keithmo.me/tags/Grafana/">#Grafana</a>
+                
+                    , 
+                    <a href="http://keithmo.me/tags/InfluxDB/">#InfluxDB</a>
+                
+                    , 
+                    <a href="http://keithmo.me/tags/JMeter/">#JMeter</a>
+                
+            </em>
+        </li>
+        
+
+        <li>4 min read</li>
+    </ul>
+</aside>
+    
+
+    
+
+<p>在服务器上跑 JMeter 做压测的话，给工具本身也配上实时监控是必须的，命令行输出能提供的信息太少。</p>
+
+<p>JMeter的 Backend Listener 支持 Graphite 和 InfluxDB，这里选择 InfluxDB 做时序数据库，支持类似 SQL 的查询语法是最大的优点。另外在 JMeter 3.2+ 里配置起来也比 Graphite 方便太多。（缺点是直到写这篇文章时官网文档都没更新，要自己查存储的字段，猜它有什么用）</p>
+
+<p>Grafana 能配出非常漂亮的监控仪表板，就是配的过程非常痛苦，不做非常详细的笔记的话过几天又忘光了，于是有了这篇东西。</p>
+
+<hr />
+
+<p>【前提】</p>
+
+<ul>
+<li>采集器：JMeter 3.2+，Backend Listener 里选择 <code>InfluxdbBackendListenerClient</code></li>
+<li>数据源：InfluxDB 1.4+</li>
+<li>面板：Grafana 4.6+
+
+<ul>
+<li>已添加好数据源</li>
+<li>新建面板，添加 3 行</li>
+</ul></li>
+</ul>
+
+<p>【注意】</p>
+
+<p>吞吐率和响应时间图表只计算成功的请求（失败的通常没意义，超时失败的能在表格里看到数量），结果可能会跟JMeter里看到的有出入。</p>
+
+<p>【效果】</p>
+
+<p><img src="http://keithmo.me/img/screenshot/dashboard/20171216_grafana_jmeter_dashboard1.png" alt="总体" /></p>
+
+<p><img src="http://keithmo.me/img/screenshot/dashboard/20171216_grafana_jmeter_dashboard2.png" alt="错误数" /></p>
+
+<p><img src="http://keithmo.me/img/screenshot/dashboard/20171216_grafana_jmeter_dashboard3.png" alt="单个接口" /></p>
+
+<p>已经上传到 Grafana 官网，可以从以下地址下载JSON文件，或通过ID <code>4023</code> 直接导入：</p>
+
+<p><a href="https://grafana.com/dashboards/4023">https://grafana.com/dashboards/4023</a></p>
+
+<hr />
+
+<p>JMeter Backend Listener 参考配置：</p>
+
+<p><img src="http://keithmo.me/img/screenshot/dashboard/20171216_jmeter_backend_listener_config.png" alt="JMeter设置" /></p>
+
+<hr />
+
+<h3 id="settings">Settings</h3>
+
+<ul>
+<li>General
+
+<ul>
+<li>Name: <code>JMeter Dashboard</code></li>
+<li>Description: <code>Monitor your JMeter load test in real time with InfluxDB and Grafana.</code></li>
+<li>Tags: <code>load_test</code></li>
+</ul></li>
+<li>Rows
+
+<ul>
+<li><code>Summary</code>, <code>Errors</code>, <code>Individual Transaction - $transaction</code></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h3 id="templating">Templating</h3>
+
+<p><code>$data_source</code></p>
+
+<ul>
+<li>Name: <code>data_source</code></li>
+<li>Type: Datasource</li>
+<li>Type: InfluxDB</li>
+</ul>
+
+<p><code>$application</code></p>
+
+<ul>
+<li>Name: <code>application</code></li>
+<li>Type: Query</li>
+<li>Data source: <code>$data_source</code></li>
+<li>Refresh: On Dashboard Load</li>
+<li>Query: <code>SHOW TAG VALUES FROM &quot;jmeter&quot; WITH KEY = &quot;application&quot;</code></li>
+</ul>
+
+<p><code>$transaction</code></p>
+
+<ul>
+<li>Name: <code>transaction</code></li>
+<li>Type: Query</li>
+<li>Data source: <code>$data_source</code></li>
+<li>Refresh: On Dashboard Load</li>
+<li>Query: <code>SHOW TAG VALUES FROM &quot;jmeter&quot; WITH KEY = &quot;transaction&quot; WHERE &quot;application&quot; =~ /^$application$/ AND &quot;transaction&quot; != 'internal' AND &quot;transaction&quot; != 'all'</code></li>
+</ul>
+
+<p><code>$send_interval</code></p>
+
+<ul>
+<li>Name: <code>send_interval</code></li>
+<li>Label: <code>Backend send interval in second</code></li>
+<li>Type: Constant</li>
+<li>Hide: Variable</li>
+<li>Value: <code>5</code> （JMeter InfluxdbBackendListenerClient 默认）</li>
+</ul>
+
+<hr />
+
+<h3 id="annotations">Annotations</h3>
+
+<p>编辑 <code>Annotations &amp; Alerts(Built-in)</code></p>
+
+<ul>
+<li>Name: <code>Start/stop marker</code></li>
+<li>Data source: <code>$data_source</code></li>
+<li>Query: <code>select text from events where $timeFilter</code></li>
+</ul>
+
+<hr />
+
+<h2 id="第1行">第1行</h2>
+
+<h3 id="第1排">第1排</h3>
+
+<p>Singlestat - <strong><code>Total Requests</code></strong>, Span <code>4</code></p>
+
+<ul>
+<li>Metric
+
+<ul>
+<li>Data Source: <code>$data_source</code>
+
+<ul>
+<li>Options - Min time interval: <code>[[send_interval]]s</code></li>
+</ul></li>
+<li><code>SELECT sum(&quot;count&quot;)  FROM &quot;jmeter&quot; WHERE (&quot;application&quot; =~ /^$application$/ AND &quot;transaction&quot; = 'all') AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
+</ul></li>
+<li>Options
+
+<ul>
+<li>Value
+
+<ul>
+<li>Stat: Total</li>
+<li>Postfix: <code>Requests</code></li>
+<li>Decimals: <code>0</code></li>
+</ul></li>
+<li>Coloring: Value，把中间的颜色换成浅一点的黄色</li>
+</ul></li>
+<li>Value Mappings: null -&gt; <code>0</code></li>
+</ul>
+
+<p>Singlestat - <strong><code>Failed Requests</code></strong>, Span <code>4</code></p>
+
+<ul>
+<li>Metric
+
+<ul>
+<li>Data Source: <code>$data_source</code>
+
+<ul>
+<li>Options - Min time interval: <code>[[send_interval]]s</code></li>
+</ul></li>
+<li><code>SELECT sum(&quot;countError&quot;) FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; = 'all' AND &quot;application&quot; =~ /^$application$/) AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
+</ul></li>
+<li>Options
+
+<ul>
+<li>Value
+
+<ul>
+<li>Stat: Total</li>
+<li>Postfix: <code>Failed</code></li>
+<li>Decimals: <code>0</code></li>
+</ul></li>
+<li>Coloring: Value，把中间的颜色换成红色</li>
+</ul></li>
+<li>Value Mappings: null -&gt; <code>0</code></li>
+</ul>
+
+<p>Singlestat - <strong><code>Error Rate %</code></strong>, Span <code>4</code></p>
+
+<ul>
+<li>Metric
+
+<ul>
+<li>Data Source: <code>$data_source</code>
+
+<ul>
+<li>Options - Min time interval: <code>[[send_interval]]s</code></li>
+</ul></li>
+<li><code>SELECT sum(&quot;error&quot;) / sum(&quot;all&quot;) FROM (SELECT sum(&quot;count&quot;) AS &quot;all&quot; FROM &quot;jmeter&quot; WHERE &quot;transaction&quot; = 'all' AND &quot;application&quot; =~ /^$application$/ AND $timeFilter GROUP BY time($__interval) fill(null)), (SELECT sum(&quot;countError&quot;) AS &quot;error&quot; FROM &quot;jmeter&quot; WHERE &quot;transaction&quot; = 'all' AND &quot;application&quot; =~ /^$application$/ AND $timeFilter GROUP BY time($__interval) fill(null))</code></li>
+</ul></li>
+<li>Options
+
+<ul>
+<li>Value
+
+<ul>
+<li>Stat: Total</li>
+<li>Unit: percent(0.0-1.0)</li>
+<li>Decimals: <code>2</code></li>
+</ul></li>
+<li>Coloring: Value，Thresholds: <code>0,0.01</code></li>
+<li>Gauge: Show，Max: <code>1</code></li>
+</ul></li>
+<li>Value Mappings: null -&gt; <code>0</code></li>
+</ul>
+
+<h3 id="第2排">第2排</h3>
+
+<p>Graph - <strong><code>Total Throughput</code></strong>, Span: <code>4</code></p>
+
+<ul>
+<li>Metric
+
+<ul>
+<li>Data Source: <code>$data_source</code>
+
+<ul>
+<li>Options - Min time interval: <code>[[send_interval]]s</code></li>
+</ul></li>
+<li><code>SELECT mean(&quot;count&quot;) / $send_interval FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; = 'all' AND &quot;application&quot; =~ /^$application$/) AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
+<li>alias: <code>Req / sec</code></li>
+</ul></li>
+<li>Legend
+
+<ul>
+<li>As Table, Min, Max, Avg，Decimals: <code>2</code></li>
+</ul></li>
+<li>Display
+
+<ul>
+<li>Lines，Fill: <code>7</code>, Null value: <code>null</code></li>
+</ul></li>
+</ul>
+
+<p>Graph - <strong><code>Total Errors</code></strong>, Span: <code>4</code></p>
+
+<ul>
+<li>Metric
+
+<ul>
+<li>Data Source: <code>$data_source</code>
+
+<ul>
+<li>Options - Min time interval: <code>[[send_interval]]s</code></li>
+</ul></li>
+<li><code>SELECT sum(&quot;countError&quot;) FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; = 'all' AND &quot;application&quot; =~ /^$application$/) AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
+<li>alias: <code>Num of Errors</code></li>
+</ul></li>
+<li>Axes
+
+<ul>
+<li>Decimals: <code>0</code></li>
+</ul></li>
+<li>Legend
+
+<ul>
+<li>As Table, Total，Decimals: <code>0</code></li>
+</ul></li>
+<li>Display
+
+<ul>
+<li>Lines，Fill: <code>7</code>, Null value: <code>null</code></li>
+</ul></li>
+</ul>
+
+<p>Graph - <strong><code>Active Threads</code></strong>, Span: <code>4</code></p>
+
+<ul>
+<li>Metric
+
+<ul>
+<li>Data Source: <code>$data_source</code>
+
+<ul>
+<li>Options - Min time interval: <code>[[send_interval]]s</code></li>
+</ul></li>
+<li><code>SELECT last(&quot;maxAT&quot;) FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; = 'internal' AND &quot;application&quot; =~ /^$application$/) AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
+<li>alias: <code>Threads</code></li>
+</ul></li>
+<li>Axes
+
+<ul>
+<li>Decimals: <code>0</code></li>
+</ul></li>
+<li>Legend
+
+<ul>
+<li>As Table, Current，Decimals: <code>0</code></li>
+</ul></li>
+<li>Display
+
+<ul>
+<li>Lines，Fill: <code>7</code>, Null value: <code>null</code></li>
+</ul></li>
+</ul>
+
+<h3 id="第3排">第3排</h3>
+
+<p>Graph - <strong><code>Transactions Response Times (95th pct)</code></strong>, Span: <code>4</code></p>
+
+<ul>
+<li>Metric
+
+<ul>
+<li>Data Source: <code>$data_source</code>
+
+<ul>
+<li>Options - Min time interval: <code>[[send_interval]]s</code></li>
+</ul></li>
+<li><code>SELECT mean(&quot;pct95.0&quot;) FROM &quot;jmeter&quot; WHERE (&quot;statut&quot; = 'ok' AND &quot;application&quot; =~ /^$application$/) AND $timeFilter GROUP BY &quot;transaction&quot;, time($__interval) fill(null)</code></li>
+<li>alias: <code>$tag_transaction</code></li>
+</ul></li>
+<li>Axes
+
+<ul>
+<li>Units: <code>milliseconds(ms)</code></li>
+</ul></li>
+<li>Legend
+
+<ul>
+<li>As Table, To the right, Max, Avg，Decimals: <code>2</code></li>
+</ul></li>
+<li>Display
+
+<ul>
+<li>Lines，Null value: <code>null</code></li>
+<li>Thresholds
+
+<ul>
+<li>T1: lt <code>500</code>, ok, Fill, Line</li>
+<li>T2: gt <code>1500</code>, warning, Line</li>
+<li>T3: gt <code>5000</code>, critical, Fill, Line</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="第2行">第2行</h2>
+
+<p>Table - <strong><code>Errors per Transaction</code></strong>, Span: <code>4</code></p>
+
+<ul>
+<li>Metric
+
+<ul>
+<li>Data Source: <code>$data_source</code>
+
+<ul>
+<li>Options - Min time interval: <code>[[send_interval]]s</code></li>
+</ul></li>
+<li><code>SELECT sum(&quot;count&quot;) FROM &quot;jmeter&quot; WHERE (&quot;application&quot; =~ /^$application$/ AND &quot;statut&quot; = 'ko') AND $timeFilter GROUP BY &quot;transaction&quot;</code></li>
+<li>format: Table</li>
+</ul></li>
+<li>Column Styles
+
+<ul>
+<li>Time - Type: Hidden</li>
+<li>/.*/ - Decimals: <code>0</code></li>
+</ul></li>
+</ul>
+
+<p>Table - <strong><code>Error Info</code></strong>, Span: <code>8</code></p>
+
+<ul>
+<li>Metric
+
+<ul>
+<li>Data Source: <code>$data_source</code>
+
+<ul>
+<li>Options - Min time interval: <code>[[send_interval]]s</code></li>
+</ul></li>
+<li><code>SELECT sum(&quot;count&quot;) FROM &quot;jmeter&quot; WHERE (&quot;application&quot; =~ /^$application$/ AND &quot;responseCode&quot; !~ /^$/) AND $timeFilter GROUP BY &quot;responseCode&quot;,&quot;responseMessage&quot;</code></li>
+<li>format: Table</li>
+</ul></li>
+<li>Column Styles
+
+<ul>
+<li>Time: Type - Hidden</li>
+<li>/.*/ : Decimals <code>0</code></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="第3行">第3行</h2>
+
+<h3 id="第1排-1">第1排</h3>
+
+<p>Singlestat - <strong><code>Total Requests - $transaction</code></strong>, Span <code>4</code></p>
+
+<ul>
+<li>Metric
+
+<ul>
+<li>Data Source: <code>$data_source</code>
+
+<ul>
+<li>Options - Min time interval: <code>[[send_interval]]s</code></li>
+</ul></li>
+<li><code>SELECT sum(&quot;count&quot;) FROM &quot;jmeter&quot; WHERE (&quot;application&quot; =~ /^$application$/ AND &quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'all') AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
+</ul></li>
+<li>Options
+
+<ul>
+<li>Value
+
+<ul>
+<li>Stat: Total</li>
+<li>Postfix: <code>Requests</code></li>
+<li>Decimals: <code>0</code></li>
+</ul></li>
+<li>Coloring: Value，把中间的颜色换成浅一点的黄色</li>
+</ul></li>
+<li>Value Mappings: null -&gt; <code>0</code></li>
+</ul>
+
+<p>Singlestat - <strong><code>Failed Requests - $transaction</code></strong>, Span <code>4</code></p>
+
+<ul>
+<li>Metric
+
+<ul>
+<li>Data Source: <code>$data_source</code>
+
+<ul>
+<li>Options - Min time interval: <code>[[send_interval]]s</code></li>
+</ul></li>
+<li><code>SELECT sum(&quot;count&quot;) FROM &quot;jmeter&quot; WHERE (&quot;application&quot; =~ /^$application$/ AND &quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ko') AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
+</ul></li>
+<li>Options
+
+<ul>
+<li>Value
+
+<ul>
+<li>Stat: Total</li>
+<li>Postfix: <code>Failed</code></li>
+<li>Decimals: <code>0</code></li>
+</ul></li>
+<li>Coloring: Value，把中间的颜色换成红色</li>
+</ul></li>
+<li>Value Mappings: null -&gt; <code>0</code></li>
+</ul>
+
+<p>Singlestat - <strong><code>Error Rate % - $transaction</code></strong>, Span <code>4</code></p>
+
+<ul>
+<li>Metric
+
+<ul>
+<li>Data Source: <code>$data_source</code>
+
+<ul>
+<li>Options - Min time interval: <code>[[send_interval]]s</code></li>
+</ul></li>
+<li><code>SELECT sum(&quot;error&quot;) / sum(&quot;all&quot;) FROM (SELECT sum(&quot;count&quot;) AS &quot;all&quot; FROM &quot;jmeter&quot; WHERE &quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'all' AND &quot;application&quot; =~ /^$application$/ AND $timeFilter GROUP BY time($__interval) fill(null)), (SELECT sum(&quot;count&quot;) AS &quot;error&quot; FROM &quot;jmeter&quot; WHERE &quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ko' AND &quot;application&quot; =~ /^$application$/ AND $timeFilter GROUP BY time($__interval) fill(null))</code></li>
+</ul></li>
+<li>Options
+
+<ul>
+<li>Value
+
+<ul>
+<li>Stat: Total</li>
+<li>Unit: percent(0.0-1.0)</li>
+<li>Decimals: <code>2</code></li>
+</ul></li>
+<li>Coloring: Value，Thresholds: <code>0,0.01</code></li>
+<li>Gauge: Show，Max: <code>1</code></li>
+</ul></li>
+<li>Value Mappings: null -&gt; <code>0</code></li>
+</ul>
+
+<h3 id="第2排-1">第2排</h3>
+
+<p>Graph - <strong><code>Throughput - $transaction</code></strong>, Span: <code>4</code></p>
+
+<ul>
+<li>Metric
+
+<ul>
+<li>Data Source: <code>$data_source</code>
+
+<ul>
+<li>Options - Min time interval: <code>[[send_interval]]s</code></li>
+</ul></li>
+<li><code>SELECT last(&quot;count&quot;) / $send_interval FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ok') AND $timeFilter GROUP BY time($__interval)</code></li>
+<li>alias: <code>Req / sec</code></li>
+</ul></li>
+<li>Legend
+
+<ul>
+<li>As Table, Min, Max, Avg，Decimals: <code>2</code></li>
+</ul></li>
+<li>Display
+
+<ul>
+<li>Lines，Fill: <code>7</code>, Null value: <code>null</code></li>
+</ul></li>
+</ul>
+
+<p>Graph - <strong><code>Errors - $transaction</code></strong>, Span: <code>4</code></p>
+
+<ul>
+<li>Metric
+
+<ul>
+<li>Data Source: <code>$data_source</code>
+
+<ul>
+<li>Options - Min time interval: <code>[[send_interval]]s</code></li>
+</ul></li>
+<li><code>SELECT sum(&quot;count&quot;) FROM &quot;jmeter&quot; WHERE &quot;application&quot; =~ /^$application$/ AND &quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ko' AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
+<li>alias: <code>Num of Errors</code></li>
+</ul></li>
+<li>Axes
+
+<ul>
+<li>Decimals: <code>0</code></li>
+</ul></li>
+<li>Legend
+
+<ul>
+<li>As Table, Total，Decimals: <code>0</code></li>
+</ul></li>
+<li>Display
+
+<ul>
+<li>Lines，Fill: <code>7</code></li>
+<li>Points, Point Radius: <code>1</code></li>
+<li>Null value: <code>null</code></li>
+</ul></li>
+</ul>
+
+<h3 id="第3排-1">第3排</h3>
+
+<p>复制第1行的图表（除了线程图），改一下SQL和一些细节就行。</p>
+
+<p>Graph - <strong><code>Response Times - $transaction</code></strong>, Span: <code>4</code></p>
+
+<ul>
+<li>Metric
+
+<ul>
+<li>Data Source: <code>$data_source</code>
+
+<ul>
+<li>Options - Min time interval: <code>[[send_interval]]s</code></li>
+</ul></li>
+<li><code>SELECT last(&quot;avg&quot;) FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ok') AND $timeFilter GROUP BY time($__interval)</code>
+
+<ul>
+<li>alias: <code>Average</code></li>
+</ul></li>
+<li><code>SELECT last(&quot;pct50.0&quot;) FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ok') AND $timeFilter GROUP BY time($__interval)</code>
+
+<ul>
+<li>alias: <code>Median</code></li>
+</ul></li>
+<li><code>SELECT last(&quot;pct90.0&quot;) FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ok') AND $timeFilter GROUP BY time($__interval) fill(null)</code>
+
+<ul>
+<li>alias: <code>90th Percentage</code></li>
+</ul></li>
+<li><code>SELECT last(&quot;pct95.0&quot;) FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ok') AND $timeFilter GROUP BY time($__interval) fill(null)</code>
+
+<ul>
+<li>alias: <code>95th Percentile</code></li>
+</ul></li>
+<li><code>SELECT last(&quot;pct99.0&quot;) FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ok') AND $timeFilter GROUP BY time($__interval) fill(null)</code>
+
+<ul>
+<li>alias: <code>99th Percentage</code></li>
+</ul></li>
+<li><code>SELECT last(&quot;max&quot;) FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ok') AND $timeFilter GROUP BY time($__interval) fill(null)</code>
+
+<ul>
+<li>alias: <code>Max</code></li>
+</ul></li>
+</ul></li>
+<li>Axes
+
+<ul>
+<li>Units: <code>milliseconds(ms)</code></li>
+</ul></li>
+<li>Legend
+
+<ul>
+<li>As Table, To the right</li>
+<li>Max, Avg，Decimals: <code>2</code></li>
+<li>Hide Series: With only nulls</li>
+</ul></li>
+<li>Display
+
+<ul>
+<li>Lines，Null value: <code>null</code></li>
+<li>Thresholds
+
+<ul>
+<li>T1: lt <code>500</code>, ok, Fill, Line</li>
+<li>T2: gt <code>1500</code>, warning, Line</li>
+<li>T3: gt <code>5000</code>, critical, Fill, Line</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<p>参考：</p>
+
+<blockquote>
+<p><a href="https://grafana.com/dashboards/3351">https://grafana.com/dashboards/3351</a></p>
+</blockquote>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="http://keithmo.me/post/2016/07/2016-07-20-build-your-own-blog1/"><i class="fa fa-chevron-circle-left"></i> GitHub &#43; Hugo 搭建个人博客(1) - 发布第一篇博文</a>
+        </li>
+        
+        
+    </ul>
+</section>
+    
+        <section class="comments-block">
+      <button id="show-comments" style="display: none;"><i class="fa fa-comments-o"></i> Add/View Comments</button>
+</section>
+
+<section id="disqus_thread"></section>
+
+<script>
+      (function () {
+            
+            
+            if (window.location.hostname == "localhost")
+                  return;
+
+            var disqus_loaded = false;
+            var disqus_shortname = 'keithmo';
+            var disqus_button = document.getElementById("show-comments");
+
+            disqus_button.style.display = "";
+            disqus_button.addEventListener("click", disqus, false);
+
+            function disqus() {
+
+                  if (!disqus_loaded) {
+                        disqus_loaded = true;
+
+                        var e = document.createElement("script");
+                        e.type = "text/javascript";
+                        e.async = true;
+                        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                        (document.getElementsByTagName("head")[0] ||
+                              document.getElementsByTagName("body")[0])
+                        .appendChild(e);
+
+                        
+                        document.getElementById("show-comments").style.display = "none";
+                  }
+            }
+
+            
+            var hash = window.location.hash.substr(1);
+            if (hash.length > 8) {
+                  if (hash.substring(0, 8) == "comment-") {
+                        disqus();
+                  }
+            }
+
+            
+            if (/bot|google|baidu|bing|msn|duckduckgo|slurp|yandex/i.test(navigator.userAgent)) {
+                  disqus();
+            }
+      })();
+</script>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6>Copyright &copy; 2016-2018 - Keith Mo | 
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="http://keithmo.me/index.xml">Subscribe</a></h6>
+    </footer>
+</div>
+<script src="http://keithmo.me/js/scripts.js"></script>
+</body>
+
+</html>

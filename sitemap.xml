@@ -4,7 +4,7 @@
   
   <url>
     <loc>http://keithmo.me/post/</loc>
-    <lastmod>2016-07-20T02:16:04+08:00</lastmod>
+    <lastmod>2017-12-16T20:04:19+08:00</lastmod>
   </url>
   
   <url>
@@ -18,6 +18,11 @@
   
   <url>
     <loc>http://keithmo.me/links/</loc>
+  </url>
+  
+  <url>
+    <loc>http://keithmo.me/post/2017/12/2017-12-16-jmeter-grafana-dashboard/</loc>
+    <lastmod>2017-12-16T20:04:19+08:00</lastmod>
   </url>
   
   <url>
@@ -37,7 +42,7 @@
   
   <url>
     <loc>http://keithmo.me/categories/10000-Hours/</loc>
-    <lastmod>2016-07-20T02:16:04+08:00</lastmod>
+    <lastmod>2017-12-16T20:04:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -55,7 +60,7 @@
   
   <url>
     <loc>http://keithmo.me/categories/</loc>
-    <lastmod>2016-07-20T02:16:04+08:00</lastmod>
+    <lastmod>2017-12-16T20:04:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -84,14 +89,38 @@
   </url>
   
   <url>
+    <loc>http://keithmo.me/tags/Grafana/</loc>
+    <lastmod>2017-12-16T20:04:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://keithmo.me/</loc>
-    <lastmod>2017-12-11T19:45:10+08:00</lastmod>
+    <lastmod>2017-12-16T20:04:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://keithmo.me/tags/Hugo/</loc>
     <lastmod>2016-07-20T02:16:04+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://keithmo.me/tags/InfluxDB/</loc>
+    <lastmod>2017-12-16T20:04:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://keithmo.me/tags/JMeter/</loc>
+    <lastmod>2017-12-16T20:04:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://keithmo.me/categories/Load-Test/</loc>
+    <lastmod>2017-12-16T20:04:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
