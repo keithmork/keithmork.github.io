@@ -111,7 +111,7 @@
         </li>
         
 
-        <li>4 min read</li>
+        <li>5 min read</li>
     </ul>
 </aside>
     
@@ -151,9 +151,9 @@
 
 <p><img src="http://keithmo.me/img/screenshot/dashboard/20171216_grafana_jmeter_dashboard3.png" alt="单个接口" /></p>
 
-<p>已经上传到 Grafana 官网，可以从以下地址下载JSON文件，或通过ID <code>4023</code> 直接导入：</p>
+<p>已经上传到 Grafana 官网，可以从以下地址下载JSON文件，或通过ID <code>4026</code> 直接导入：</p>
 
-<p><a href="https://grafana.com/dashboards/4023">https://grafana.com/dashboards/4023</a></p>
+<p><a href="https://grafana.com/dashboards/4026">https://grafana.com/dashboards/4026</a></p>
 
 <hr />
 
@@ -199,7 +199,7 @@
 <li>Type: Query</li>
 <li>Data source: <code>$data_source</code></li>
 <li>Refresh: On Dashboard Load</li>
-<li>Query: <code>SHOW TAG VALUES FROM &quot;jmeter&quot; WITH KEY = &quot;application&quot;</code></li>
+<li>Query: <code>SHOW TAG VALUES FROM &quot;$measurement_name&quot; WITH KEY = &quot;application&quot;</code></li>
 </ul>
 
 <p><code>$transaction</code></p>
@@ -209,14 +209,26 @@
 <li>Type: Query</li>
 <li>Data source: <code>$data_source</code></li>
 <li>Refresh: On Dashboard Load</li>
-<li>Query: <code>SHOW TAG VALUES FROM &quot;jmeter&quot; WITH KEY = &quot;transaction&quot; WHERE &quot;application&quot; =~ /^$application$/ AND &quot;transaction&quot; != 'internal' AND &quot;transaction&quot; != 'all'</code></li>
+<li>Query: <code>SHOW TAG VALUES FROM &quot;$measurement_name&quot; WITH KEY = &quot;transaction&quot; WHERE &quot;application&quot; =~ /^$application$/ AND &quot;transaction&quot; != 'internal' AND &quot;transaction&quot; != 'all'</code></li>
+</ul>
+
+<p>可惜 templating 里不支持 <code>$timeFilter</code>（由于 InfluxDB <code>show tag values</code> 语法的限制），时间久了之后各种接口名看着会比较乱。</p>
+
+<p><code>$measurement_name</code></p>
+
+<ul>
+<li>Name: <code>measurement_name</code></li>
+<li>Label: <code>Measurement name</code></li>
+<li>Type: Constant</li>
+<li>Hide: Variable</li>
+<li>Value: <code>jmeter</code> （JMeter Backend Listener 默认）</li>
 </ul>
 
 <p><code>$send_interval</code></p>
 
 <ul>
 <li>Name: <code>send_interval</code></li>
-<li>Label: <code>Backend send interval in second</code></li>
+<li>Label: <code>Backend send interval</code></li>
 <li>Type: Constant</li>
 <li>Hide: Variable</li>
 <li>Value: <code>5</code> （JMeter InfluxdbBackendListenerClient 默认）</li>
@@ -251,7 +263,7 @@
 <ul>
 <li>Options - Min time interval: <code>[[send_interval]]s</code></li>
 </ul></li>
-<li><code>SELECT sum(&quot;count&quot;)  FROM &quot;jmeter&quot; WHERE (&quot;application&quot; =~ /^$application$/ AND &quot;transaction&quot; = 'all') AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
+<li><code>SELECT sum(&quot;count&quot;)  FROM &quot;$measurement_name&quot; WHERE (&quot;application&quot; =~ /^$application$/ AND &quot;transaction&quot; = 'all') AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
 </ul></li>
 <li>Options
 
@@ -279,7 +291,7 @@
 <ul>
 <li>Options - Min time interval: <code>[[send_interval]]s</code></li>
 </ul></li>
-<li><code>SELECT sum(&quot;countError&quot;) FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; = 'all' AND &quot;application&quot; =~ /^$application$/) AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
+<li><code>SELECT sum(&quot;countError&quot;) FROM &quot;$measurement_name&quot; WHERE (&quot;transaction&quot; = 'all' AND &quot;application&quot; =~ /^$application$/) AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
 </ul></li>
 <li>Options
 
@@ -307,7 +319,7 @@
 <ul>
 <li>Options - Min time interval: <code>[[send_interval]]s</code></li>
 </ul></li>
-<li><code>SELECT sum(&quot;error&quot;) / sum(&quot;all&quot;) FROM (SELECT sum(&quot;count&quot;) AS &quot;all&quot; FROM &quot;jmeter&quot; WHERE &quot;transaction&quot; = 'all' AND &quot;application&quot; =~ /^$application$/ AND $timeFilter GROUP BY time($__interval) fill(null)), (SELECT sum(&quot;countError&quot;) AS &quot;error&quot; FROM &quot;jmeter&quot; WHERE &quot;transaction&quot; = 'all' AND &quot;application&quot; =~ /^$application$/ AND $timeFilter GROUP BY time($__interval) fill(null))</code></li>
+<li><code>SELECT sum(&quot;error&quot;) / sum(&quot;all&quot;) FROM (SELECT sum(&quot;count&quot;) AS &quot;all&quot; FROM &quot;$measurement_name&quot; WHERE &quot;transaction&quot; = 'all' AND &quot;application&quot; =~ /^$application$/ AND $timeFilter GROUP BY time($__interval) fill(null)), (SELECT sum(&quot;countError&quot;) AS &quot;error&quot; FROM &quot;$measurement_name&quot; WHERE &quot;transaction&quot; = 'all' AND &quot;application&quot; =~ /^$application$/ AND $timeFilter GROUP BY time($__interval) fill(null))</code></li>
 </ul></li>
 <li>Options
 
@@ -338,7 +350,7 @@
 <ul>
 <li>Options - Min time interval: <code>[[send_interval]]s</code></li>
 </ul></li>
-<li><code>SELECT mean(&quot;count&quot;) / $send_interval FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; = 'all' AND &quot;application&quot; =~ /^$application$/) AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
+<li><code>SELECT mean(&quot;count&quot;) / $send_interval FROM &quot;$measurement_name&quot; WHERE (&quot;transaction&quot; = 'all' AND &quot;application&quot; =~ /^$application$/) AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
 <li>alias: <code>Req / sec</code></li>
 </ul></li>
 <li>Legend
@@ -364,7 +376,7 @@
 <ul>
 <li>Options - Min time interval: <code>[[send_interval]]s</code></li>
 </ul></li>
-<li><code>SELECT sum(&quot;countError&quot;) FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; = 'all' AND &quot;application&quot; =~ /^$application$/) AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
+<li><code>SELECT sum(&quot;countError&quot;) FROM &quot;$measurement_name&quot; WHERE (&quot;transaction&quot; = 'all' AND &quot;application&quot; =~ /^$application$/) AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
 <li>alias: <code>Num of Errors</code></li>
 </ul></li>
 <li>Axes
@@ -395,7 +407,7 @@
 <ul>
 <li>Options - Min time interval: <code>[[send_interval]]s</code></li>
 </ul></li>
-<li><code>SELECT last(&quot;maxAT&quot;) FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; = 'internal' AND &quot;application&quot; =~ /^$application$/) AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
+<li><code>SELECT last(&quot;maxAT&quot;) FROM &quot;$measurement_name&quot; WHERE (&quot;transaction&quot; = 'internal' AND &quot;application&quot; =~ /^$application$/) AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
 <li>alias: <code>Threads</code></li>
 </ul></li>
 <li>Axes
@@ -428,7 +440,7 @@
 <ul>
 <li>Options - Min time interval: <code>[[send_interval]]s</code></li>
 </ul></li>
-<li><code>SELECT mean(&quot;pct95.0&quot;) FROM &quot;jmeter&quot; WHERE (&quot;statut&quot; = 'ok' AND &quot;application&quot; =~ /^$application$/) AND $timeFilter GROUP BY &quot;transaction&quot;, time($__interval) fill(null)</code></li>
+<li><code>SELECT mean(&quot;pct95.0&quot;) FROM &quot;$measurement_name&quot; WHERE (&quot;statut&quot; = 'ok' AND &quot;application&quot; =~ /^$application$/) AND $timeFilter GROUP BY &quot;transaction&quot;, time($__interval) fill(null)</code></li>
 <li>alias: <code>$tag_transaction</code></li>
 </ul></li>
 <li>Axes
@@ -470,7 +482,7 @@
 <ul>
 <li>Options - Min time interval: <code>[[send_interval]]s</code></li>
 </ul></li>
-<li><code>SELECT sum(&quot;count&quot;) FROM &quot;jmeter&quot; WHERE (&quot;application&quot; =~ /^$application$/ AND &quot;statut&quot; = 'ko') AND $timeFilter GROUP BY &quot;transaction&quot;</code></li>
+<li><code>SELECT sum(&quot;count&quot;) FROM &quot;$measurement_name&quot; WHERE (&quot;application&quot; =~ /^$application$/ AND &quot;statut&quot; = 'ko') AND $timeFilter GROUP BY &quot;transaction&quot;</code></li>
 <li>format: Table</li>
 </ul></li>
 <li>Column Styles
@@ -492,7 +504,7 @@
 <ul>
 <li>Options - Min time interval: <code>[[send_interval]]s</code></li>
 </ul></li>
-<li><code>SELECT sum(&quot;count&quot;) FROM &quot;jmeter&quot; WHERE (&quot;application&quot; =~ /^$application$/ AND &quot;responseCode&quot; !~ /^$/) AND $timeFilter GROUP BY &quot;responseCode&quot;,&quot;responseMessage&quot;</code></li>
+<li><code>SELECT sum(&quot;count&quot;) FROM &quot;$measurement_name&quot; WHERE (&quot;application&quot; =~ /^$application$/ AND &quot;responseCode&quot; !~ /^$/) AND $timeFilter GROUP BY &quot;responseCode&quot;,&quot;responseMessage&quot;</code></li>
 <li>format: Table</li>
 </ul></li>
 <li>Column Styles
@@ -520,7 +532,7 @@
 <ul>
 <li>Options - Min time interval: <code>[[send_interval]]s</code></li>
 </ul></li>
-<li><code>SELECT sum(&quot;count&quot;) FROM &quot;jmeter&quot; WHERE (&quot;application&quot; =~ /^$application$/ AND &quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'all') AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
+<li><code>SELECT sum(&quot;count&quot;) FROM &quot;$measurement_name&quot; WHERE (&quot;application&quot; =~ /^$application$/ AND &quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'all') AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
 </ul></li>
 <li>Options
 
@@ -548,7 +560,7 @@
 <ul>
 <li>Options - Min time interval: <code>[[send_interval]]s</code></li>
 </ul></li>
-<li><code>SELECT sum(&quot;count&quot;) FROM &quot;jmeter&quot; WHERE (&quot;application&quot; =~ /^$application$/ AND &quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ko') AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
+<li><code>SELECT sum(&quot;count&quot;) FROM &quot;$measurement_name&quot; WHERE (&quot;application&quot; =~ /^$application$/ AND &quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ko') AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
 </ul></li>
 <li>Options
 
@@ -576,7 +588,7 @@
 <ul>
 <li>Options - Min time interval: <code>[[send_interval]]s</code></li>
 </ul></li>
-<li><code>SELECT sum(&quot;error&quot;) / sum(&quot;all&quot;) FROM (SELECT sum(&quot;count&quot;) AS &quot;all&quot; FROM &quot;jmeter&quot; WHERE &quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'all' AND &quot;application&quot; =~ /^$application$/ AND $timeFilter GROUP BY time($__interval) fill(null)), (SELECT sum(&quot;count&quot;) AS &quot;error&quot; FROM &quot;jmeter&quot; WHERE &quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ko' AND &quot;application&quot; =~ /^$application$/ AND $timeFilter GROUP BY time($__interval) fill(null))</code></li>
+<li><code>SELECT sum(&quot;error&quot;) / sum(&quot;all&quot;) FROM (SELECT sum(&quot;count&quot;) AS &quot;all&quot; FROM &quot;$measurement_name&quot; WHERE &quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'all' AND &quot;application&quot; =~ /^$application$/ AND $timeFilter GROUP BY time($__interval) fill(null)), (SELECT sum(&quot;count&quot;) AS &quot;error&quot; FROM &quot;$measurement_name&quot; WHERE &quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ko' AND &quot;application&quot; =~ /^$application$/ AND $timeFilter GROUP BY time($__interval) fill(null))</code></li>
 </ul></li>
 <li>Options
 
@@ -607,7 +619,7 @@
 <ul>
 <li>Options - Min time interval: <code>[[send_interval]]s</code></li>
 </ul></li>
-<li><code>SELECT last(&quot;count&quot;) / $send_interval FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ok') AND $timeFilter GROUP BY time($__interval)</code></li>
+<li><code>SELECT last(&quot;count&quot;) / $send_interval FROM &quot;$measurement_name&quot; WHERE (&quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ok') AND $timeFilter GROUP BY time($__interval)</code></li>
 <li>alias: <code>Req / sec</code></li>
 </ul></li>
 <li>Legend
@@ -633,7 +645,7 @@
 <ul>
 <li>Options - Min time interval: <code>[[send_interval]]s</code></li>
 </ul></li>
-<li><code>SELECT sum(&quot;count&quot;) FROM &quot;jmeter&quot; WHERE &quot;application&quot; =~ /^$application$/ AND &quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ko' AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
+<li><code>SELECT sum(&quot;count&quot;) FROM &quot;$measurement_name&quot; WHERE &quot;application&quot; =~ /^$application$/ AND &quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ko' AND $timeFilter GROUP BY time($__interval) fill(null)</code></li>
 <li>alias: <code>Num of Errors</code></li>
 </ul></li>
 <li>Axes
@@ -670,32 +682,32 @@
 <ul>
 <li>Options - Min time interval: <code>[[send_interval]]s</code></li>
 </ul></li>
-<li><code>SELECT last(&quot;avg&quot;) FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ok') AND $timeFilter GROUP BY time($__interval)</code>
+<li><code>SELECT last(&quot;avg&quot;) FROM &quot;$measurement_name&quot; WHERE (&quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ok') AND $timeFilter GROUP BY time($__interval)</code>
 
 <ul>
 <li>alias: <code>Average</code></li>
 </ul></li>
-<li><code>SELECT last(&quot;pct50.0&quot;) FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ok') AND $timeFilter GROUP BY time($__interval)</code>
+<li><code>SELECT last(&quot;pct50.0&quot;) FROM &quot;$measurement_name&quot; WHERE (&quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ok') AND $timeFilter GROUP BY time($__interval)</code>
 
 <ul>
 <li>alias: <code>Median</code></li>
 </ul></li>
-<li><code>SELECT last(&quot;pct90.0&quot;) FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ok') AND $timeFilter GROUP BY time($__interval) fill(null)</code>
+<li><code>SELECT last(&quot;pct90.0&quot;) FROM &quot;$measurement_name&quot; WHERE (&quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ok') AND $timeFilter GROUP BY time($__interval) fill(null)</code>
 
 <ul>
-<li>alias: <code>90th Percentage</code></li>
+<li>alias: <code>90th Percentile</code></li>
 </ul></li>
-<li><code>SELECT last(&quot;pct95.0&quot;) FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ok') AND $timeFilter GROUP BY time($__interval) fill(null)</code>
+<li><code>SELECT last(&quot;pct95.0&quot;) FROM &quot;$measurement_name&quot; WHERE (&quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ok') AND $timeFilter GROUP BY time($__interval) fill(null)</code>
 
 <ul>
 <li>alias: <code>95th Percentile</code></li>
 </ul></li>
-<li><code>SELECT last(&quot;pct99.0&quot;) FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ok') AND $timeFilter GROUP BY time($__interval) fill(null)</code>
+<li><code>SELECT last(&quot;pct99.0&quot;) FROM &quot;$measurement_name&quot; WHERE (&quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ok') AND $timeFilter GROUP BY time($__interval) fill(null)</code>
 
 <ul>
-<li>alias: <code>99th Percentage</code></li>
+<li>alias: <code>99th Percentile</code></li>
 </ul></li>
-<li><code>SELECT last(&quot;max&quot;) FROM &quot;jmeter&quot; WHERE (&quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ok') AND $timeFilter GROUP BY time($__interval) fill(null)</code>
+<li><code>SELECT last(&quot;max&quot;) FROM &quot;$measurement_name&quot; WHERE (&quot;transaction&quot; =~ /^$transaction$/ AND &quot;statut&quot; = 'ok') AND $timeFilter GROUP BY time($__interval) fill(null)</code>
 
 <ul>
 <li>alias: <code>Max</code></li>
@@ -727,6 +739,24 @@
 </ul></li>
 </ul>
 
+<hr />
+
+<p>导出的 JSON 文件没有 data source，无法直接导入，需要手动编辑文件，在 <code>&quot;__inputs&quot;: []</code> 里加入以下：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
+  <span style="color:#4070a0">&#34;name&#34;</span><span style="color:#666">:</span> <span style="color:#4070a0">&#34;JMETER_DASHBOARD&#34;</span>,
+  <span style="color:#4070a0">&#34;label&#34;</span><span style="color:#666">:</span> <span style="color:#4070a0">&#34;DB name&#34;</span>,
+  <span style="color:#4070a0">&#34;description&#34;</span><span style="color:#666">:</span> <span style="color:#4070a0">&#34;&#34;</span>,
+  <span style="color:#4070a0">&#34;type&#34;</span><span style="color:#666">:</span> <span style="color:#4070a0">&#34;datasource&#34;</span>,
+  <span style="color:#4070a0">&#34;pluginId&#34;</span><span style="color:#666">:</span> <span style="color:#4070a0">&#34;influxdb&#34;</span>,
+  <span style="color:#4070a0">&#34;pluginName&#34;</span><span style="color:#666">:</span> <span style="color:#4070a0">&#34;InfluxDB&#34;</span>
+},</code></pre></div>
+<p>如果想上传到官网，为了能正确分类，<code>&quot;__requires&quot;: []</code> 里还要加入以下：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
+  <span style="color:#4070a0">&#34;type&#34;</span><span style="color:#666">:</span> <span style="color:#4070a0">&#34;datasource&#34;</span>,
+  <span style="color:#4070a0">&#34;id&#34;</span><span style="color:#666">:</span> <span style="color:#4070a0">&#34;influxdb&#34;</span>,
+  <span style="color:#4070a0">&#34;name&#34;</span><span style="color:#666">:</span> <span style="color:#4070a0">&#34;InfluxDB&#34;</span>,
+  <span style="color:#4070a0">&#34;version&#34;</span><span style="color:#666">:</span> <span style="color:#4070a0">&#34;1.4.0&#34;</span>
+},</code></pre></div>
 <hr />
 
 <p>参考：</p>
