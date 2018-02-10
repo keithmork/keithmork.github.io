@@ -14,28 +14,28 @@
     
     <item>
       <title>JMeter 实时监控仪表板配置 (Grafana &#43; InfluxDB)</title>
-      <link>http://keithmo.me/post/2017/12/16/2017-12-16-jmeter-grafana-dashboard/</link>
+      <link>http://keithmo.me/post/2017/12/16/jmeter-grafana-dashboard/</link>
       <pubDate>Sat, 16 Dec 2017 20:04:19 +0800</pubDate>
       
-      <guid>http://keithmo.me/post/2017/12/16/2017-12-16-jmeter-grafana-dashboard/</guid>
+      <guid>http://keithmo.me/post/2017/12/16/jmeter-grafana-dashboard/</guid>
       <description>在服务器上跑 JMeter 做压测的话，给工具本身也配上实时监控是必须的，命令行输出能提供的信息太少。 JMeter</description>
     </item>
     
     <item>
-      <title>GitHub &#43; Hugo 搭建个人博客(1) - 发布第一篇博文</title>
-      <link>http://keithmo.me/post/2016/07/20/2016-07-20-build-your-own-blog1/</link>
+      <title>GitHub &#43; Hugo 搭建个人博客</title>
+      <link>http://keithmo.me/post/2016/07/20/build-your-own-blog1/</link>
       <pubDate>Wed, 20 Jul 2016 02:16:04 +0800</pubDate>
       
-      <guid>http://keithmo.me/post/2016/07/20/2016-07-20-build-your-own-blog1/</guid>
+      <guid>http://keithmo.me/post/2016/07/20/build-your-own-blog1/</guid>
       <description>最后更新： 2018-02-11 自己搭博客的N个理由 你的笔记非常值钱，丢了就等于丢了N年工作经验。 大多数博客网站都满足不</description>
     </item>
     
     <item>
       <title>第1篇博文</title>
-      <link>http://keithmo.me/post/2016/07/19/2016-07-19-first/</link>
+      <link>http://keithmo.me/post/2016/07/19/first/</link>
       <pubDate>Tue, 19 Jul 2016 00:12:34 +0800</pubDate>
       
-      <guid>http://keithmo.me/post/2016/07/19/2016-07-19-first/</guid>
+      <guid>http://keithmo.me/post/2016/07/19/first/</guid>
       <description>Hello Hugo 坚持写博客的好处： 记录心得 整理思路 分享交流 求职展示</description>
     </item>
     

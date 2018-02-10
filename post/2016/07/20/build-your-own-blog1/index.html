@@ -1,0 +1,618 @@
+<!doctype html>
+
+<html lang="zh-cn">
+
+<head>
+  <title>Haunted Hovel - 闹鬼小屋</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="Keith Mo" />
+  <meta name="generator" content="Hugo 0.36" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="/">Haunted Hovel - 闹鬼小屋</a>
+            </h1>
+
+      <ul id="social-media">
+          
+        <li><a href="https://github.com/keithmork"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a></li>
+           
+      </ul>
+      
+      <p><em>本站采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用(BY-NC) 4.0 国际许可协议</a> 进行许可。</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="/post/">
+                <i class="fa-li fa  fa-lg"></i><span>Posts</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/guide/">
+                <i class="fa-li fa  fa-lg"></i><span>Guides</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/links/">
+                <i class="fa-li fa  fa-lg"></i><span>Links</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>GitHub &#43; Hugo 搭建个人博客</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2016-07-20T02:16:04&#43;08:00">Jul 20, 2016</time>
+        </li>
+        
+        
+        <li>
+            Categories: 
+            <em>
+                
+                    
+                    <a href="/categories/10000-Hours/">10000 Hours</a>
+                
+            </em>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="/tags/Hugo/">#Hugo</a>
+                
+                    , 
+                    <a href="/tags/GitHub/">#GitHub</a>
+                
+                    , 
+                    <a href="/tags/Git/">#Git</a>
+                
+            </em>
+        </li>
+        
+
+        <li>7 min read</li>
+    </ul>
+</aside>
+    
+
+    
+
+<p>最后更新：</p>
+
+<ul>
+<li>2018-02-11</li>
+</ul>
+
+<hr />
+
+<h2 id="自己搭博客的n个理由">自己搭博客的N个理由</h2>
+
+<ul>
+<li>你的笔记非常值钱，丢了就等于丢了N年工作经验。</li>
+<li>大多数博客网站都满足不了你：
+
+<ul>
+<li>倒闭/停止服务/被删库时，你多半没备份。</li>
+<li>格式互不兼容，导入导出困难，复制粘贴会乱。</li>
+<li>编辑器极其难用。</li>
+<li>可配置的地方不够，你讨厌的功能一堆。</li>
+</ul></li>
+<li>可以使用 Markdown 写博文：
+
+<ul>
+<li>任何一个文本编辑器都能写，随时随地。</li>
+<li>足够沉浸，让你忘记格式，专注内容。</li>
+<li>备份容易：
+
+<ul>
+<li>CSDN、博客园、简书、有道云笔记等都支持，到处复制粘贴也能得到大致相同的格式。</li>
+<li>纯文本本身也有足够可读性，网站/软件不支持也无所谓。</li>
+</ul></li>
+</ul></li>
+<li>GitHub 提供免费空间和 CDN，站点放 GitHub 仓库也方便做版本控制。
+
+<ul>
+<li>可以当有道云笔记的图片空间用，弥补 Markdown 笔记无法贴图的缺点。</li>
+</ul></li>
+<li>可以作为学习新技术的试验田。</li>
+</ul>
+
+<hr />
+
+<h2 id="0-准备工作">0. 准备工作</h2>
+
+<h3 id="0-1-注册-github">0.1. 注册 GitHub</h3>
+
+<p>先注册一个<del>全球最大的同性交友网站</del> <a href="https://github.com/">GitHub</a> 账号。</p>
+
+<ul>
+<li>用户名会成为网址的一部分，最好全英文小写，没空格，不太长。<br />
+
+<ul>
+<li>例：用户名 <code>keithmork</code>，对应网址 <code>keithmork.github.io</code></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h3 id="0-2-安装git">0.2. 安装Git</h3>
+
+<h4 id="mac">Mac</h4>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">brew install git</code></pre></div>
+<h4 id="pc">PC</h4>
+
+<p>下载安装 <a href="https://git-scm.com/">Git</a> ，全用默认设置，然后打开 Git 终端。</p>
+
+<ul>
+<li>默认工作目录是 Git 安装目录下的 mingw64 文件夹。</li>
+<li>路径分隔符请使用 <code>/</code> 或 <code>\\</code></li>
+</ul>
+
+<hr />
+
+<h3 id="0-3-设置-git-默认用户信息">0.3. 设置 Git 默认用户信息</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git config --global user.name <span style="color:#4070a0">&#34;keithmork&#34;</span>
+git config --global user.email <span style="color:#4070a0">&#34;keith.mork@gmail.com&#34;</span>
+
+# 替换成你在 GitHub 注册的邮箱和用户名</code></pre></div>
+<p>这台机器上的每个项目提交时默认都会用这些信息。</p>
+
+<hr />
+
+<h3 id="0-4-创建-github-个人主页">0.4. 创建 GitHub 个人主页</h3>
+
+<p>在 GitHub 上新建仓库(repository)</p>
+
+<ul>
+<li>名字<strong>必须</strong>为 <em>username</em>.github.io ，如：<code>keithmork.github.io</code></li>
+</ul>
+
+<p>只要往里面提交一个 <code>index.html</code> 文件，就能通过  <a href="https://keithmork.github.io">https://keithmork.github.io</a> 访问了。</p>
+
+<p>不过先不急，继续往下看。</p>
+
+<hr />
+
+<h2 id="1-使用静态网站生成器搭建站点">1. 使用静态网站生成器搭建站点</h2>
+
+<p>个人网站/博客通常只需要简单的静态页面，<a href="https://www.staticgen.com/">这类工具</a> 正好可以把 Markdown 文档转换成网页，非常方便。</p>
+
+<p>这里选择 <a href="http://gohugo.io/">Hugo</a>，特点是生成速度非常快，安装配置简单，还带实时预览。</p>
+
+<h3 id="1-1-安装">1.1. 安装</h3>
+
+<h4 id="mac-1">Mac</h4>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">brew install hugo
+
+<span style="color:#60a0b0;font-style:italic"># 查看版本
+</span><span style="color:#60a0b0;font-style:italic"></span>hugo version
+
+<span style="color:#60a0b0;font-style:italic"># 查看帮助
+</span><span style="color:#60a0b0;font-style:italic"></span>man hugo
+hugo help</code></pre></div>
+<h4 id="pc-1">PC</h4>
+
+<p>下载后解压，把 <code>hugo.exe</code> 的路径加进环境变量 <code>Path</code> 就行。</p>
+
+<hr />
+
+<h3 id="1-2-新建站点">1.2. 新建站点</h3>
+
+<p>假设想放在当前目录的 <code>hugo-blog/</code> 下：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">hugo new site hugo-blog -f yaml
+
+<span style="color:#60a0b0;font-style:italic"># -f, --format {yaml | json | toml}    指定 config 和 front matter 的格式，默认 toml。
+</span><span style="color:#60a0b0;font-style:italic"># 推荐 yaml 格式。
+</span><span style="color:#60a0b0;font-style:italic"></span>
+<span style="color:#007020">cd</span> hugo-blog</code></pre></div>
+<p>会在目录下生成如下内容：</p>
+
+<ul>
+<li><code>archetypes/</code>：文章模板</li>
+<li><code>content/</code>：网站内容</li>
+<li><code>data/</code>：生成网站时的配置</li>
+<li><code>layouts/</code>：网页框架</li>
+<li><code>static/</code>：静态资源</li>
+<li><code>themes/</code>：主题</li>
+<li><code>config.yaml</code>：配置文件</li>
+</ul>
+
+<blockquote>
+<p><a href="https://gohugo.io/commands/hugo_new_site/">https://gohugo.io/commands/hugo_new_site/</a><br />
+<a href="https://gohugo.io/getting-started/directory-structure/">https://gohugo.io/getting-started/directory-structure/</a></p>
+</blockquote>
+
+<hr />
+
+<h3 id="1-3-下载主题">1.3. 下载主题</h3>
+
+<p>默认不带主题，从 <a href="https://github.com/spf13/hugoThemes">这里</a> 挑喜欢的下载。</p>
+
+<p>推荐 <a href="http://www.b12.cn/article/NDI2MGIxMg.html">CR</a>风格（黑白极简）的主题，我用的是 <a href="https://themes.gohugo.io/hugo-kiera/">Kiera</a> ：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#007020">cd</span> themes
+git clone https://github.com/avianto/hugo-kiera.git kiera
+
+<span style="color:#007020">cd</span> ..</code></pre></div>
+<hr />
+
+<h3 id="1-4-修改配置文件">1.4 修改配置文件</h3>
+
+<p>以 YAML 格式为例：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#60a0b0;font-style:italic"># 默认会有这3项：</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>baseURL:<span style="color:#bbb"> </span>http://example.org/<span style="color:#bbb">  </span><span style="color:#60a0b0;font-style:italic"># 替换为你的网址</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>languageCode:<span style="color:#bbb"> </span>zh-cn<span style="color:#bbb">  </span><span style="color:#60a0b0;font-style:italic"># 默认 en-us，如果文章内容不是这里指定的编码，Chrome 会提示要不要翻译页面。</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>title:<span style="color:#bbb"> </span>My<span style="color:#bbb"> </span>New<span style="color:#bbb"> </span>Hugo<span style="color:#bbb"> </span>Site<span style="color:#bbb">  </span><span style="color:#60a0b0;font-style:italic"># 替换为你的博客标题</span><span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#60a0b0;font-style:italic"># 推荐在配置文件里指定主题，否则每次都要通过命令行传參。</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#60a0b0;font-style:italic"># 如果配置文件和命令行都不指定主题，打开网站只能看到一片空白。</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>theme:<span style="color:#bbb"> </span>kiera<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#60a0b0;font-style:italic"># 代码语法高亮设置：</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>pygmentsCodeFences:<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>pygmentsCodeFencesGuessSyntax:<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>pygmentsStyle:<span style="color:#bbb"> </span>friendly<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#60a0b0;font-style:italic"># 下面是 kiera 的配置。每款主题的配置都不一样，照着主题的文档的指示做就行。</span><span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>params:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>tagline:<span style="color:#bbb"> </span>这里替换成你的博客的副标题<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#60a0b0;font-style:italic"># 设置社交账号，显示为链接按钮。</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>author:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>name:<span style="color:#bbb"> </span>Keith<span style="color:#bbb"> </span>Mo<span style="color:#bbb">       </span><span style="color:#60a0b0;font-style:italic"># Author name</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span>github:<span style="color:#bbb"> </span>keithmork<span style="color:#bbb">     </span><span style="color:#60a0b0;font-style:italic"># Github username</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#60a0b0;font-style:italic">#gitlab:     # Gitlab username</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#60a0b0;font-style:italic">#linkedin:   # LinkedIn username</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#60a0b0;font-style:italic">#facebook:   # Facebook username</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#60a0b0;font-style:italic">#twitter:    # Twitter username</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#60a0b0;font-style:italic">#instagram:  # Instagram username</span><span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#60a0b0;font-style:italic"># 有对应的账号才能用相应功能：</span><span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#60a0b0;font-style:italic"># 评论（Disqus）</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>disqusShortname:<span style="color:#bbb"> </span>XXX<span style="color:#bbb">  </span><span style="color:#60a0b0;font-style:italic"># Disqus shortname</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#60a0b0;font-style:italic"># 站点统计（Google Analytics）</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>googleAnalytics:<span style="color:#bbb"> </span>XXX<span style="color:#bbb">  </span><span style="color:#60a0b0;font-style:italic"># Google Analytics ID</span></code></pre></div>
+<p>参考<a href="https://github.com/keithmork/hugo-blog/blob/master/config.yaml">我的完整配置</a>。</p>
+
+<blockquote>
+<p><a href="https://gohugo.io/getting-started/configuration/">https://gohugo.io/getting-started/configuration/</a></p>
+</blockquote>
+
+<hr />
+
+<h3 id="1-5-创建页面文件">1.5. 创建页面文件</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">hugo new post/2016-07-19-first.md
+
+# 格式：&lt;SECTIONNAME&gt;/&lt;FILENAME&gt;.&lt;FORMAT&gt;</code></pre></div>
+<p>可以看到在 <code>content/</code> 下生成了 <code>post/</code> 目录，<code>post/</code> 下有 <code>2016-07-19-first.md</code> 文件。</p>
+
+<p><strong>这操作经常用，建议写成脚本</strong>：（例如叫做 <code>new</code>）</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="color:#007020">#!/bin/bash
+</span><span style="color:#007020"></span>
+<span style="color:#666">[[</span> -z <span style="color:#4070a0">&#34;</span><span style="color:#bb60d5">$1</span><span style="color:#4070a0">&#34;</span> <span style="color:#666">]]</span> <span style="color:#666">&amp;&amp;</span> <span style="color:#007020">echo</span> <span style="color:#4070a0">&#34;Usage: </span><span style="color:#007020;font-weight:bold">$(</span>basename <span style="color:#4070a0">&#34;</span><span style="color:#bb60d5">$0</span><span style="color:#4070a0">&#34;</span><span style="color:#007020;font-weight:bold">)</span><span style="color:#4070a0"> FILENAME(without suffix) [SECTIONNAME]&#34;</span> <span style="color:#666">&amp;&amp;</span> <span style="color:#007020">exit</span> <span style="color:#40a070">1</span>
+<span style="color:#bb60d5">section_name</span><span style="color:#666">=</span><span style="color:#70a0d0;font-style:italic">${</span><span style="color:#bb60d5">2</span><span style="color:#007020;font-weight:bold">:-</span><span style="color:#bb60d5">post</span><span style="color:#70a0d0;font-style:italic">}</span>
+
+<span style="color:#bb60d5">date_prefix</span><span style="color:#666">=</span><span style="color:#007020;font-weight:bold">$(</span>date +%Y-%m-%d-<span style="color:#007020;font-weight:bold">)</span>
+<span style="color:#bb60d5">file_path</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;</span><span style="color:#70a0d0;font-style:italic">${</span><span style="color:#bb60d5">section_name</span><span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">/</span><span style="color:#70a0d0;font-style:italic">${</span><span style="color:#bb60d5">date_prefix</span><span style="color:#70a0d0;font-style:italic">}</span><span style="color:#bb60d5">$1</span><span style="color:#4070a0">.md&#34;</span>
+hugo new <span style="color:#4070a0">&#34;</span><span style="color:#70a0d0;font-style:italic">${</span><span style="color:#bb60d5">file_path</span><span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">&#34;</span>
+
+sed -i <span style="color:#4070a0">&#39;.bak&#39;</span> <span style="color:#4070a0">&#34;s/slug: </span><span style="color:#70a0d0;font-style:italic">${</span><span style="color:#bb60d5">date_prefix</span><span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">/slug: /&#34;</span> <span style="color:#4070a0">&#34;content/</span><span style="color:#70a0d0;font-style:italic">${</span><span style="color:#bb60d5">file_path</span><span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">&#34;</span>
+rm -f <span style="color:#4070a0">&#34;content/</span><span style="color:#70a0d0;font-style:italic">${</span><span style="color:#bb60d5">file_path</span><span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">.bak&#34;</span></pre></div>
+<p>用文本编辑器打开刚才生成的文件，可以看见类似如下内容（YAML格式）：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---<span style="color:#bbb">
+</span><span style="color:#bbb"></span>title:<span style="color:#bbb"> </span><span style="color:#4070a0">&#34;2016 07 19 First&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>date:<span style="color:#bbb"> </span>2018-02-10T23:16:02+<span style="color:#40a070">08</span>:<span style="color:#40a070">00</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>draft:<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>---</code></pre></div>
+<p>（默认的 TOML 格式）：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml"><span style="">+++</span>
+date = <span style="color:#4070a0">&#34;2016-07-19T00:12:34+08:00&#34;</span>
+draft = <span style="color:#007020;font-weight:bold">true</span>
+title = <span style="color:#4070a0">&#34;2016 07 19 first&#34;</span>
+
+<span style="">+++</span></code></pre></div>
+<p>像这样的出现在每篇文章前的前置配置叫 <strong>front matter</strong>，<code>---</code> 包着的内容会解析为 YAML，<code>+++</code> 包着的内容会解析为 TOML。</p>
+
+<p>在下面的空白处用 Markdown 写正文，如：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md"><span style="color:#800080;font-weight:bold">##</span> Hello Hugo
+<span style="">
+</span><span style=""></span>坚持写博客的好处：
+
+<span style="color:#007020;font-weight:bold">-</span> 记录心得<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">-</span> 整理思路<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">-</span> 分享交流<span style="">
+</span><span style=""></span>- 求职展示</code></pre></div>
+<p>完整文件见<a href="https://raw.githubusercontent.com/keithmork/hugo-blog/master/content/post/2016-07-19-first.md">这里</a>。</p>
+
+<blockquote>
+<p><a href="https://gohugo.io/content-management/front-matter/">https://gohugo.io/content-management/front-matter/</a></p>
+</blockquote>
+
+<hr />
+
+<h3 id="1-6-编辑模板">1.6. 编辑模板</h3>
+
+<p>在 <code>archetype/</code> 下新建 .md 文件，如果文件名跟新建文章时的 SECTIONNAME 一致，则该 section 下的文章都套用这模板。</p>
+
+<p>找不到匹配的 section 才会套用 <code>default.md</code>。</p>
+
+<p><code>default.md</code> 的默认 front matter：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---<span style="color:#bbb">
+</span><span style="color:#bbb"></span>title:<span style="color:#bbb"> </span><span style="color:#4070a0">&#39;{{ replace .Name &#34;-&#34; &#34; &#34; | title }}&#39;</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>date:<span style="color:#bbb"> </span>{{<span style="color:#bbb"> </span>.Date<span style="color:#bbb"> </span>}}<span style="color:#bbb">
+</span><span style="color:#bbb"></span>draft:<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>---</code></pre></div>
+<p>如果希望每篇新建的文章都带上特定的 front matter，写在2个 <code>---</code> 之间，如：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">slug:<span style="color:#bbb"> </span>{{<span style="color:#bbb"> </span>.Name<span style="color:#bbb"> </span>}}<span style="color:#bbb">
+</span><span style="color:#bbb"></span>tags:<span style="color:#bbb"> </span>[]<span style="color:#bbb">
+</span><span style="color:#bbb"></span>categories:<span style="color:#bbb"> </span>[]</code></pre></div>
+<p>如果想带上特定内容，写在 front matter 下面，如：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">![<span style="color:#062873;font-weight:bold">微信收钱二维码</span>](<span style="color:#4070a0">/img/wechat-receive-money-qrcode-0.01.jpg</span>)</code></pre></div>
+<p>资源文件放在 <code>static/</code> 下，==注意==：</p>
+
+<ul>
+<li>建议用 imagemagick 压缩图片，Hugo 不会帮你压缩。</li>
+<li>kiera 主题要求图片宽度至少 600px，不够的会自动拉伸。如果图片确实很小，建议编辑一下加上透明底。</li>
+</ul>
+
+<p>参考<a href="https://github.com/keithmork/hugo-blog/tree/master/archetypes">我的配置</a>。</p>
+
+<blockquote>
+<p><a href="https://gohugo.io/content-management/archetypes/">https://gohugo.io/content-management/archetypes/</a></p>
+</blockquote>
+
+<hr />
+
+<h3 id="1-7-本地预览">1.7. 本地预览</h3>
+
+<p>Hugo 每次生成站点时不会删旧文件，因此推荐把预览和发布目录分开，并且每次生成前把旧目录删除。</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">hugo server -Dw -d dev 
+
+<span style="color:#60a0b0;font-style:italic"># -D, --buildDrafts[=false]    文章的默认状态是草稿，草稿默认不会构建，必须加上这参数才会生成页面。
+</span><span style="color:#60a0b0;font-style:italic"># -w, --watch    文件有改动时自动重新构建并刷新浏览器页面。
+</span><span style="color:#60a0b0;font-style:italic"></span># -d, --destination DIR    输出目录，默认 public/</code></pre></div>
+<p>==注意==：运行 <code>hugo server</code> 时，当前工作目录必须为站点根目录（包含配置文件），否则提示 <code>Error: Unable to locate Config file.</code></p>
+
+<p><strong>这操作经常用，建议写成脚本</strong>：（例如叫做 <code>preview</code>）</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#007020">#!/bin/bash
+</span><span style="color:#007020"></span>
+rm -rf dev
+hugo server --buildDrafts --destination dev --disableFastRender</code></pre></div>
+<p>浏览器打开 <code>localhost:1313</code>，之后任何改动都会实时刷新，样式跟发布到线上完全相同。</p>
+
+<p><code>ctrl + c</code> 结束 hugo server 。</p>
+
+<hr />
+
+<h3 id="1-8-生成发布页面">1.8. 生成发布页面</h3>
+
+<p>首先把要发布的文章的 <code>draft</code> 属性改为 <code>false</code>，运行：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">hugo</code></pre></div>
+<p>执行后会生成 <code>public/</code> 目录，可以看到之前的 Markdown 文件转换成了文件夹 + HTML 文件。</p>
+
+<p><strong>这操作经常用，建议写成脚本</strong>：（例如叫做 <code>release</code>）</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#007020">#!/bin/bash
+</span><span style="color:#007020"></span>
+<span style="color:#bb60d5">push_to_github</span><span style="color:#666">=</span><span style="color:#70a0d0;font-style:italic">${</span><span style="color:#bb60d5">1</span><span style="color:#007020;font-weight:bold">:-</span><span style="color:#bb60d5">false</span><span style="color:#70a0d0;font-style:italic">}</span>
+
+<span style="color:#007020;font-weight:bold">if</span> <span style="color:#666">[[</span> -d public <span style="color:#666">]]</span>; <span style="color:#007020;font-weight:bold">then</span>
+    rm -rf <span style="color:#4070a0">&#34;public/!(.git|CNAME|googleXXX.html|robots.txt)&#34;</span>  <span style="color:#60a0b0;font-style:italic"># gooleXXX.html 是 Google Analytics 要求你放在站点根目录用来验证你对站点的所有权的文件。
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">fi</span>
+
+hugo
+
+<span style="color:#007020;font-weight:bold">if</span> <span style="color:#666">[[</span> <span style="color:#4070a0">&#34;</span><span style="color:#70a0d0;font-style:italic">${</span><span style="color:#bb60d5">push_to_github</span><span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">&#34;</span> <span style="color:#666">==</span> <span style="color:#4070a0">&#34;true&#34;</span> <span style="color:#666">]]</span>; <span style="color:#007020;font-weight:bold">then</span>
+    <span style="color:#007020">cd</span> public
+    git add -A
+    git commit -m <span style="color:#4070a0">&#39;new publish&#39;</span>
+    git push
+<span style="color:#007020;font-weight:bold">fi</span></code></pre></div>
+<hr />
+
+<h3 id="1-9-发布到-github">1.9. 发布到 GitHub</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#007020">cd</span> public
+git init
+git remote add origin <span style="color:#4070a0">&#34;git@github.com:keithmork/keithmork.github.io.git&#34;</span>  <span style="color:#60a0b0;font-style:italic"># 替换成你的 GitHub Pages 仓库地址
+</span><span style="color:#60a0b0;font-style:italic"></span>git add -A
+git commit -m <span style="color:#4070a0">&#34;first commit&#34;</span>
+git pull
+git push origin master
+
+# 注意：要用 SSH 的仓库地址才能用公钥，如果用了 HTTPS 的仓库地址，必须每次输用户名密码。</code></pre></div>
+<p>之后会提示输入在 GitHub 注册的邮箱和密码。</p>
+
+<p>提交成功后，浏览器打开<code>https://keithmork.github.io</code>，就能看到刚才的页面了。</p>
+
+<p>以后每次提交都这样：（已经写在上面的发布脚本里）</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git add -A
+git commit -m <span style="color:#4070a0">&#34;XXX&#34;</span>
+git push</code></pre></div>
+<p>或者装 SourceTree、GitHub Desktop 等客户端。</p>
+
+<hr />
+
+<h2 id="2-使用-ssh-密钥登录-github">2. 使用 SSH 密钥登录 GitHub</h2>
+
+<p>每次发博文都输用户名密码太麻烦，用密钥代替密码就方便多了。</p>
+
+<p>前提是机器只有你一个人用。</p>
+
+<h3 id="2-1-生成ssh密钥对">2.1. 生成SSH密钥对</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">mkdir ~/.ssh
+<span style="color:#007020">cd</span> ~/.ssh
+ssh-keygen -t rsa -C <span style="color:#4070a0">&#34;keith.mork@gmail.com&#34;</span></code></pre></div>
+<ul>
+<li>提示 <code>Enter file in which to save the key</code> 时直接回车，使用默认设置。
+
+<ul>
+<li>文件名不用改，GitHub 连接时似乎只认 <code>id_rsa</code></li>
+</ul></li>
+<li>提示 <code>Enter passphrase</code> 和 <code>Enter same passphrase again</code> 时，可以直接回车，不使用口令（否则每次提交时会要求输入口令）。</li>
+</ul>
+
+<blockquote>
+<p><a href="https://help.github.com/articles/generating-an-ssh-key/">https://help.github.com/articles/generating-an-ssh-key/</a></p>
+</blockquote>
+
+<hr />
+
+<h3 id="2-2-添加-ssh-公钥到-github">2.2. 添加 SSH 公钥到 GitHub</h3>
+
+<ol>
+<li><p>复制公钥文件（默认 <code>~/.ssh/id_rsa.pub</code>）的内容。</p></li>
+
+<li><p>登上 GitHub，在个人设置里找到 <code>SSH and GPG keys</code>，新建 SSH key，粘贴进去。</p></li>
+
+<li><p>取个容易识别的名字，如 <code>Mac-Home</code> <code>PC-Work</code> 等，保存。</p></li>
+
+<li><p>测试是否成功：</p></li>
+</ol>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">ssh -T git@github.com  # 用户名就是git，不用改。</code></pre></div><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#60a0b0;font-style:italic"># 如果报错，这样看详细信息：
+</span><span style="color:#60a0b0;font-style:italic"></span>ssh -vT git@github.com
+
+<span style="color:#60a0b0;font-style:italic"># 看到以下就是成功了：（虽然命令返回 1）
+</span><span style="color:#60a0b0;font-style:italic"></span># You<span style="">&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.</code></pre></div>
+<ul>
+<li>看到 <code>Are you sure you want to continue connecting</code> 时输 <code>yes</code> 回车，然后就可以了。</li>
+</ul>
+
+<p>如果依然每次都问用户名密码，可能是当初加仓库地址时用了 HTTPS 格式，改为 SSH 格式的地址就好了：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git remote set-url origin git@github.com:keithmork/keithmork.github.io.git</code></pre></div>
+<hr />
+
+<h2 id="参考">参考</h2>
+
+<blockquote>
+<p><a href="https://pages.github.com/">GitHub Pages</a> 的<code>User or organization site</code>下面有手把手教程<br />
+<a href="http://gohugo.io/overview/usage/">http://gohugo.io/overview/usage/</a><br />
+<a href="http://blog.coderzh.com/2015/08/29/hugo/">使用hugo搭建个人博客站点</a>, 2015-08<br />
+<a href="https://linux.cn/article-8633-1.html">Hugo 对比 Jekyll ：两大领先的静态页面生成器之间的比较</a>, 2017-06</p>
+</blockquote>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="http://keithmo.me/post/2016/07/19/first/"><i class="fa fa-chevron-circle-left"></i> 第1篇博文</a>
+        </li>
+        
+        
+        <li>
+            <a href="http://keithmo.me/post/2017/12/16/jmeter-grafana-dashboard/">JMeter 实时监控仪表板配置 (Grafana &#43; InfluxDB) <i class="fa fa-chevron-circle-right"></i> </a>
+        </li>
+        
+    </ul>
+</section>
+    
+        <section class="comments-block">
+      <button id="show-comments" style="display: none;"><i class="fa fa-comments-o"></i> Add/View Comments</button>
+</section>
+
+<section id="disqus_thread"></section>
+
+<script>
+      (function () {
+            
+            
+            if (window.location.hostname == "localhost")
+                  return;
+
+            var disqus_loaded = false;
+            var disqus_shortname = 'keithmo';
+            var disqus_button = document.getElementById("show-comments");
+
+            disqus_button.style.display = "";
+            disqus_button.addEventListener("click", disqus, false);
+
+            function disqus() {
+
+                  if (!disqus_loaded) {
+                        disqus_loaded = true;
+
+                        var e = document.createElement("script");
+                        e.type = "text/javascript";
+                        e.async = true;
+                        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                        (document.getElementsByTagName("head")[0] ||
+                              document.getElementsByTagName("body")[0])
+                        .appendChild(e);
+
+                        
+                        document.getElementById("show-comments").style.display = "none";
+                  }
+            }
+
+            
+            var hash = window.location.hash.substr(1);
+            if (hash.length > 8) {
+                  if (hash.substring(0, 8) == "comment-") {
+                        disqus();
+                  }
+            }
+
+            
+            if (/bot|google|baidu|bing|msn|duckduckgo|slurp|yandex/i.test(navigator.userAgent)) {
+                  disqus();
+            }
+      })();
+</script>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6>Copyright &copy; 2016-2018 - Keith Mo | 
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="http://keithmo.me/index.xml">Subscribe</a></h6>
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+</body>
+
+</html>
