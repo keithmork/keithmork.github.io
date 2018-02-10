@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Grafana on Haunted Hovel - 闹鬼小屋</title>
-    <link>http://keithmo.me/tags/Grafana/</link>
+    <link>http://keithmo.me/tags/grafana/</link>
     <description>Recent content in Grafana on Haunted Hovel - 闹鬼小屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>Copyright &amp;copy; 2016-2018 - Keith Mo</copyright>
+    <copyright>本站采用 &lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc/4.0/&#34;&gt;知识共享署名-非商业性使用(BY-NC) 4.0 国际许可协议&lt;/a&gt; 进行许可。</copyright>
     <lastBuildDate>Sat, 16 Dec 2017 20:04:19 +0800</lastBuildDate>
     
-	<atom:link href="http://keithmo.me/tags/Grafana/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://keithmo.me/tags/grafana/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>JMeter 实时监控仪表板配置 (Grafana &#43; InfluxDB)</title>
-      <link>http://keithmo.me/post/2017/12/2017-12-16-jmeter-grafana-dashboard/</link>
+      <link>http://keithmo.me/post/2017/12/16/2017-12-16-jmeter-grafana-dashboard/</link>
       <pubDate>Sat, 16 Dec 2017 20:04:19 +0800</pubDate>
       
-      <guid>http://keithmo.me/post/2017/12/2017-12-16-jmeter-grafana-dashboard/</guid>
+      <guid>http://keithmo.me/post/2017/12/16/2017-12-16-jmeter-grafana-dashboard/</guid>
       <description>在服务器上跑 JMeter 做压测的话，给工具本身也配上实时监控是必须的，命令行输出能提供的信息太少。 JMeter</description>
     </item>
     

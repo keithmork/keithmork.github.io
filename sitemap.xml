@@ -13,47 +13,47 @@
   </url>
   
   <url>
-    <loc>http://keithmo.me/about/</loc>
-  </url>
-  
-  <url>
     <loc>http://keithmo.me/links/</loc>
   </url>
   
   <url>
-    <loc>http://keithmo.me/post/2017/12/2017-12-16-jmeter-grafana-dashboard/</loc>
+    <loc>http://keithmo.me/about/</loc>
+  </url>
+  
+  <url>
+    <loc>http://keithmo.me/post/2017/12/16/2017-12-16-jmeter-grafana-dashboard/</loc>
     <lastmod>2017-12-16T20:04:19+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://keithmo.me/guide/2017/12/2017-12-11-blood-bowl2-legendary-challenges-guide/</loc>
+    <loc>http://keithmo.me/guide/2017/12/11/2017-12-11-blood-bowl2-legendary-challenges-guide/</loc>
     <lastmod>2017-12-11T19:45:10+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://keithmo.me/post/2016/07/2016-07-20-build-your-own-blog1/</loc>
+    <loc>http://keithmo.me/post/2016/07/20/2016-07-20-build-your-own-blog1/</loc>
     <lastmod>2016-07-20T02:16:04+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://keithmo.me/post/2016/07/2016-07-19-first/</loc>
+    <loc>http://keithmo.me/post/2016/07/19/2016-07-19-first/</loc>
     <lastmod>2016-07-19T00:12:34+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://keithmo.me/categories/10000-Hours/</loc>
+    <loc>http://keithmo.me/categories/10000-hours/</loc>
     <lastmod>2017-12-16T20:04:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://keithmo.me/tags/Blood-Bowl/</loc>
+    <loc>http://keithmo.me/tags/blood-bowl/</loc>
     <lastmod>2017-12-11T19:45:10+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://keithmo.me/tags/Board-Game/</loc>
+    <loc>http://keithmo.me/tags/board-game/</loc>
     <lastmod>2017-12-11T19:45:10+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -65,31 +65,31 @@
   </url>
   
   <url>
-    <loc>http://keithmo.me/categories/Games/</loc>
+    <loc>http://keithmo.me/categories/games/</loc>
     <lastmod>2017-12-11T19:45:10+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://keithmo.me/tags/Games-Workshop/</loc>
+    <loc>http://keithmo.me/tags/games-workshop/</loc>
     <lastmod>2017-12-11T19:45:10+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://keithmo.me/tags/Git/</loc>
+    <loc>http://keithmo.me/tags/git/</loc>
     <lastmod>2016-07-20T02:16:04+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://keithmo.me/tags/GitHub/</loc>
+    <loc>http://keithmo.me/tags/github/</loc>
     <lastmod>2016-07-20T02:16:04+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://keithmo.me/tags/Grafana/</loc>
+    <loc>http://keithmo.me/tags/grafana/</loc>
     <lastmod>2017-12-16T20:04:19+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -101,25 +101,25 @@
   </url>
   
   <url>
-    <loc>http://keithmo.me/tags/Hugo/</loc>
+    <loc>http://keithmo.me/tags/hugo/</loc>
     <lastmod>2016-07-20T02:16:04+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://keithmo.me/tags/InfluxDB/</loc>
+    <loc>http://keithmo.me/tags/influxdb/</loc>
     <lastmod>2017-12-16T20:04:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://keithmo.me/tags/JMeter/</loc>
+    <loc>http://keithmo.me/tags/jmeter/</loc>
     <lastmod>2017-12-16T20:04:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://keithmo.me/categories/Load-Test/</loc>
+    <loc>http://keithmo.me/categories/load-test/</loc>
     <lastmod>2017-12-16T20:04:19+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -136,7 +136,7 @@
   </url>
   
   <url>
-    <loc>http://keithmo.me/tags/Video-Game/</loc>
+    <loc>http://keithmo.me/tags/video-game/</loc>
     <lastmod>2017-12-11T19:45:10+08:00</lastmod>
     <priority>0</priority>
   </url>
