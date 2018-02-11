@@ -108,7 +108,7 @@
         </li>
         
 
-        <li>7 min read</li>
+        <li>8 min read</li>
     </ul>
 </aside>
     
@@ -336,7 +336,9 @@ git clone https://github.com/avianto/hugo-kiera.git kiera
 hugo new <span style="color:#4070a0">&#34;</span><span style="color:#70a0d0;font-style:italic">${</span><span style="color:#bb60d5">file_path</span><span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">&#34;</span>
 
 sed -i <span style="color:#4070a0">&#39;.bak&#39;</span> <span style="color:#4070a0">&#34;s/slug: </span><span style="color:#70a0d0;font-style:italic">${</span><span style="color:#bb60d5">date_prefix</span><span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">/slug: /&#34;</span> <span style="color:#4070a0">&#34;content/</span><span style="color:#70a0d0;font-style:italic">${</span><span style="color:#bb60d5">file_path</span><span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">&#34;</span>
-rm -f <span style="color:#4070a0">&#34;content/</span><span style="color:#70a0d0;font-style:italic">${</span><span style="color:#bb60d5">file_path</span><span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">.bak&#34;</span></pre></div>
+rm -f <span style="color:#4070a0">&#34;content/</span><span style="color:#70a0d0;font-style:italic">${</span><span style="color:#bb60d5">file_path</span><span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">.bak&#34;</span>
+
+# Mac 的 sed -i 的第1个参数必须为备份文件后缀名</pre></div>
 <p>用文本编辑器打开刚才生成的文件，可以看见类似如下内容（YAML格式）：</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---<span style="color:#bbb">
 </span><span style="color:#bbb"></span>title:<span style="color:#bbb"> </span><span style="color:#4070a0">&#34;2016 07 19 First&#34;</span><span style="color:#bbb">
@@ -435,8 +437,9 @@ hugo server --buildDrafts --destination dev --disableFastRender</code></pre></di
 <span style="color:#bb60d5">push_to_github</span><span style="color:#666">=</span><span style="color:#70a0d0;font-style:italic">${</span><span style="color:#bb60d5">1</span><span style="color:#007020;font-weight:bold">:-</span><span style="color:#bb60d5">false</span><span style="color:#70a0d0;font-style:italic">}</span>
 
 <span style="color:#007020;font-weight:bold">if</span> <span style="color:#666">[[</span> -d public <span style="color:#666">]]</span>; <span style="color:#007020;font-weight:bold">then</span>
-    rm -rf <span style="color:#4070a0">&#34;public/!(.git|CNAME|googleXXX.html|robots.txt)&#34;</span>  <span style="color:#60a0b0;font-style:italic"># gooleXXX.html 是 Google Analytics 要求你放在站点根目录用来验证你对站点的所有权的文件。
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">fi</span>
+    <span style="color:#bb60d5">GLOBIGNORE</span><span style="color:#666">=</span>*.git:*CNAME:*googleXXX.html:*robots.txt
+    rm -rf -v public/*
+<span style="color:#007020;font-weight:bold">fi</span>
 
 hugo
 
@@ -445,7 +448,10 @@ hugo
     git add -A
     git commit -m <span style="color:#4070a0">&#39;new publish&#39;</span>
     git push
-<span style="color:#007020;font-weight:bold">fi</span></code></pre></div>
+<span style="color:#007020;font-weight:bold">fi</span>
+
+
+# googleXXX.html 是 Google Analytics 要求你放在站点根目录用来验证你对站点的所有权的文件。</code></pre></div>
 <hr />
 
 <h3 id="1-9-发布到-github">1.9. 发布到 GitHub</h3>
@@ -455,7 +461,7 @@ git remote add origin <span style="color:#4070a0">&#34;git@github.com:keithmork/
 </span><span style="color:#60a0b0;font-style:italic"></span>git add -A
 git commit -m <span style="color:#4070a0">&#34;first commit&#34;</span>
 git pull
-git push origin master
+git push -u origin master
 
 # 注意：要用 SSH 的仓库地址才能用公钥，如果用了 HTTPS 的仓库地址，必须每次输用户名密码。</code></pre></div>
 <p>之后会提示输入在 GitHub 注册的邮箱和密码。</p>
@@ -517,6 +523,47 @@ ssh-keygen -t rsa -C <span style="color:#4070a0">&#34;keith.mork@gmail.com&#34;<
 
 <p>如果依然每次都问用户名密码，可能是当初加仓库地址时用了 HTTPS 格式，改为 SSH 格式的地址就好了：</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git remote set-url origin git@github.com:keithmork/keithmork.github.io.git</code></pre></div>
+<hr />
+
+<h2 id="3-发布-hugo-工程源文件到-github">3. 发布 Hugo 工程源文件到 GitHub</h2>
+
+<p>源文件比生成的发布文件重要得多，必须备份到 GitHub。发布文件丢了随时重新生成，源文件丢了就没了。</p>
+
+<ol>
+<li><p>在 GitHub 新建仓库，例如叫 <code>hugo-blog</code>，不要勾选创建 README.md 。</p></li>
+
+<li><p>在工程根目录下创建 <code>.gitignore</code> 文件，写上不需要备份的目录和文件，例：</p></li>
+</ol>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">public
+themes
+dev
+.git
+.DS_Store
+*.bak
+*.old</code></pre></div>
+<ol>
+<li><p>如果想写项目简介，创建 README.md 文件。</p></li>
+
+<li><p>和之前类似的操作：</p></li>
+</ol>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git init
+git remote add origin <span style="color:#4070a0">&#34;git@github.com:keithmork/hugo-blog.git&#34;</span>  <span style="color:#60a0b0;font-style:italic"># 替换成你的 GitHub 仓库地址
+</span><span style="color:#60a0b0;font-style:italic"></span>git add -A
+git commit -m <span style="color:#4070a0">&#34;first commit&#34;</span>
+git pull
+git push -u origin master</code></pre></div>
+<p>如果忘了写 <code>.gitignore</code>，把 public 和 themes 也提交了上去，会发现它们被认为是 submodule （因为里面有 .git 目录）。即使之后设置忽略它们，每次里面的文件有更新时都会出现烦人的子模块状态变更的记录。</p>
+
+<p>解决方法：先把那2个目录复制到别的地方，把它们删掉，写好 <code>.gitignore</code>，在 <code>.git/config</code> 里删掉 <code>[submodule]</code> 相关内容，提交，再把它们搬回来。</p>
+
+<hr />
+
+<h2 id="结束语">结束语</h2>
+
+<p>到这里，一个属于自己的静态博客基本成型了。</p>
+
+<p>可能样式、功能或别的细节不能完全令人满意，但那些基本不影响写文章，可以先专注于输出内容，其他留到以后慢慢优化。</p>
+
 <hr />
 
 <h2 id="参考">参考</h2>
