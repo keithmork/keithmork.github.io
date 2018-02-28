@@ -7,9 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Copyright &amp;copy; 2016-2018 - Keith Mo</copyright>
+    <lastBuildDate>Mon, 11 Dec 2017 19:45:10 +0800</lastBuildDate>
     
 	<atom:link href="http://keithmo.me/guide/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>【血碗2传奇版】挑战模式最优解全攻略</title>
+      <link>http://keithmo.me/guide/2017/12/11/blood-bowl2-legendary-challenges-guide/</link>
+      <pubDate>Mon, 11 Dec 2017 19:45:10 +0800</pubDate>
+      
+      <guid>http://keithmo.me/guide/2017/12/11/blood-bowl2-legendary-challenges-guide/</guid>
+      <description>血碗2传奇版（Steam: Blood Bowl 2 - Legendary Edition）新增的挑战模式很有意思，很多都是来自N年前玩家碰</description>
+    </item>
     
   </channel>
 </rss>
