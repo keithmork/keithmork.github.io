@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Copyright &amp;copy; 2016-2018 - Keith Mo</copyright>
-    <lastBuildDate>Sat, 16 Dec 2017 20:04:19 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 01 Mar 2018 02:25:25 +0800</lastBuildDate>
     
 	<atom:link href="http://keithmo.me/index.xml" rel="self" type="application/rss+xml" />
     
@@ -31,6 +31,15 @@
     </item>
     
     <item>
+      <title>nGrinder 改造 - 在详细报告里增加更多统计项</title>
+      <link>http://keithmo.me/post/2018/03/01/ngrinder-add-stats-in-report/</link>
+      <pubDate>Thu, 01 Mar 2018 02:25:25 +0800</pubDate>
+      
+      <guid>http://keithmo.me/post/2018/03/01/ngrinder-add-stats-in-report/</guid>
+      <description>背景 nGrinder 以轻量、容易上手、容易扩展的特点在众多性能测试工具中脱颖而出，受到不少公司追捧。其实它的缺点也</description>
+    </item>
+    
+    <item>
       <title>JMeter 实时监控仪表板配置 (Grafana &#43; InfluxDB)</title>
       <link>http://keithmo.me/post/2017/12/16/jmeter-grafana-dashboard/</link>
       <pubDate>Sat, 16 Dec 2017 20:04:19 +0800</pubDate>
@@ -41,10 +50,10 @@
     
     <item>
       <title>【血碗2传奇版】挑战模式最优解全攻略</title>
-      <link>http://keithmo.me/guide/2017/12/11/blood-bowl2-legendary-challenges-guide/</link>
+      <link>http://keithmo.me/game/blood-bowl2-legendary-challenges-guide/</link>
       <pubDate>Mon, 11 Dec 2017 19:45:10 +0800</pubDate>
       
-      <guid>http://keithmo.me/guide/2017/12/11/blood-bowl2-legendary-challenges-guide/</guid>
+      <guid>http://keithmo.me/game/blood-bowl2-legendary-challenges-guide/</guid>
       <description>血碗2传奇版（Steam: Blood Bowl 2 - Legendary Edition）新增的挑战模式很有意思，很多都是来自N年前玩家碰</description>
     </item>
     
