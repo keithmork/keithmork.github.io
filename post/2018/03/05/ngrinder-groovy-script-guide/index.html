@@ -330,7 +330,12 @@ assertThat<span style="color:#666">(</span>jsonData<span style="color:#666">.</s
     <span style="color:#666">)</span>
     <span style="color:#60a0b0;font-style:italic">// ...
 </span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#666">}</span></code></pre></div>
-<p>【注意】目前 UI 对这块的支持很差，如果1个脚本里调了多个接口，详细报告里看不出这些接口分别是什么、响应时间和 TPS 分别多少。</p>
+<p>【注意】目前这块的支持很差，不推荐这样用：</p>
+
+<ul>
+<li>如果1个脚本里调了多个接口，详细报告里看不出这些接口分别是什么、响应时间和 TPS 分别多少。</li>
+<li>如果某个方法断言成功，即使其他方法抛异常也不会反映在 UI 的错误数里，看log才能发现问题。</li>
+</ul>
 
 <hr />
 
@@ -366,17 +371,17 @@ assertThat<span style="color:#666">(</span>jsonData<span style="color:#666">.</s
     <span style="color:#60a0b0;font-style:italic">// ...
 </span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#666">}</span></code></pre></div>
 <h4 id="不同权重">不同权重</h4>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">@RunRate(50)  // 数字代表百分比
-@Test
-public void test1() {
-    // ...
-}
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#555;font-weight:bold">@RunRate</span><span style="color:#666">(</span><span style="color:#40a070">50</span><span style="color:#666">)</span>  <span style="color:#60a0b0;font-style:italic">// 数字代表百分比
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#555;font-weight:bold">@Test</span>
+<span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">void</span> <span style="color:#06287e">test1</span><span style="color:#666">()</span> <span style="color:#666">{</span>
+    <span style="color:#60a0b0;font-style:italic">// ...
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#666">}</span>
 
-@RunRate(20)
-@Test
-public void test2() {
-    // ...
-}</pre></div>
+<span style="color:#555;font-weight:bold">@RunRate</span><span style="color:#666">(</span><span style="color:#40a070">20</span><span style="color:#666">)</span>
+<span style="color:#555;font-weight:bold">@Test</span>
+<span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">void</span> <span style="color:#06287e">test2</span><span style="color:#666">()</span> <span style="color:#666">{</span>
+    <span style="color:#60a0b0;font-style:italic">// ...
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#666">}</span></code></pre></div>
 <p>如果权重加起来不到 100，剩下的时间什么也不干。</p>
 
 <hr />
