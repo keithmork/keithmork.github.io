@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ngrinder on Haunted Hovel - 闹鬼小屋</title>
-    <link>http://keithmo.me/tags/ngrinder/</link>
-    <description>Recent content in Ngrinder on Haunted Hovel - 闹鬼小屋</description>
+    <title>测试工具 on Haunted Hovel - 闹鬼小屋</title>
+    <link>http://keithmo.me/categories/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/</link>
+    <description>Recent content in 测试工具 on Haunted Hovel - 闹鬼小屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Copyright &amp;copy; 2016-2018 - Keith Mo</copyright>
     <lastBuildDate>Mon, 05 Mar 2018 18:20:48 +0800</lastBuildDate>
     
-	<atom:link href="http://keithmo.me/tags/ngrinder/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://keithmo.me/categories/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,15 +19,6 @@
       
       <guid>http://keithmo.me/post/2018/03/05/ngrinder-groovy-script-guide/</guid>
       <description>nGrinder 是对 Grinder 的封装，本来 Grinder 只支持 Jython，nGrinder 3.2.1+ 加入了对 Groovy 的支持，用的是改造过的 JUnit 框架，</description>
-    </item>
-    
-    <item>
-      <title>nGrinder 改造 - 在详细报告里增加更多统计项</title>
-      <link>http://keithmo.me/post/2018/03/01/ngrinder-add-stats-in-report/</link>
-      <pubDate>Thu, 01 Mar 2018 02:25:25 +0800</pubDate>
-      
-      <guid>http://keithmo.me/post/2018/03/01/ngrinder-add-stats-in-report/</guid>
-      <description>背景 nGrinder 以轻量、容易上手、容易扩展的特点在众多性能测试工具中脱颖而出，受到不少公司追捧。其实它的缺点也</description>
     </item>
     
   </channel>

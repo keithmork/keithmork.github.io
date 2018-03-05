@@ -4,7 +4,7 @@
   
   <url>
     <loc>http://keithmo.me/post/</loc>
-    <lastmod>2018-03-01T02:25:25+08:00</lastmod>
+    <lastmod>2018-03-05T18:20:48+08:00</lastmod>
   </url>
   
   <url>
@@ -18,6 +18,11 @@
   
   <url>
     <loc>http://keithmo.me/about/</loc>
+  </url>
+  
+  <url>
+    <loc>http://keithmo.me/post/2018/03/05/ngrinder-groovy-script-guide/</loc>
+    <lastmod>2018-03-05T18:20:48+08:00</lastmod>
   </url>
   
   <url>
@@ -47,7 +52,7 @@
   
   <url>
     <loc>http://keithmo.me/categories/10000-hours/</loc>
-    <lastmod>2018-03-01T02:25:25+08:00</lastmod>
+    <lastmod>2018-03-05T18:20:48+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -65,7 +70,7 @@
   
   <url>
     <loc>http://keithmo.me/categories/</loc>
-    <lastmod>2018-03-01T02:25:25+08:00</lastmod>
+    <lastmod>2018-03-05T18:20:48+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -100,8 +105,14 @@
   </url>
   
   <url>
+    <loc>http://keithmo.me/tags/groovy/</loc>
+    <lastmod>2018-03-05T18:20:48+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://keithmo.me/</loc>
-    <lastmod>2018-03-01T02:25:25+08:00</lastmod>
+    <lastmod>2018-03-05T18:20:48+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -124,20 +135,20 @@
   </url>
   
   <url>
-    <loc>http://keithmo.me/categories/load-test/</loc>
-    <lastmod>2017-12-16T20:04:19+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://keithmo.me/tags/load-test/</loc>
     <lastmod>2018-03-01T02:25:25+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>http://keithmo.me/categories/load-test/</loc>
+    <lastmod>2017-12-16T20:04:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://keithmo.me/tags/ngrinder/</loc>
-    <lastmod>2018-03-01T02:25:25+08:00</lastmod>
+    <lastmod>2018-03-05T18:20:48+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -161,6 +172,18 @@
   <url>
     <loc>http://keithmo.me/tags/video-game/</loc>
     <lastmod>2017-12-11T19:45:10+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://keithmo.me/categories/%E6%80%A7%E8%83%BD/</loc>
+    <lastmod>2018-03-05T18:20:48+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://keithmo.me/categories/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2018-03-05T18:20:48+08:00</lastmod>
     <priority>0</priority>
   </url>
   

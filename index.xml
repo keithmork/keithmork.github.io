@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Copyright &amp;copy; 2016-2018 - Keith Mo</copyright>
-    <lastBuildDate>Thu, 01 Mar 2018 02:25:25 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 05 Mar 2018 18:20:48 +0800</lastBuildDate>
     
 	<atom:link href="http://keithmo.me/index.xml" rel="self" type="application/rss+xml" />
     
@@ -28,6 +28,15 @@
       
       <guid>http://keithmo.me/about/</guid>
       <description>Keith Mo 性能测试，一直在小公司混。 每年初的目标都是增肥25斤。</description>
+    </item>
+    
+    <item>
+      <title>nGrinder - Groovy 脚本指南</title>
+      <link>http://keithmo.me/post/2018/03/05/ngrinder-groovy-script-guide/</link>
+      <pubDate>Mon, 05 Mar 2018 18:20:48 +0800</pubDate>
+      
+      <guid>http://keithmo.me/post/2018/03/05/ngrinder-groovy-script-guide/</guid>
+      <description>nGrinder 是对 Grinder 的封装，本来 Grinder 只支持 Jython，nGrinder 3.2.1+ 加入了对 Groovy 的支持，用的是改造过的 JUnit 框架，</description>
     </item>
     
     <item>
