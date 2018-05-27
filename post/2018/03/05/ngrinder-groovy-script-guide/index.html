@@ -1,122 +1,235 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="zh-cn">
-
 <head>
-  <title>Haunted Hovel - 闹鬼小屋</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="The HTML5 Herald" />
-  <meta name="author" content="Keith Mo" />
-  <meta name="generator" content="Hugo 0.36" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
-  <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>nGrinder - Groovy 脚本指南 - Haunted Hovel - 闹鬼小屋</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Keith Mo" />
+  <meta name="description" content="nGrinder 是对 Grinder 的封装，本来 Grinder 只支持 Jython，nGrinder 3.2.1&#43; 加入了对 Groovy 的支持，用的是改造过的 JUnit 框架，比原版脚本强大得多。 nGrinder 架构简介, 2017-03 nGrinder 的 Groovy" />
+
+  <meta name="keywords" content="load testing, tuning, 性能测试, 调优" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.41" />
+
+
+<link rel="canonical" href="http://keithmo.me/post/2018/03/05/ngrinder-groovy-script-guide/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link href="/dist/even.min.css?v=3.1.1" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+
+
+<meta property="og:title" content="nGrinder - Groovy 脚本指南" />
+<meta property="og:description" content="nGrinder 是对 Grinder 的封装，本来 Grinder 只支持 Jython，nGrinder 3.2.1&#43; 加入了对 Groovy 的支持，用的是改造过的 JUnit 框架，比原版脚本强大得多。 nGrinder 架构简介, 2017-03 nGrinder 的 Groovy" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://keithmo.me/post/2018/03/05/ngrinder-groovy-script-guide/" />
+
+
+
+<meta property="article:published_time" content="2018-03-05T18:20:48&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-05-27T16:58:49&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="nGrinder - Groovy 脚本指南">
+<meta itemprop="description" content="nGrinder 是对 Grinder 的封装，本来 Grinder 只支持 Jython，nGrinder 3.2.1&#43; 加入了对 Groovy 的支持，用的是改造过的 JUnit 框架，比原版脚本强大得多。 nGrinder 架构简介, 2017-03 nGrinder 的 Groovy">
+
+
+<meta itemprop="datePublished" content="2018-03-05T18:20:48&#43;08:00" />
+<meta itemprop="dateModified" content="2018-03-05T18:20:48&#43;08:00" />
+<meta itemprop="wordCount" content="1782">
+
+
+
+<meta itemprop="keywords" content="nGrinder,Groovy," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="nGrinder - Groovy 脚本指南"/>
+<meta name="twitter:description" content="nGrinder 是对 Grinder 的封装，本来 Grinder 只支持 Jython，nGrinder 3.2.1&#43; 加入了对 Groovy 的支持，用的是改造过的 JUnit 框架，比原版脚本强大得多。 nGrinder 架构简介, 2017-03 nGrinder 的 Groovy"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
 <body>
-  <div id="container">
-    <header>
-      <h1>
-                <a href="/">Haunted Hovel - 闹鬼小屋</a>
-            </h1>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Haunted Hovel - 闹鬼小屋</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/game/">
+        <li class="mobile-menu-item">Games</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Haunted Hovel - 闹鬼小屋</a>
+</div>
 
-      <ul id="social-media">
-          
-        <li><a href="https://github.com/keithmork"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a></li>
-           
-      </ul>
-      
-      <p><em>本站采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用(BY-NC) 4.0 国际许可协议</a> 进行许可。</em></p>
-      
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/game/">Games</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">nGrinder - Groovy 脚本指南</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-03-05 </span>
+        <div class="post-category">
+            
+              <a href="/categories/10000-Hours/"> 10000 Hours </a>
+            
+              <a href="/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/"> 性能测试工具 </a>
+            
+          </div>
+        <span class="more-meta"> 约 1782 字 </span>
+        <span class="more-meta"> 预计阅读 4 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
     </header>
 
     
-<nav>
-    <ul>
-        
-        <li>
-            <a class="" href="/post/">
-                <i class="fa-li fa  fa-lg"></i><span>Posts</span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="" href="/guide/">
-                <i class="fa-li fa  fa-lg"></i><span>Guides</span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="" href="/links/">
-                <i class="fa-li fa  fa-lg"></i><span>Links</span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="" href="/about/">
-                <i class="fa-li fa  fa-lg"></i><span>About</span>
-            </a>
-        </li>
-        
-    </ul>
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#脚本结构">脚本结构</a></li>
+<li><a href="#header">header</a>
+<ul>
+<li><a href="#gzip">gzip</a></li>
+</ul></li>
+<li><a href="#请求参数">请求参数</a>
+<ul>
+<li><a href="#form">form</a></li>
+<li><a href="#json">JSON</a></li>
+<li><a href="#通过-ui-传參">通过 UI 传參</a></li>
+</ul></li>
+<li><a href="#返回内容">返回内容</a>
+<ul>
+<li><a href="#断言">断言</a></li>
+<li><a href="#解析-json">解析 JSON</a></li>
+<li><a href="#提取参数">提取参数</a></li>
+</ul></li>
+<li><a href="#定义多个事务">定义多个事务</a>
+<ul>
+<li><a href="#不同权重">不同权重</a></li>
+</ul></li>
+<li><a href="#修改默认脚本模板">修改默认脚本模板</a></li>
+<li><a href="#资源文件">资源文件</a></li>
+<li><a href="#外部库">外部库</a></li>
+<li><a href="#groovy-maven-structure">Groovy Maven Structure</a></li>
+</ul></li>
+<li><a href="#坑">坑</a>
+<ul>
+<li><a href="#停不掉的测试">停不掉的测试</a></li>
+</ul></li>
+</ul></li>
+</ul>
 </nav>
-
-    <main>
-
-
-
-
-<article>
-
-    <h1>nGrinder - Groovy 脚本指南</h1>
+  </div>
+</div>
 
     
-        <aside>
-    <ul>
-        <li>
-            <time class="post-date" datetime="2018-03-05T18:20:48&#43;08:00">Mar 5, 2018</time>
-        </li>
-        
-        
-        <li>
-            Categories: 
-            <em>
-                
-                    
-                    <a href="/categories/10000-Hours/">10000 Hours</a>
-                
-                    , 
-                    <a href="/categories/%E6%80%A7%E8%83%BD/">性能</a>
-                
-                    , 
-                    <a href="/categories/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/">测试工具</a>
-                
-            </em>
-        </li>
-        
-
-        
-        <li>
-            <em>
-                
-                    
-                    <a href="/tags/nGrinder/">#nGrinder</a>
-                
-                    , 
-                    <a href="/tags/Groovy/">#Groovy</a>
-                
-            </em>
-        </li>
-        
-
-        <li>4 min read</li>
-    </ul>
-</aside>
     
+  
+
+  
+
+
 
     
+    <div class="post-content">
+      
 
 <p>nGrinder 是对 Grinder 的封装，本来 Grinder 只支持 Jython，nGrinder 3.2.1+ 加入了对 Groovy 的支持，用的是改造过的 JUnit 框架，比原版脚本强大得多。</p>
 
@@ -136,47 +249,50 @@
 <hr />
 
 <h3 id="脚本结构">脚本结构</h3>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#555;font-weight:bold">@RunWith</span><span style="color:#666">(</span>GrinderRunner<span style="color:#666">)</span>  <span style="color:#60a0b0;font-style:italic">// 每个测试类加这注解
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">TestRunner</span> <span style="color:#666">{</span>
-    <span style="color:#555;font-weight:bold">@BeforeProcess</span>  <span style="color:#60a0b0;font-style:italic">// 在每个进程启动前执行
-</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">static</span> <span style="color:#902000">void</span> <span style="color:#06287e">beforeProcess</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-        <span style="color:#60a0b0;font-style:italic">// 加载资源文件、初始化 GTest 等
-</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#666">}</span>
 
-    <span style="color:#555;font-weight:bold">@BeforeThread</span>  <span style="color:#60a0b0;font-style:italic">// 在每个线程执行前执行
-</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">void</span> <span style="color:#06287e">beforeThread</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-        <span style="color:#60a0b0;font-style:italic">// 登录、设置 cookie 之类
-</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#666">}</span>
-    
-    <span style="color:#555;font-weight:bold">@Before</span>  <span style="color:#60a0b0;font-style:italic">// 在每个 @Test 注解的方法执行前执行
-</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">void</span> <span style="color:#06287e">before</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-        <span style="color:#60a0b0;font-style:italic">// 设置变量、多个 @Test 方法共用的逻辑等
-</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#666">}</span>
+<pre><code class="language-groovy">@RunWith(GrinderRunner)  // 每个测试类加这注解
+class TestRunner {
+    @BeforeProcess  // 在每个进程启动前执行
+    public static void beforeProcess() {
+        // 加载资源文件、初始化 GTest 等
+    }
 
-    <span style="color:#555;font-weight:bold">@Test</span>  <span style="color:#60a0b0;font-style:italic">// 在测试结束前不断运行。各个 @Test 注解的方法异步执行。
-</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">void</span> <span style="color:#06287e">foo</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-        <span style="color:#60a0b0;font-style:italic">// ...
-</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#666">}</span>
+    @BeforeThread  // 在每个线程执行前执行
+    public void beforeThread() {
+        // 登录、设置 cookie 之类
+    }
     
-    <span style="color:#555;font-weight:bold">@Test</span>
-    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">void</span> <span style="color:#06287e">bar</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-        <span style="color:#60a0b0;font-style:italic">// ...
-</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#666">}</span>
+    @Before  // 在每个 @Test 注解的方法执行前执行
+    public void before() {
+        // 设置变量、多个 @Test 方法共用的逻辑等
+    }
+
+    @Test  // 在测试结束前不断运行。各个 @Test 注解的方法异步执行。
+    public void foo() {
+        // ...
+    }
     
-    <span style="color:#555;font-weight:bold">@After</span>  <span style="color:#60a0b0;font-style:italic">// 在每个 @Test 注解的方法执行后执行
-</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">void</span> <span style="color:#06287e">after</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-        <span style="color:#60a0b0;font-style:italic">// 很少用到
-</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#666">}</span>
+    @Test
+    public void bar() {
+        // ...
+    }
     
-    <span style="color:#555;font-weight:bold">@AfterThread</span>
-    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">void</span> <span style="color:#06287e">afterThread</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-        <span style="color:#60a0b0;font-style:italic">// 登出之类
-</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#666">}</span>
+    @After  // 在每个 @Test 注解的方法执行后执行
+    public void after() {
+        // 很少用到
+    }
     
-    <span style="color:#555;font-weight:bold">@AfterProcess</span>  <span style="color:#60a0b0;font-style:italic">// 在每个进程结束后执行
-</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">static</span> <span style="color:#902000">void</span> <span style="color:#06287e">afterProcess</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-        <span style="color:#60a0b0;font-style:italic">// 关闭资源
-</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#666">}</span></code></pre></div>
+    @AfterThread
+    public void afterThread() {
+        // 登出之类
+    }
+    
+    @AfterProcess  // 在每个进程结束后执行
+    public static void afterProcess() {
+        // 关闭资源
+    }
+</code></pre>
+
 <p><img src="https://github.com/naver/ngrinder/wiki/assets/Groovy-Script-Structure-e6c97.png" alt="执行顺序" /></p>
 
 <blockquote>
@@ -197,24 +313,36 @@
 </ul>
 
 <p>2-A. 在 @BeforeProcess 注解的方法里添加：（相当于方法1）</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">List<span style="color:#666">&lt;</span>NVPair<span style="color:#666">&gt;</span> headerList <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> ArrayList<span style="color:#666">&lt;</span>NVPair<span style="color:#666">&gt;()</span>
-headerList<span style="color:#666">.</span><span style="color:#4070a0">add</span><span style="color:#666">(</span><span style="color:#007020;font-weight:bold">new</span> <span style="color:#06287e">NVPair</span><span style="color:#666">(</span><span style="color:#4070a0">&#34;Content-Type&#34;</span><span style="color:#666">,</span> <span style="color:#4070a0">&#34;application/json&#34;</span><span style="color:#666">))</span>
-<span style="color:#60a0b0;font-style:italic">// ...
-</span><span style="color:#60a0b0;font-style:italic"></span>headers <span style="color:#666">=</span> headerList<span style="color:#666">.</span><span style="color:#4070a0">toArray</span><span style="color:#666">()</span></code></pre></div>
-<p>2-B. 修改开头的成员变量：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">static</span> NVPair<span style="color:#666">[]</span> headers <span style="color:#666">=</span> <span style="color:#666">[</span>
-    <span style="color:#007020;font-weight:bold">new</span> <span style="color:#06287e">NVPair</span><span style="color:#666">(</span><span style="color:#4070a0">&#34;Content-Type&#34;</span><span style="color:#666">,</span> <span style="color:#4070a0">&#34;application/json&#34;</span><span style="color:#666">)</span>
-<span style="color:#666">]</span></code></pre></div>
-<p>2-C. 在 @Test 注解的方法的请求参数里添加：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#902000">def</span> result <span style="color:#666">=</span> request1<span style="color:#666">.</span><span style="color:#4070a0">POST</span><span style="color:#666">(</span><span style="color:#4070a0">&#34;http://example.com&#34;</span><span style="color:#666">,</span>
-    params<span style="color:#666">,</span>
-    <span style="color:#666">[</span><span style="color:#007020;font-weight:bold">new</span> <span style="color:#06287e">NVPair</span><span style="color:#666">(</span><span style="color:#4070a0">&#34;Content-Type&#34;</span><span style="color:#666">,</span> <span style="color:#4070a0">&#34;application/json&#34;</span><span style="color:#666">)]</span> <span style="color:#007020;font-weight:bold">as</span> NVPair<span style="color:#666">[])</span></code></pre></div>
-<h4 id="gzip">gzip</h4>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#60a0b0;font-style:italic">// nGrinder 不会自动解压，通常在 @beforeProcess 注解的方法里加上：
-</span><span style="color:#60a0b0;font-style:italic"></span>HTTPPluginControl<span style="color:#666">.</span><span style="color:#4070a0">getConnectionDefaults</span><span style="color:#666">().</span><span style="color:#4070a0">setUseContentEncoding</span><span style="color:#666">(</span><span style="color:#007020;font-weight:bold">true</span><span style="color:#666">)</span>
 
-<span style="color:#60a0b0;font-style:italic">// 然后在设 header 的地方加上：
-</span><span style="color:#60a0b0;font-style:italic"></span>headerList<span style="color:#666">.</span><span style="color:#4070a0">add</span><span style="color:#666">(</span><span style="color:#007020;font-weight:bold">new</span> <span style="color:#06287e">NVPair</span><span style="color:#666">(</span><span style="color:#4070a0">&#34;Accept-Encoding&#34;</span><span style="color:#666">,</span> <span style="color:#4070a0">&#34;gzip&#34;</span><span style="color:#666">))</span></code></pre></div>
+<pre><code class="language-groovy">List&lt;NVPair&gt; headerList = new ArrayList&lt;NVPair&gt;()
+headerList.add(new NVPair(&quot;Content-Type&quot;, &quot;application/json&quot;))
+// ...
+headers = headerList.toArray()
+</code></pre>
+
+<p>2-B. 修改开头的成员变量：</p>
+
+<pre><code class="language-groovy">public static NVPair[] headers = [
+    new NVPair(&quot;Content-Type&quot;, &quot;application/json&quot;)
+]
+</code></pre>
+
+<p>2-C. 在 @Test 注解的方法的请求参数里添加：</p>
+
+<pre><code class="language-groovy">def result = request1.POST(&quot;http://example.com&quot;,
+    params,
+    [new NVPair(&quot;Content-Type&quot;, &quot;application/json&quot;)] as NVPair[])
+</code></pre>
+
+<h4 id="gzip">gzip</h4>
+
+<pre><code class="language-groovy">// nGrinder 不会自动解压，通常在 @beforeProcess 注解的方法里加上：
+HTTPPluginControl.getConnectionDefaults().setUseContentEncoding(true)
+
+// 然后在设 header 的地方加上：
+headerList.add(new NVPair(&quot;Accept-Encoding&quot;, &quot;gzip&quot;))
+</code></pre>
+
 <hr />
 
 <h3 id="请求参数">请求参数</h3>
@@ -227,23 +355,35 @@ headerList<span style="color:#666">.</span><span style="color:#4070a0">add</span
 </ul>
 
 <p>2-A. 在 @BeforeProcess 注解的方法里添加：（相当于方法1）</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">List<span style="color:#666">&lt;</span>NVPair<span style="color:#666">&gt;</span> paramList <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> ArrayList<span style="color:#666">&lt;</span>NVPair<span style="color:#666">&gt;()</span>
-paramList<span style="color:#666">.</span><span style="color:#4070a0">add</span><span style="color:#666">(</span><span style="color:#007020;font-weight:bold">new</span> <span style="color:#06287e">NVPair</span><span style="color:#666">(</span><span style="color:#4070a0">&#34;accessToken&#34;</span><span style="color:#666">,</span> accessToken<span style="color:#666">))</span>
-<span style="color:#60a0b0;font-style:italic">// ...
-</span><span style="color:#60a0b0;font-style:italic"></span>params <span style="color:#666">=</span> paramList<span style="color:#666">.</span><span style="color:#4070a0">toArray</span><span style="color:#666">()</span></code></pre></div>
+
+<pre><code class="language-groovy">List&lt;NVPair&gt; paramList = new ArrayList&lt;NVPair&gt;()
+paramList.add(new NVPair(&quot;accessToken&quot;, accessToken))
+// ...
+params = paramList.toArray()
+</code></pre>
+
 <p>2-B. 修改开头的成员变量：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">static</span> NVPair<span style="color:#666">[]</span> params <span style="color:#666">=</span> <span style="color:#666">[</span>
-    <span style="color:#007020;font-weight:bold">new</span> <span style="color:#06287e">NVPair</span><span style="color:#666">(</span><span style="color:#4070a0">&#34;accessToken&#34;</span><span style="color:#666">,</span> <span style="color:#4070a0">&#34;9de6d5f2b62d4bb686de8033fd00bc65&#34;</span><span style="color:#666">)</span>
-<span style="color:#666">]</span></code></pre></div>
+
+<pre><code class="language-groovy">public static NVPair[] params = [
+    new NVPair(&quot;accessToken&quot;, &quot;9de6d5f2b62d4bb686de8033fd00bc65&quot;)
+]
+</code></pre>
+
 <p>2-C. 在 @Test 注解的方法的请求参数里添加：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#902000">def</span> result <span style="color:#666">=</span> request1<span style="color:#666">.</span><span style="color:#4070a0">POST</span><span style="color:#666">(</span><span style="color:#4070a0">&#34;http://example.com&#34;</span><span style="color:#666">,</span>
-    <span style="color:#666">[</span><span style="color:#007020;font-weight:bold">new</span> <span style="color:#06287e">NVPair</span><span style="color:#666">(</span><span style="color:#4070a0">&#34;accessToken&#34;</span><span style="color:#666">,</span> accessToken<span style="color:#666">)]</span> <span style="color:#007020;font-weight:bold">as</span> NVPair<span style="color:#666">[],</span>
-    headers<span style="color:#666">)</span></code></pre></div>
+
+<pre><code class="language-groovy">def result = request1.POST(&quot;http://example.com&quot;,
+    [new NVPair(&quot;accessToken&quot;, accessToken)] as NVPair[],
+    headers)
+</code></pre>
+
 <h4 id="json">JSON</h4>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#902000">def</span> json <span style="color:#666">=</span> <span style="color:#4070a0">&#39;{&#34;userId&#34;: [&#34;100180&#34;]}&#39;</span><span style="color:#666">;</span>
-request<span style="color:#666">.</span><span style="color:#4070a0">POST</span><span style="color:#666">(</span><span style="color:#4070a0">&#34;http://you_api_url&#34;</span><span style="color:#666">,</span> json<span style="color:#666">.</span><span style="color:#4070a0">getBytes</span><span style="color:#666">(),</span> <span style="color:#666">[</span>
-    <span style="color:#007020;font-weight:bold">new</span> <span style="color:#06287e">NVPair</span><span style="color:#666">(</span><span style="color:#4070a0">&#34;Content-Type&#34;</span><span style="color:#666">,</span> <span style="color:#4070a0">&#34;application/json&#34;</span>
-<span style="color:#666">]</span> <span style="color:#007020;font-weight:bold">as</span> NVPair<span style="color:#666">[])</span></code></pre></div>
+
+<pre><code class="language-groovy">def json = '{&quot;userId&quot;: [&quot;100180&quot;]}';
+request.POST(&quot;http://you_api_url&quot;, json.getBytes(), [
+    new NVPair(&quot;Content-Type&quot;, &quot;application/json&quot;
+] as NVPair[])
+</code></pre>
+
 <blockquote>
 <p><a href="http://grinder.sourceforge.net/g3/script-javadoc/net/grinder/plugin/http/HTTPRequest.html">http://grinder.sourceforge.net/g3/script-javadoc/net/grinder/plugin/http/HTTPRequest.html</a></p>
 </blockquote>
@@ -251,22 +391,25 @@ request<span style="color:#666">.</span><span style="color:#4070a0">POST</span><
 <h4 id="通过-ui-传參">通过 UI 传參</h4>
 
 <p>限制很多，只能传1个参数（保存到名为 param 的属性），值只能由1-50个数字字母、<code>_</code>、<code>,</code>、<code>.</code>、<code>|</code> 组成，不能有空格。</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#60a0b0;font-style:italic">// 获取 UI 传入的字符串
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#902000">def</span> foo <span style="color:#666">=</span> System<span style="color:#666">.</span><span style="color:#4070a0">getProperty</span><span style="color:#666">(</span><span style="color:#4070a0">&#34;param&#34;</span><span style="color:#666">)</span>
 
-<span style="color:#60a0b0;font-style:italic">// 带默认值
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#902000">def</span> foo <span style="color:#666">=</span> System<span style="color:#666">.</span><span style="color:#4070a0">getProperty</span><span style="color:#666">(</span><span style="color:#4070a0">&#34;param&#34;</span><span style="color:#666">,</span> <span style="color:#4070a0">&#34;XXX&#34;</span><span style="color:#666">)</span>
+<pre><code class="language-groovy">// 获取 UI 传入的字符串
+def foo = System.getProperty(&quot;param&quot;)
 
-<span style="color:#60a0b0;font-style:italic">// 3.2.3+ 可以放开自动生成的脚本里 import static net.grinder.util.GrinderUtils.* 的注释
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">/* GrinderUtils 类有以下静态方法：
-</span><span style="color:#60a0b0;font-style:italic">getParam()
-</span><span style="color:#60a0b0;font-style:italic">getParam(String)
-</span><span style="color:#60a0b0;font-style:italic">getParamInt()
-</span><span style="color:#60a0b0;font-style:italic">getParamLong()
-</span><span style="color:#60a0b0;font-style:italic">getParamFloat()
-</span><span style="color:#60a0b0;font-style:italic">getParamDouble()
-</span><span style="color:#60a0b0;font-style:italic">getParamBoolean()
-</span><span style="color:#60a0b0;font-style:italic">*/</span></code></pre></div>
+// 带默认值
+def foo = System.getProperty(&quot;param&quot;, &quot;XXX&quot;)
+
+// 3.2.3+ 可以放开自动生成的脚本里 import static net.grinder.util.GrinderUtils.* 的注释
+/* GrinderUtils 类有以下静态方法：
+getParam()
+getParam(String)
+getParamInt()
+getParamLong()
+getParamFloat()
+getParamDouble()
+getParamBoolean()
+*/
+</code></pre>
+
 <blockquote>
 <p><a href="https://github.com/naver/ngrinder/wiki/How-to-pass-a-parameter-to-the-script">https://github.com/naver/ngrinder/wiki/How-to-pass-a-parameter-to-the-script</a></p>
 </blockquote>
@@ -278,26 +421,35 @@ request<span style="color:#666">.</span><span style="color:#4070a0">POST</span><
 <h4 id="断言">断言</h4>
 
 <p>使用 JUnit 的断言：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#902000">def</span> result <span style="color:#666">=</span> request<span style="color:#666">.</span><span style="color:#4070a0">GET</span><span style="color:#666">(</span><span style="color:#4070a0">&#34;http://www.google.com&#34;</span><span style="color:#666">)</span>
 
-<span style="color:#60a0b0;font-style:italic">// HTTP 状态码
-</span><span style="color:#60a0b0;font-style:italic"></span>assertThat<span style="color:#666">(</span>result<span style="color:#666">.</span><span style="color:#4070a0">statusCode</span><span style="color:#666">,</span> is<span style="color:#666">(</span><span style="color:#40a070">200</span><span style="color:#666">))</span>
-<span style="color:#60a0b0;font-style:italic">// 响应体
-</span><span style="color:#60a0b0;font-style:italic"></span>assertThat<span style="color:#666">(</span>result<span style="color:#666">.</span><span style="color:#4070a0">text</span><span style="color:#666">,</span> containsString<span style="color:#666">(</span><span style="color:#4070a0">&#34;google&#34;</span><span style="color:#666">))</span></code></pre></div>
+<pre><code class="language-groovy">def result = request.GET(&quot;http://www.google.com&quot;)
+
+// HTTP 状态码
+assertThat(result.statusCode, is(200))
+// 响应体
+assertThat(result.text, containsString(&quot;google&quot;))
+</code></pre>
+
 <h4 id="解析-json">解析 JSON</h4>
 
 <p>假设服务器返回以下内容，成功标志是 <code>&quot;resultCode&quot;: 1</code>：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
-    <span style="color:#4070a0">&#34;data&#34;</span><span style="color:#666">:</span> {
-        <span style="color:#4070a0">&#34;token&#34;</span><span style="color:#666">:</span> <span style="color:#4070a0">&#34;9de6d5f2b62d4bb686de8033fd00bc65&#34;</span>
-    },
-    <span style="color:#4070a0">&#34;resultCode&#34;</span><span style="color:#666">:</span> <span style="color:#40a070">1</span>
-}</code></pre></div><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">groovy.json.JsonSlurper</span>
 
-<span style="color:#60a0b0;font-style:italic">// ...
-</span><span style="color:#60a0b0;font-style:italic"></span>
-<span style="color:#902000">def</span> jsonData <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> <span style="color:#06287e">JsonSlurper</span><span style="color:#666">().</span><span style="color:#4070a0">parseText</span><span style="color:#666">(</span>result<span style="color:#666">.</span><span style="color:#4070a0">text</span><span style="color:#666">)</span>
-assertThat<span style="color:#666">(</span>jsonData<span style="color:#666">.</span><span style="color:#4070a0">resultCode</span><span style="color:#666">,</span> is<span style="color:#666">(</span><span style="color:#40a070">1</span><span style="color:#666">))</span></code></pre></div>
+<pre><code class="language-js">{
+    &quot;data&quot;: {
+        &quot;token&quot;: &quot;9de6d5f2b62d4bb686de8033fd00bc65&quot;
+    },
+    &quot;resultCode&quot;: 1
+}
+</code></pre>
+
+<pre><code class="language-groovy">import groovy.json.JsonSlurper
+
+// ...
+
+def jsonData = new JsonSlurper().parseText(result.text)
+assertThat(jsonData.resultCode, is(1))
+</code></pre>
+
 <blockquote>
 <p><a href="https://github.com/naver/ngrinder/wiki/How-to-parse-JSON">https://github.com/naver/ngrinder/wiki/How-to-parse-JSON</a></p>
 </blockquote>
@@ -305,31 +457,34 @@ assertThat<span style="color:#666">(</span>jsonData<span style="color:#666">.</s
 <h4 id="提取参数">提取参数</h4>
 
 <p>GrinderRunner 每个线程只创建1个测试用例对象，所以 @Test 注解的方法可以共享成员变量：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#007020;font-weight:bold">private</span> String token
 
-<span style="color:#555;font-weight:bold">@Test</span>
-<span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">void</span> <span style="color:#06287e">test1</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-    <span style="color:#60a0b0;font-style:italic">// ...
-</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">if</span> <span style="color:#666">(</span>jsonData<span style="color:#666">.</span><span style="color:#4070a0">resultCode</span> <span style="color:#666">==</span> <span style="color:#40a070">1</span><span style="color:#666">)</span> <span style="color:#666">{</span>
-        token <span style="color:#666">=</span> jsonData<span style="color:#666">.</span><span style="color:#4070a0">data</span><span style="color:#666">.</span><span style="color:#4070a0">token</span>
-        <span style="color:#06287e">test2</span><span style="color:#666">()</span>
-    <span style="color:#666">}</span>
-<span style="color:#666">}</span>
+<pre><code class="language-groovy">private String token
 
-<span style="color:#60a0b0;font-style:italic">// 希望顺序执行的场合，不加 @Test，让别的方法调
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">void</span> <span style="color:#06287e">test2</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-    <span style="color:#60a0b0;font-style:italic">// 打 log
-</span><span style="color:#60a0b0;font-style:italic"></span>    grinder<span style="color:#666">.</span><span style="color:#4070a0">logger</span><span style="color:#666">.</span><span style="color:#4070a0">info</span><span style="color:#666">(</span><span style="color:#007020;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#4070a0">token</span><span style="color:#666">)</span>
+@Test
+public void test1() {
+    // ...
+    if (jsonData.resultCode == 1) {
+        token = jsonData.data.token
+        test2()
+    }
+}
+
+// 希望顺序执行的场合，不加 @Test，让别的方法调
+public void test2() {
+    // 打 log
+    grinder.logger.info(this.token)
     
-    <span style="color:#902000">def</span> result <span style="color:#666">=</span> request<span style="color:#666">.</span><span style="color:#4070a0">POST</span><span style="color:#666">(</span><span style="color:#4070a0">&#34;http://192.168.3.231/auth2/v2/user/getSimpleUser&#34;</span><span style="color:#666">,</span> 
-        <span style="color:#4070a0">&#39;{&#34;userId&#34;: [&#34;100180&#34;]}&#39;</span><span style="color:#666">.</span><span style="color:#4070a0">getBytes</span><span style="color:#666">(),</span>
-        <span style="color:#666">[</span>
-            <span style="color:#007020;font-weight:bold">new</span> <span style="color:#06287e">NVPair</span><span style="color:#666">(</span><span style="color:#4070a0">&#34;Content-Type&#34;</span><span style="color:#666">,</span> <span style="color:#4070a0">&#34;application/json&#34;</span><span style="color:#666">,</span>
-            <span style="color:#007020;font-weight:bold">new</span> <span style="color:#06287e">NVPair</span><span style="color:#666">(</span><span style="color:#4070a0">&#34;access-token&#34;</span><span style="color:#666">,</span> <span style="color:#007020;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#4070a0">token</span><span style="color:#666">)</span>
-        <span style="color:#666">]</span> <span style="color:#007020;font-weight:bold">as</span> NVPair<span style="color:#666">[]</span>
-    <span style="color:#666">)</span>
-    <span style="color:#60a0b0;font-style:italic">// ...
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#666">}</span></code></pre></div>
+    def result = request.POST(&quot;http://192.168.3.231/auth2/v2/user/getSimpleUser&quot;, 
+        '{&quot;userId&quot;: [&quot;100180&quot;]}'.getBytes(),
+        [
+            new NVPair(&quot;Content-Type&quot;, &quot;application/json&quot;,
+            new NVPair(&quot;access-token&quot;, this.token)
+        ] as NVPair[]
+    )
+    // ...
+}
+</code></pre>
+
 <p>【注意】目前这块的支持很差，不推荐这样用：</p>
 
 <ul>
@@ -342,46 +497,52 @@ assertThat<span style="color:#666">(</span>jsonData<span style="color:#666">.</s
 <h3 id="定义多个事务">定义多个事务</h3>
 
 <p>【注意】目前 UI 对这块的支持很差，详细报告里只有总体情况，想看各个事务的数据只能下载 CSV 自己写程序解析。</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">static</span> GTest test1
-<span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">static</span> GTest test2
 
-<span style="color:#60a0b0;font-style:italic">// ...
-</span><span style="color:#60a0b0;font-style:italic"></span>
-<span style="color:#555;font-weight:bold">@BeforeProcess</span>
-<span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">static</span> <span style="color:#902000">void</span> <span style="color:#06287e">beforeProcess</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-    test1 <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> <span style="color:#06287e">GTest</span><span style="color:#666">(</span><span style="color:#40a070">1</span><span style="color:#666">,</span> <span style="color:#4070a0">&#34;foo_stats&#34;</span><span style="color:#666">)</span>  <span style="color:#60a0b0;font-style:italic">// 参数为 ID、显示名
-</span><span style="color:#60a0b0;font-style:italic"></span>    test2 <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> <span style="color:#06287e">GTest</span><span style="color:#666">(</span><span style="color:#40a070">2</span><span style="color:#666">,</span> <span style="color:#4070a0">&#34;bar_stats&#34;</span><span style="color:#666">)</span>
-    <span style="color:#60a0b0;font-style:italic">// ...
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#666">}</span>
+<pre><code class="language-groovy">public static GTest test1
+public static GTest test2
 
-<span style="color:#555;font-weight:bold">@BeforeThread</span>
-<span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">void</span> <span style="color:#06287e">beforeThread</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-    test1<span style="color:#666">.</span><span style="color:#4070a0">record</span><span style="color:#666">(</span><span style="color:#007020;font-weight:bold">this</span><span style="color:#666">,</span> <span style="color:#4070a0">&#34;foo&#34;</span><span style="color:#666">)</span>  <span style="color:#60a0b0;font-style:italic">// 参数为 this、@Test 注解的方法名
-</span><span style="color:#60a0b0;font-style:italic"></span>    test2<span style="color:#666">.</span><span style="color:#4070a0">record</span><span style="color:#666">(</span><span style="color:#007020;font-weight:bold">this</span><span style="color:#666">,</span> <span style="color:#4070a0">&#34;bar&#34;</span><span style="color:#666">)</span>
-    <span style="color:#60a0b0;font-style:italic">// ...
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#666">}</span>
+// ...
 
-<span style="color:#555;font-weight:bold">@Test</span>
-<span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">void</span> <span style="color:#06287e">foo</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-    <span style="color:#60a0b0;font-style:italic">// ...
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#666">}</span>
+@BeforeProcess
+public static void beforeProcess() {
+    test1 = new GTest(1, &quot;foo_stats&quot;)  // 参数为 ID、显示名
+    test2 = new GTest(2, &quot;bar_stats&quot;)
+    // ...
+}
 
-<span style="color:#555;font-weight:bold">@Test</span>
-<span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">void</span> <span style="color:#06287e">bar</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-    <span style="color:#60a0b0;font-style:italic">// ...
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#666">}</span></code></pre></div>
+@BeforeThread
+public void beforeThread() {
+    test1.record(this, &quot;foo&quot;)  // 参数为 this、@Test 注解的方法名
+    test2.record(this, &quot;bar&quot;)
+    // ...
+}
+
+@Test
+public void foo() {
+    // ...
+}
+
+@Test
+public void bar() {
+    // ...
+}
+</code></pre>
+
 <h4 id="不同权重">不同权重</h4>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#555;font-weight:bold">@RunRate</span><span style="color:#666">(</span><span style="color:#40a070">50</span><span style="color:#666">)</span>  <span style="color:#60a0b0;font-style:italic">// 数字代表百分比
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#555;font-weight:bold">@Test</span>
-<span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">void</span> <span style="color:#06287e">test1</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-    <span style="color:#60a0b0;font-style:italic">// ...
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#666">}</span>
 
-<span style="color:#555;font-weight:bold">@RunRate</span><span style="color:#666">(</span><span style="color:#40a070">20</span><span style="color:#666">)</span>
-<span style="color:#555;font-weight:bold">@Test</span>
-<span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">void</span> <span style="color:#06287e">test2</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-    <span style="color:#60a0b0;font-style:italic">// ...
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#666">}</span></code></pre></div>
+<pre><code class="language-groovy">@RunRate(50)  // 数字代表百分比
+@Test
+public void test1() {
+    // ...
+}
+
+@RunRate(20)
+@Test
+public void test2() {
+    // ...
+}
+</code></pre>
+
 <p>如果权重加起来不到 100，剩下的时间什么也不干。</p>
 
 <hr />
@@ -401,12 +562,15 @@ assertThat<span style="color:#666">(</span>jsonData<span style="color:#666">.</s
 <p>【缺点】多个脚本使用同样的资源文件时不方便，只能把这些脚本放在同一个目录下，除非建 Groovy Maven 工程。</p>
 
 <p>文本：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#007020;font-weight:bold">static</span> String text
-<span style="color:#555;font-weight:bold">@BeforeProcess</span>
-<span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">static</span> <span style="color:#902000">void</span> <span style="color:#06287e">beforeProcess</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-    <span style="color:#60a0b0;font-style:italic">// ...
-</span><span style="color:#60a0b0;font-style:italic"></span>    text <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> <span style="color:#06287e">File</span><span style="color:#666">(</span><span style="color:#4070a0">&#34;./resources/foo.txt&#34;</span><span style="color:#666">).</span><span style="color:#4070a0">text</span>
-<span style="color:#666">}</span></code></pre></div>
+
+<pre><code class="language-groovy">static String text
+@BeforeProcess
+public static void beforeProcess() {
+    // ...
+    text = new File(&quot;./resources/foo.txt&quot;).text
+}
+</code></pre>
+
 <blockquote>
 <p><a href="https://github.com/naver/ngrinder/wiki/How-to-use-resources">https://github.com/naver/ngrinder/wiki/How-to-use-resources</a></p>
 </blockquote>
@@ -441,89 +605,200 @@ assertThat<span style="color:#666">(</span>jsonData<span style="color:#666">.</s
 
 <hr />
 
-<p><img src="http://keithmo.me/img/wechat_reward_qrcode.png" alt="微信打赏二维码" /></p>
+<h2 id="坑">坑</h2>
 
+<h3 id="停不掉的测试">停不掉的测试</h3>
 
-</article>
+<p>如果脚本里有语法错误，例如空指针，测试会一直运行，点停止按钮没用。</p>
 
+<p>而且log是跑完测试才会生成压缩包，网页上只会看到 TPS 图表一片空白，好像没在跑，没有log不知发生什么事。去服务器看 agent 或 controller 的log会发现什么也没打出来。</p>
 
-<section class="post-nav">
-    <ul>
-        
-        <li>
-            <a href="http://keithmo.me/post/2018/03/01/ngrinder-add-stats-in-report/"><i class="fa fa-chevron-circle-left"></i> nGrinder 改造 - 在详细报告里增加更多统计项</a>
-        </li>
-        
-        
-    </ul>
-</section>
+<p>禁用 agent 或停掉 agent 进程没用。</p>
+
+<p>网页点右上的日志监控会发现 controller 在抛数组越界的异常，重启 controller 进程才恢复正常。进刚才停不了的测试下载log可以看到原因：</p>
+
+<pre><code class="language-log">2018-03-08 14:10:57,172 ERROR Cannot invoke method setHeaders() on null object
+java.lang.NullPointerException: Cannot invoke method setHeaders() on null object
+    at TestRunner.before(TestRunner.groovy:63) ~[na:na]
+    at net.grinder.scriptengine.groovy.junit.GrinderRunner.run(GrinderRunner.java:170) ~[ngrinder-groovy-3.4.1.jar:na]
+    at net.grinder.scriptengine.groovy.GroovyScriptEngine$GroovyWorkerRunnable.run(GroovyScriptEngine.java:147) ~[ngrinder-groovy-3.4.1.jar:na]
+    at net.grinder.engine.process.GrinderThread.run(GrinderThread.java:118) ~[grinder-core-3.9.1.jar:na]
+</code></pre>
+
+    </div>
+
     
-        <section class="comments-block">
-      <button id="show-comments" style="display: none;"><i class="fa fa-comments-o"></i> Add/View Comments</button>
-</section>
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Keith Mo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2018-05-27</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a></span>
+  </p>
+</div>
 
-<section id="disqus_thread"></section>
+    
+    
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/wechat.png">
+        <span>微信打赏</span>
+      </label>
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/alipay.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div>
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/nGrinder/">nGrinder</a>
+          
+          <a href="/tags/Groovy/">Groovy</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/2018/03/01/ngrinder-add-stats-in-report/">
+            <span class="next-text nav-default">nGrinder 改造 - 在详细报告里增加更多统计项</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitment@0.0.3/style/default.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitment@0.0.3/dist/gitment.browser.min.js" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: '2018-03-05 18:20:48 \x2b0800 CST',
+    title: 'nGrinder - Groovy 脚本指南',
+    link: decodeURI(location.href),
+    desc: 'nGrinder 是对 Grinder 的封装，本来 Grinder 只支持 Jython，nGrinder 3.2.1\x2b 加入了对 Groovy 的支持，用的是改造过的 JUnit 框架，比原版脚本强大得多。 nGrinder 架构简介, 2017-03 nGrinder 的 Groovy',
+    owner: 'keithmork',
+    repo: 'hugo-blog',
+    oauth: {
+      client_id: '9c5fb60edf9211e8d9cd',
+      client_secret: 'b86a009c4f2b00f4dce2d80cf94f8eb8ff63382c'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/keithmork" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.douban.com/people/133443683/" class="iconfont icon-douban" title="douban"></a>
+  <a href="http://keithmo.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+    <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2016 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Keith Mo</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/3.0.2/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script>
+    
+    timeago().render(document.querySelectorAll('.timeago'), "zh_CN");
+    timeago.cancel();
+</script>
+
+<script></script>
+<script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script>
+<script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.min.js?v=3.1.1"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 
 <script>
-      (function () {
-            
-            
-            if (window.location.hostname == "localhost")
-                  return;
-
-            var disqus_loaded = false;
-            var disqus_shortname = 'keithmo';
-            var disqus_button = document.getElementById("show-comments");
-
-            disqus_button.style.display = "";
-            disqus_button.addEventListener("click", disqus, false);
-
-            function disqus() {
-
-                  if (!disqus_loaded) {
-                        disqus_loaded = true;
-
-                        var e = document.createElement("script");
-                        e.type = "text/javascript";
-                        e.async = true;
-                        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
-                        (document.getElementsByTagName("head")[0] ||
-                              document.getElementsByTagName("body")[0])
-                        .appendChild(e);
-
-                        
-                        document.getElementById("show-comments").style.display = "none";
-                  }
-            }
-
-            
-            var hash = window.location.hash.substr(1);
-            if (hash.length > 8) {
-                  if (hash.substring(0, 8) == "comment-") {
-                        disqus();
-                  }
-            }
-
-            
-            if (/bot|google|baidu|bing|msn|duckduckgo|slurp|yandex/i.test(navigator.userAgent)) {
-                  disqus();
-            }
-      })();
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-81240089-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-    
+<script async src='//www.google-analytics.com/analytics.js'></script>
 
 
 
 
 
-</main>
-    <footer>
-        <h6>Copyright &copy; 2016-2018 - Keith Mo | 
-            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
-            <a href="http://keithmo.me/index.xml">Subscribe</a></h6>
-    </footer>
-</div>
-<script src="/js/scripts.js"></script>
+
+
 </body>
-
 </html>

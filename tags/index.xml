@@ -5,8 +5,7 @@
     <link>http://keithmo.me/tags/</link>
     <description>Recent content in Tags on Haunted Hovel - 闹鬼小屋</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <copyright>Copyright &amp;copy; 2016-2018 - Keith Mo</copyright>
+    <language>zh_CN</language>
     <lastBuildDate>Mon, 11 Dec 2017 19:45:10 +0800</lastBuildDate>
     
 	<atom:link href="http://keithmo.me/tags/index.xml" rel="self" type="application/rss+xml" />
@@ -14,127 +13,91 @@
     
     <item>
       <title>Blood Bowl</title>
-      <link>http://keithmo.me/tags/blood-bowl/</link>
+      <link>http://keithmo.me/tags/Blood-Bowl/</link>
       <pubDate>Mon, 11 Dec 2017 19:45:10 +0800</pubDate>
       
-      <guid>http://keithmo.me/tags/blood-bowl/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Board Game</title>
-      <link>http://keithmo.me/tags/board-game/</link>
-      <pubDate>Mon, 11 Dec 2017 19:45:10 +0800</pubDate>
-      
-      <guid>http://keithmo.me/tags/board-game/</guid>
+      <guid>http://keithmo.me/tags/Blood-Bowl/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Games Workshop</title>
-      <link>http://keithmo.me/tags/games-workshop/</link>
+      <link>http://keithmo.me/tags/Games-Workshop/</link>
       <pubDate>Mon, 11 Dec 2017 19:45:10 +0800</pubDate>
       
-      <guid>http://keithmo.me/tags/games-workshop/</guid>
+      <guid>http://keithmo.me/tags/Games-Workshop/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Git</title>
-      <link>http://keithmo.me/tags/git/</link>
+      <link>http://keithmo.me/tags/Git/</link>
       <pubDate>Wed, 20 Jul 2016 02:16:04 +0800</pubDate>
       
-      <guid>http://keithmo.me/tags/git/</guid>
+      <guid>http://keithmo.me/tags/Git/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Github</title>
-      <link>http://keithmo.me/tags/github/</link>
+      <title>GitHub</title>
+      <link>http://keithmo.me/tags/GitHub/</link>
       <pubDate>Wed, 20 Jul 2016 02:16:04 +0800</pubDate>
       
-      <guid>http://keithmo.me/tags/github/</guid>
+      <guid>http://keithmo.me/tags/GitHub/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Grafana</title>
-      <link>http://keithmo.me/tags/grafana/</link>
+      <link>http://keithmo.me/tags/Grafana/</link>
       <pubDate>Sat, 16 Dec 2017 20:04:19 +0800</pubDate>
       
-      <guid>http://keithmo.me/tags/grafana/</guid>
+      <guid>http://keithmo.me/tags/Grafana/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Groovy</title>
-      <link>http://keithmo.me/tags/groovy/</link>
+      <link>http://keithmo.me/tags/Groovy/</link>
       <pubDate>Mon, 05 Mar 2018 18:20:48 +0800</pubDate>
       
-      <guid>http://keithmo.me/tags/groovy/</guid>
+      <guid>http://keithmo.me/tags/Groovy/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hugo</title>
-      <link>http://keithmo.me/tags/hugo/</link>
+      <link>http://keithmo.me/tags/Hugo/</link>
       <pubDate>Wed, 20 Jul 2016 02:16:04 +0800</pubDate>
       
-      <guid>http://keithmo.me/tags/hugo/</guid>
+      <guid>http://keithmo.me/tags/Hugo/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Influxdb</title>
-      <link>http://keithmo.me/tags/influxdb/</link>
+      <title>InfluxDB</title>
+      <link>http://keithmo.me/tags/InfluxDB/</link>
       <pubDate>Sat, 16 Dec 2017 20:04:19 +0800</pubDate>
       
-      <guid>http://keithmo.me/tags/influxdb/</guid>
+      <guid>http://keithmo.me/tags/InfluxDB/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Jmeter</title>
-      <link>http://keithmo.me/tags/jmeter/</link>
+      <title>JMeter</title>
+      <link>http://keithmo.me/tags/JMeter/</link>
       <pubDate>Sat, 16 Dec 2017 20:04:19 +0800</pubDate>
       
-      <guid>http://keithmo.me/tags/jmeter/</guid>
+      <guid>http://keithmo.me/tags/JMeter/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Load Test</title>
-      <link>http://keithmo.me/tags/load-test/</link>
-      <pubDate>Thu, 01 Mar 2018 02:25:25 +0800</pubDate>
-      
-      <guid>http://keithmo.me/tags/load-test/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ngrinder</title>
-      <link>http://keithmo.me/tags/ngrinder/</link>
+      <title>NGrinder</title>
+      <link>http://keithmo.me/tags/nGrinder/</link>
       <pubDate>Mon, 05 Mar 2018 18:20:48 +0800</pubDate>
       
-      <guid>http://keithmo.me/tags/ngrinder/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Performance</title>
-      <link>http://keithmo.me/tags/performance/</link>
-      <pubDate>Thu, 01 Mar 2018 02:25:25 +0800</pubDate>
-      
-      <guid>http://keithmo.me/tags/performance/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Video Game</title>
-      <link>http://keithmo.me/tags/video-game/</link>
-      <pubDate>Mon, 11 Dec 2017 19:45:10 +0800</pubDate>
-      
-      <guid>http://keithmo.me/tags/video-game/</guid>
+      <guid>http://keithmo.me/tags/nGrinder/</guid>
       <description></description>
     </item>
     

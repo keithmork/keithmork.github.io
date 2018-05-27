@@ -5,21 +5,11 @@
     <link>http://keithmo.me/</link>
     <description>Recent content on Haunted Hovel - 闹鬼小屋</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <copyright>Copyright &amp;copy; 2016-2018 - Keith Mo</copyright>
+    <language>zh_CN</language>
     <lastBuildDate>Mon, 05 Mar 2018 18:20:48 +0800</lastBuildDate>
     
 	<atom:link href="http://keithmo.me/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Links</title>
-      <link>http://keithmo.me/links/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://keithmo.me/links/</guid>
-      <description>搞笑项目/库 nocode Node.JS: is-thirteen Python: import antigravity Python 相关资源 https://github.com/satwikkansal/wtfpython https://github.com/kennethreitz/python-guide https://github.com/faif/python-patterns https://github.com/keon/algorithms https://github.com/taizilongxu/interview_python https://annual2017.pycourses.com 性能测试/优化相关资源</description>
-    </item>
     
     <item>
       <title>About</title>
@@ -27,7 +17,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://keithmo.me/about/</guid>
-      <description>Keith Mo 性能测试，一直在小公司混。 每年初的目标都是增肥25斤。</description>
+      <description>关于作者 Keith Mo 测试，专攻服务端性能和调优 坐标深圳 每年初的目标都是增肥 25 斤</description>
     </item>
     
     <item>
@@ -36,7 +26,7 @@
       <pubDate>Mon, 05 Mar 2018 18:20:48 +0800</pubDate>
       
       <guid>http://keithmo.me/post/2018/03/05/ngrinder-groovy-script-guide/</guid>
-      <description>nGrinder 是对 Grinder 的封装，本来 Grinder 只支持 Jython，nGrinder 3.2.1+ 加入了对 Groovy 的支持，用的是改造过的 JUnit 框架，</description>
+      <description>nGrinder 是对 Grinder 的封装，本来 Grinder 只支持 Jython，nGrinder 3.2.1+ 加入了对 Groovy 的支持，用的是改造过的 JUnit 框架，比原版脚本强大得多。 nGrinder 架构简介, 2017-03 nGrinder 的 Groovy</description>
     </item>
     
     <item>
@@ -45,7 +35,7 @@
       <pubDate>Thu, 01 Mar 2018 02:25:25 +0800</pubDate>
       
       <guid>http://keithmo.me/post/2018/03/01/ngrinder-add-stats-in-report/</guid>
-      <description>背景 nGrinder 以轻量、容易上手、容易扩展的特点在众多性能测试工具中脱颖而出，受到不少公司追捧。其实它的缺点也</description>
+      <description>背景 nGrinder 以轻量、容易上手、容易扩展的特点在众多性能测试工具中脱颖而出，受到不少公司追捧。其实它的缺点也相当明显，更适合作为交给开发自测的工具。</description>
     </item>
     
     <item>
@@ -54,16 +44,16 @@
       <pubDate>Sat, 16 Dec 2017 20:04:19 +0800</pubDate>
       
       <guid>http://keithmo.me/post/2017/12/16/jmeter-grafana-dashboard/</guid>
-      <description>在服务器上跑 JMeter 做压测的话，给工具本身也配上实时监控是必须的，命令行输出能提供的信息太少。 JMeter</description>
+      <description>在服务器上跑 JMeter 做压测的话，给工具本身也配上实时监控是必须的，命令行输出能提供的信息太少。 JMeter的 Backend Listener 支持 Graphite 和 InfluxDB，这里选择</description>
     </item>
     
     <item>
       <title>【血碗2传奇版】挑战模式最优解全攻略</title>
-      <link>http://keithmo.me/guide/2017/12/11/blood-bowl2-legendary-challenges-guide/</link>
+      <link>http://keithmo.me/game/2017/12/11/blood-bowl/bb2le-legendary-challenges-guide/</link>
       <pubDate>Mon, 11 Dec 2017 19:45:10 +0800</pubDate>
       
-      <guid>http://keithmo.me/guide/2017/12/11/blood-bowl2-legendary-challenges-guide/</guid>
-      <description>血碗2传奇版（Steam: Blood Bowl 2 - Legendary Edition）新增的挑战模式很有意思，很多都是来自N年前玩家碰</description>
+      <guid>http://keithmo.me/game/2017/12/11/blood-bowl/bb2le-legendary-challenges-guide/</guid>
+      <description>血碗2传奇版（Steam: Blood Bowl 2 - Legendary Edition）新增的挑战模式很有意思，很多都是来自N年前玩家碰到的真实对局，可以作为 chain push（连环推</description>
     </item>
     
     <item>
@@ -72,7 +62,7 @@
       <pubDate>Wed, 20 Jul 2016 02:16:04 +0800</pubDate>
       
       <guid>http://keithmo.me/post/2016/07/20/build-your-own-blog1/</guid>
-      <description>最后更新： 2018-02-11 自己搭博客的N个理由 你的笔记非常值钱，丢了就等于丢了N年工作经验。 大多数博客网站都满足不</description>
+      <description>更新： 2018-05-26：主题换成 Even，补充多处内容。 2018-02-11：主题换成 Kiera。 自己搭博客的N个理由 你的笔记非常值钱，</description>
     </item>
     
     <item>
@@ -82,6 +72,15 @@
       
       <guid>http://keithmo.me/post/2016/07/19/first/</guid>
       <description>Hello Hugo 坚持写博客的好处： 记录心得 整理思路 分享交流 求职展示</description>
+    </item>
+    
+    <item>
+      <title>Links</title>
+      <link>http://keithmo.me/links/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://keithmo.me/links/</guid>
+      <description>搞笑项目/库 nocode Node.JS: is-thirteen Python: import antigravity Python 相关资源 https://github.com/satwikkansal/wtfpython https://github.com/kennethreitz/python-guide https://github.com/faif/python-patterns https://github.com/keon/algorithms https://github.com/taizilongxu/interview_python https://annual2017.pycourses.com 性能测试/优化相关资源</description>
     </item>
     
   </channel>

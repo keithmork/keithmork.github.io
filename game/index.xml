@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Haunted Hovel - 闹鬼小屋</title>
+    <link>http://keithmo.me/game/</link>
+    <description>Recent content on Haunted Hovel - 闹鬼小屋</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CN</language>
+    <lastBuildDate>Sun, 27 May 2018 16:58:49 +0800</lastBuildDate>
+    
+	<atom:link href="http://keithmo.me/game/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【血碗2传奇版】挑战模式最优解全攻略</title>
+      <link>http://keithmo.me/game/2017/12/11/blood-bowl/bb2le-legendary-challenges-guide/</link>
+      <pubDate>Mon, 11 Dec 2017 19:45:10 +0800</pubDate>
+      
+      <guid>http://keithmo.me/game/2017/12/11/blood-bowl/bb2le-legendary-challenges-guide/</guid>
+      <description>血碗2传奇版（Steam: Blood Bowl 2 - Legendary Edition）新增的挑战模式很有意思，很多都是来自N年前玩家碰到的真实对局，可以作为 chain push（连环推</description>
+    </item>
+    
+  </channel>
+</rss>
