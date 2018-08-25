@@ -54,13 +54,14 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://keithmo.me/post/2016/07/20/build-your-own-blog1/" /><meta property="article:published_time" content="2016-07-20T02:16:04&#43;08:00"/>
 <meta property="article:modified_time" content="2018-05-30T14:24:13&#43;08:00"/>
+
 <meta itemprop="name" content="GitHub &#43; Hugo 搭建个人博客">
 <meta itemprop="description" content="更新： 2018-05-26：主题换成 Even，补充多处内容。 2018-02-11：主题换成 Kiera。 自己搭博客的N个理由 你的笔记非常值钱，">
 
 
 <meta itemprop="datePublished" content="2016-07-20T02:16:04&#43;08:00" />
 <meta itemprop="dateModified" content="2016-07-20T02:16:04&#43;08:00" />
-<meta itemprop="wordCount" content="5038">
+<meta itemprop="wordCount" content="5062">
 
 
 
@@ -98,10 +99,10 @@
         <li class="mobile-menu-item">Archives</li>
       </a><a href="/series/">
         <li class="mobile-menu-item">Series</li>
-      </a><a href="/tags/">
-        <li class="mobile-menu-item">Tags</li>
       </a><a href="/categories/">
         <li class="mobile-menu-item">Categories</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
       </a><a href="/game/">
         <li class="mobile-menu-item">Games</li>
       </a><a href="/about">
@@ -124,9 +125,9 @@
       </li><li class="menu-item">
         <a class="menu-item-link" href="/series/">Series</a>
       </li><li class="menu-item">
-        <a class="menu-item-link" href="/tags/">Tags</a>
-      </li><li class="menu-item">
         <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
       </li><li class="menu-item">
         <a class="menu-item-link" href="/game/">Games</a>
       </li><li class="menu-item">
@@ -153,9 +154,14 @@
               <a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"> 环境搭建 </a>
             
           </div>
-        <span class="more-meta"> 约 5038 字 </span>
+        <span class="more-meta"> 约 5062 字 </span>
         <span class="more-meta"> 预计阅读 11 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+        <div class="post-series">
+            
+            <a href="/series/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/">如何搭建技术博客</a>
+            
+          </div>
       </div>
     </header>
 
@@ -229,12 +235,14 @@
     <div class="post-content">
       
 
+<blockquote>
 <p>更新：</p>
 
 <ul>
 <li>2018-05-26：主题换成 Even，补充多处内容。</li>
 <li>2018-02-11：主题换成 Kiera。</li>
 </ul>
+</blockquote>
 
 <hr />
 
@@ -424,7 +432,7 @@ title: My New Hugo Site  # 替换为你的博客标题
 <pre><code class="language-yaml">googleAnalytics: XXX  # Google Analytics ID
 # 多数国外主题只支持 Google 的站点统计，Even 作为国人开发的主题，还支持不蒜子和百度统计。
 
-defaultContentLanguage: zh-cn  # 默认 en，文章内容的默认编码，必须用 &quot;-&quot; 和小写。有些主题支持多语言，这里的设置会改变菜单和按钮的显示语言。
+defaultContentLanguage: zh-cn  # 默认 en，文章内容的默认编码，必须用小写字母和用 &quot;-&quot; 连接。有些主题支持多语言，这里的设置会改变菜单和按钮的显示语言。
 #defaultContentLanguageInSubdir: false  # 如果站点支持多语言，这选项为 true 时，/ 会重定向到对应的语言版本，如 /en/、/zh-cn/ 等。
 hasCJKLanguage: true  # 文章内容是否有中日韩文，会影响字数统计。
 
@@ -702,6 +710,10 @@ if [[ -n &quot;$1&quot; ]]; then
     git add -A
     git commit -m &quot;$1&quot;
     git push
+else
+    echo
+    echo &quot;[WARN] Files will NOT be uploaded to Github without adding comments.&quot;
+    echo &quot;Usage: $(basename &quot;$0&quot;) COMMIT_COMMENTS&quot;
 fi
 </code></pre>
 
@@ -874,7 +886,7 @@ git push -u origin master
   
   <p class="copyright-item">
     <span class="item-title">许可协议</span>
-    <span class="item-content"><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a></span>
+    <span class="item-content"><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-nc/3.0/88x31.png" /></a></span>
   </p>
 </div>
 
@@ -920,7 +932,7 @@ git push -u origin master
         
           <a class="next" href="/post/2016/07/19/first/">
             <span class="next-text nav-default">第1篇博文</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -1015,7 +1027,7 @@ git push -u origin master
 <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
-<script type="text/javascript" src="/dist/even.min.js?v=3.1.1"></script>
+<script type="text/javascript" src="/dist/even.min.js?v=3.2.0"></script>
   <script type="text/javascript">
     window.MathJax = {
       tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
