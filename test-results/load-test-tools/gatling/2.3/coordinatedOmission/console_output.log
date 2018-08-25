@@ -1,0 +1,23 @@
+Simulation benchmark.CoordinatedOmission completed in 250 seconds
+Parsing log file(s)...
+Parsing log file(s) done
+Generating reports...
+
+================================================================================
+---- Global Information --------------------------------------------------------
+> request count                                     250000 (OK=250000 KO=0     )
+> min response time                                      0 (OK=0      KO=-     )
+> max response time                                  51010 (OK=51010  KO=-     )
+> mean response time                                 20002 (OK=20002  KO=-     )
+> std deviation                                      24495 (OK=24495  KO=-     )
+> response time 50th percentile                          2 (OK=2      KO=-     )
+> response time 95th percentile                      50002 (OK=50002  KO=-     )
+> response time 99th percentile                      50008 (OK=50008  KO=-     )
+> response time 99.99th percentile                   50060 (OK=50060  KO=-     )
+> mean requests/sec                                996.016 (OK=996.016 KO=-     )
+---- Response Time Distribution ------------------------------------------------
+> t < 200 ms                                        149999 ( 60%)
+> 200 ms < t < 1000 ms                                   0 (  0%)
+> t > 1000 ms                                       100001 ( 40%)
+> failed                                                 0 (  0%)
+================================================================================

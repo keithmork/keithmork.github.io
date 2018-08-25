@@ -1,0 +1,25 @@
+execution:
+- executor: gatling
+  concurrency: 200
+  ramp-up: 1s
+  hold-for: 60s
+  scenario: benchmark
+
+scenarios:
+  benchmark:
+    default-address: http://172.31.10.3
+
+    headers:
+      Accept-Encoding: gzip
+
+    requests:
+    - url: /nginx-status
+      method: GET
+      assert:
+      - contains:
+        - 200
+        subject: http-code
+
+    properties:
+      gatling.http.ahc.connectTimeout: 1000
+      gatling.http.ahc.requestTimeout: 5000

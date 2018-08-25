@@ -1,0 +1,15 @@
+$ wrk -t 8 -c 200 -d 250s --timeout 60s --latency http://172.31.10.4:3001/api/json/coordinatedOmission
+
+Running 4m test @ http://172.31.10.4:3001/api/json/coordinatedOmission
+  8 threads and 200 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     7.16s    13.69s   50.05s    83.32%
+    Req/Sec     2.27k   116.25     4.50k    90.84%
+  Latency Distribution
+     50%   11.55ms
+     75%    6.28s
+     90%   32.55s
+     99%   48.30s
+  2715420 requests in 4.17m, 1.01GB read
+Requests/sec:  10857.49
+Transfer/sec:      4.14MB

@@ -1,0 +1,22 @@
+- client: AWS c5.2xlarge * 1, 8C16G, 10Gbps
+- server: AWS c5.2xlarge * 1, 8C16G, 10Gbps
+
+$ wrk --version
+wrk 4.0.0 [epoll] Copyright (C) 2012 Will Glozer
+
+
+$ wrk -t 8 -c 200 -d 30s --timeout 2s --latency http://172.31.10.3/nginx-status
+
+Running 30s test @ http://172.31.10.3/nginx-status
+  8 threads and 200 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   416.54us  443.31us  16.62ms   96.40%
+    Req/Sec    63.17k     1.71k   85.66k    77.17%
+  Latency Distribution
+     50%  340.00us
+     75%  419.00us
+     90%  555.00us
+     99%    2.31ms
+  15113833 requests in 30.10s, 3.81GB read
+Requests/sec: 502127.25
+Transfer/sec:    129.58MB

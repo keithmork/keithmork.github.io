@@ -1,0 +1,10 @@
+{
+  "simulation": "TaurusSimulation_139944810021496",
+  "simulationId": "gatling-139944810021496",
+  "start": 1529318877872,
+  "description": "",
+  "scenarios": ["Taurus Scenario"],
+  "assertions": [
+
+  ]
+}

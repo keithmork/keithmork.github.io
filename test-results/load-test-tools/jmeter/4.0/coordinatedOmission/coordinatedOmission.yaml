@@ -1,0 +1,24 @@
+---
+execution:
+- scenario: benchmark
+  concurrency: 100
+  ramp-up: 1s
+  hold-for: 250s
+
+scenarios:
+  benchmark:
+    default-address: http://172.31.10.4:3001
+
+    requests:
+    - url: /api/json/coordinatedOmission
+      method: GET
+      label: coordinatedOmission
+
+    #think-time: 0ms
+
+    timeout: 60s  # same for connect & response timeout
+    content-encoding: UTF-8
+    keepalive: true
+    follow-redirects: true
+    retrieve-resources: false
+    store-cache: false

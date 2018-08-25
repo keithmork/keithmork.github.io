@@ -25,7 +25,7 @@
 <meta name="google-site-verification" content="0a3HFkiNXuBV7zv3VJQyVVHctAFi3N6wP3KO6o8vErw" />
 
 
-<meta name="generator" content="Hugo 0.41" />
+<meta name="generator" content="Hugo 0.47.1" />
 
 
 <link rel="canonical" href="http://keithmo.me/" />
@@ -44,7 +44,7 @@
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
-<link href="/dist/even.min.css?v=3.1.1" rel="stylesheet">
+<link href="/dist/even.min.css?v=3.2.0" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -54,20 +54,7 @@
 <meta property="og:description" content="记录性能测试和调优的心得。" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://keithmo.me/" />
-
-
-
-<meta property="og:updated_time" content="2018-03-05T18:20:48&#43;08:00"/>
-
-
-
-
-
-
-
-
-
-
+<meta property="og:updated_time" content="2018-08-25T11:29:37&#43;08:00"/>
 <meta itemprop="name" content="Haunted Hovel - 闹鬼小屋">
 <meta itemprop="description" content="记录性能测试和调优的心得。">
 
@@ -102,6 +89,8 @@
         <li class="mobile-menu-item">Home</li>
       </a><a href="/post/">
         <li class="mobile-menu-item">Archives</li>
+      </a><a href="/series/">
+        <li class="mobile-menu-item">Series</li>
       </a><a href="/tags/">
         <li class="mobile-menu-item">Tags</li>
       </a><a href="/categories/">
@@ -126,6 +115,8 @@
       </li><li class="menu-item">
         <a class="menu-item-link" href="/post/">Archives</a>
       </li><li class="menu-item">
+        <a class="menu-item-link" href="/series/">Series</a>
+      </li><li class="menu-item">
         <a class="menu-item-link" href="/tags/">Tags</a>
       </li><li class="menu-item">
         <a class="menu-item-link" href="/categories/">Categories</a>
@@ -145,6 +136,34 @@
   <section id="posts" class="posts">
     
     
+    
+      <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2018/08/25/conntrack-tuning/">[踩坑总结] nf_conntrack: table full, dropping packet</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2018-08-25 </span>
+      <div class="post-category">
+          
+            <a href="/categories/10000-Hours/"> 10000 Hours </a>
+          
+            <a href="/categories/Linux/"> Linux </a>
+          
+        </div>
+      <span class="more-meta"> 约 6689 字 </span>
+      <span class="more-meta"> 预计阅读 14 分钟 </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      更新： 2018-08：补充 AWS 上的 Ubuntu 16.04 相关资料，补充更多介绍原理的参考链接 2017-02：过年出线上故障，写完报告改了一下，发到了 TesterHome netfilter/conntrack 相关内核
+    </div>
+    <div class="read-more">
+      <a href="/post/2018/08/25/conntrack-tuning/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     
       <article class="post">
   <header class="post-header">
@@ -280,10 +299,6 @@
 </article>
 
     
-      
-    
-      
-    
   </section>
   
   <nav class="pagination">
@@ -300,7 +315,8 @@
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/keithmork" class="iconfont icon-github" title="github"></a>
-      <a href="https://www.douban.com/people/133443683/" class="iconfont icon-douban" title="douban"></a>
+      <a href="https://www.douban.com/people/keithmo/" class="iconfont icon-douban" title="douban"></a>
+      <a href="https://www.zhihu.com/people/keithmork" class="iconfont icon-zhihu" title="zhihu"></a>
   <a href="http://keithmo.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
@@ -369,7 +385,7 @@
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -378,7 +394,7 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

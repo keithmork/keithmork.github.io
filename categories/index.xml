@@ -6,7 +6,7 @@
     <description>Recent content in Categories on Haunted Hovel - 闹鬼小屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 05 Mar 2018 18:20:48 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 25 Aug 2018 11:29:37 +0800</lastBuildDate>
     
 	<atom:link href="http://keithmo.me/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>10000 Hours</title>
       <link>http://keithmo.me/categories/10000-Hours/</link>
-      <pubDate>Mon, 05 Mar 2018 18:20:48 +0800</pubDate>
+      <pubDate>Sat, 25 Aug 2018 11:29:37 +0800</pubDate>
       
       <guid>http://keithmo.me/categories/10000-Hours/</guid>
       <description></description>
@@ -26,6 +26,15 @@
       <pubDate>Mon, 11 Dec 2017 19:45:10 +0800</pubDate>
       
       <guid>http://keithmo.me/categories/Games/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>http://keithmo.me/categories/Linux/</link>
+      <pubDate>Sat, 25 Aug 2018 11:29:37 +0800</pubDate>
+      
+      <guid>http://keithmo.me/categories/Linux/</guid>
       <description></description>
     </item>
     

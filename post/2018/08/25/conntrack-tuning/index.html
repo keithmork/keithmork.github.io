@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>[踩坑总结] nf_conntrack: table full, dropping packet - Haunted Hovel - 闹鬼小屋</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Keith Mo" />
+  <meta name="description" content="更新： 2018-08：补充 AWS 上的 Ubuntu 16.04 相关资料，补充更多介绍原理的参考链接 2017-02：过年出线上故障，写完报告改了一下，发到了 TesterHome netfilter/conntrack 相关内核" />
+
+  <meta name="keywords" content="load testing, tuning, 性能测试, 调优" />
+
+
+
+<meta name="google-site-verification" content="0a3HFkiNXuBV7zv3VJQyVVHctAFi3N6wP3KO6o8vErw" />
+
+
+<meta name="generator" content="Hugo 0.47.1" />
+
+
+<link rel="canonical" href="http://keithmo.me/post/2018/08/25/conntrack-tuning/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link href="/dist/even.min.css?v=3.2.0" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+
+
+<meta property="og:title" content="[踩坑总结] nf_conntrack: table full, dropping packet" />
+<meta property="og:description" content="更新： 2018-08：补充 AWS 上的 Ubuntu 16.04 相关资料，补充更多介绍原理的参考链接 2017-02：过年出线上故障，写完报告改了一下，发到了 TesterHome netfilter/conntrack 相关内核" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://keithmo.me/post/2018/08/25/conntrack-tuning/" /><meta property="article:published_time" content="2018-08-25T11:29:37&#43;08:00"/>
+<meta property="article:modified_time" content="2018-08-25T12:08:00&#43;08:00"/>
+<meta itemprop="name" content="[踩坑总结] nf_conntrack: table full, dropping packet">
+<meta itemprop="description" content="更新： 2018-08：补充 AWS 上的 Ubuntu 16.04 相关资料，补充更多介绍原理的参考链接 2017-02：过年出线上故障，写完报告改了一下，发到了 TesterHome netfilter/conntrack 相关内核">
+
+
+<meta itemprop="datePublished" content="2018-08-25T11:29:37&#43;08:00" />
+<meta itemprop="dateModified" content="2018-08-25T11:29:37&#43;08:00" />
+<meta itemprop="wordCount" content="6689">
+
+
+
+<meta itemprop="keywords" content="netfilter,conntrack,Ops," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[踩坑总结] nf_conntrack: table full, dropping packet"/>
+<meta name="twitter:description" content="更新： 2018-08：补充 AWS 上的 Ubuntu 16.04 相关资料，补充更多介绍原理的参考链接 2017-02：过年出线上故障，写完报告改了一下，发到了 TesterHome netfilter/conntrack 相关内核"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Haunted Hovel - 闹鬼小屋</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/series/">
+        <li class="mobile-menu-item">Series</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/game/">
+        <li class="mobile-menu-item">Games</li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Haunted Hovel - 闹鬼小屋</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/series/">Series</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/game/">Games</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">[踩坑总结] nf_conntrack: table full, dropping packet</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-08-25 </span>
+        <div class="post-category">
+            
+              <a href="/categories/10000-Hours/"> 10000 Hours </a>
+            
+              <a href="/categories/Linux/"> Linux </a>
+            
+          </div>
+        <span class="more-meta"> 约 6689 字 </span>
+        <span class="more-meta"> 预计阅读 14 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#症状">症状</a></li>
+<li><a href="#原因">原因</a>
+<ul>
+<li><a href="#详细">详细</a></li>
+</ul></li>
+<li><a href="#诊断">诊断</a>
+<ul>
+<li><a href="#netfilter-相关内核参数一览">netfilter 相关内核参数一览</a>
+<ul>
+<li><a href="#查看超时相关参数">查看超时相关参数</a></li>
+</ul></li>
+<li><a href="#哈希表设置">哈希表设置</a>
+<ul>
+<li><a href="#查看哈希表大小-桶的数量">查看哈希表大小（桶的数量）</a></li>
+<li><a href="#查看最大跟踪连接数">查看最大跟踪连接数</a></li>
+<li><a href="#查看-netfilter-模块加载时的默认值">查看 netfilter 模块加载时的默认值</a></li>
+</ul></li>
+<li><a href="#哈希表使用情况">哈希表使用情况</a>
+<ul>
+<li><a href="#跟踪连接记录">跟踪连接记录</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#配置">配置</a>
+<ul>
+<li><a href="#a-关闭使用-nat-的程序">A. 关闭使用 NAT 的程序</a>
+<ul>
+<li><a href="#ubuntu-防火墙">Ubuntu 防火墙</a></li>
+<li><a href="#firewalld">firewalld</a></li>
+<li><a href="#iptables">iptables</a></li>
+<li><a href="#dockerd">dockerd</a></li>
+</ul></li>
+<li><a href="#b-调整内核参数">B. 调整内核参数</a>
+<ul>
+<li><a href="#nf-conntrack-buckets-和-nf-conntrack-max-的默认值怎么来的"><code>nf_conntrack_buckets</code> 和 <code>nf_conntrack_max</code> 的默认值怎么来的</a></li>
+<li><a href="#给哈希表扩容的影响">给哈希表扩容的影响</a></li>
+<li><a href="#调整哪些超时时间">调整哪些超时时间</a></li>
+<li><a href="#tl-dr">TL;DR</a></li>
+</ul></li>
+<li><a href="#c-设置不跟踪连接的规则">C. 设置不跟踪连接的规则</a></li>
+</ul></li>
+<li><a href="#参考">参考</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    
+
+    
+    <div class="post-content">
+      
+
+<blockquote>
+<p>更新：</p>
+
+<ul>
+<li>2018-08：补充 AWS 上的 Ubuntu 16.04 相关资料，补充更多介绍原理的参考链接</li>
+<li>2017-02：过年出线上故障，写完报告改了一下，发到了 <a href="https://testerhome.com/topics/7509">TesterHome</a></li>
+</ul>
+</blockquote>
+
+<hr />
+
+<p>netfilter/conntrack 相关内核参数往往是用 Linux 服务器的互联网小公司业务量上去之后遇到的第 3 个“新手怪”。（第 1 位：进程可用的 FD 不足，第 2 位：IP 临时端口不足 + TIME_WAIT 状态的连接过多导致无法建立新连接）</p>
+
+<p>很多人以为 Linux 经过这么多年优化，默认参数应该“足够好”，其实不是。默认参数面向“通用”服务器，不适用于连接数和访问量比较多的场景。</p>
+
+<hr />
+
+<h2 id="症状">症状</h2>
+
+<p>服务器负载正常，但请求大量超时，服务器／应用访问日志看不到相关请求记录。</p>
+
+<p>在 <code>dmesg</code> 或 <code>/var/log/messages</code> 看到大量以下记录：</p>
+
+<p><code>kernel: nf_conntrack: table full, dropping packet.</code></p>
+
+<hr />
+
+<h2 id="原因">原因</h2>
+
+<p>服务器访问量大，内核 netfilter 模块 conntrack 相关参数配置不合理，导致 IP 包被丢掉，连接无法建立。</p>
+
+<h3 id="详细">详细</h3>
+
+<p>nf_conntrack 模块在 kernel 2.6.15（2006-01-03 发布） 被引入，支持 IPv4 和 IPv6，取代只支持 IPv4 的 ip_connktrack，用于跟踪连接的状态，供其他模块使用。</p>
+
+<p>需要 NAT 的服务都会用到它，例如防火墙、Docker 等。以 iptables 的 <code>nat</code> 和 <code>state</code> 模块为例：</p>
+
+<ul>
+<li><code>nat</code>：根据转发规则修改 IP 包的源/目标地址，靠 conntrack 记录才能让返回的包能路由到发请求的机器。</li>
+<li><code>state</code>：直接用 conntrack 记录的连接状态（<code>NEW</code>/<code>ESTABLISHED</code>/<code>RELATED</code>/<code>INVALID</code> 等）来匹配防火墙过滤规则。</li>
+</ul>
+
+<p><img src="http://img2.ph.126.net/wlJ1U0pqhCtexhiAFahJxg==/6608208918958115579.png" alt="iptables" /></p>
+
+<p>nf_conntrack 根据连接的五元组算哈希，整个系统的记录存储在 1 个哈希表里。包括其他机器到本机、本机到其他机器、本机到本机，因此即使来自客户端的访问量不多，内部请求多的话照样会塞满哈希表。</p>
+
+<p>例如 ping 本机也会留下这么一条记录：</p>
+
+<pre><code class="language-sh">ipv4     2 icmp     1 29 src=127.0.0.1 dst=127.0.0.1 type=8 code=0 id=26067 src=127.0.0.1 dst=127.0.0.1 type=0 code=0 id=26067 mark=0 use=1
+</code></pre>
+
+<p>如果连接进来比释放的快，把哈希表塞满了，新连接的数据包会被丢掉。此时 netfilter 变成了一个黑洞， 这发生在3层（网络层），应用程序毫无办法。</p>
+
+<hr />
+
+<h2 id="诊断">诊断</h2>
+
+<h3 id="netfilter-相关内核参数一览">netfilter 相关内核参数一览</h3>
+
+<pre><code class="language-sh">sudo sysctl -a | grep conntrack
+# 如果找不到，恭喜，不用操心这问题了
+</code></pre>
+
+<h4 id="查看超时相关参数">查看超时相关参数</h4>
+
+<pre><code class="language-sh">sudo sysctl -a | grep conntrack | grep timeout
+</code></pre>
+
+<p>所谓超时是清除 conntrack 记录的秒数，从某个连接收到最后一个包后开始倒计时， 倒数到 0 就会清除记录，中间收到包会重置。</p>
+
+<p>不同协议的不同状态有不同的超时时间。（注意记录里的状态只是个标识，跟连接本身的状态不一定是一一映射的关系，跟协议的标准或实现更是完全没有关系。）</p>
+
+<h3 id="哈希表设置">哈希表设置</h3>
+
+<h4 id="查看哈希表大小-桶的数量">查看哈希表大小（桶的数量）</h4>
+
+<pre><code class="language-sh">sudo sysctl net.netfilter.nf_conntrack_buckets
+# 只读
+</code></pre>
+
+<h4 id="查看最大跟踪连接数">查看最大跟踪连接数</h4>
+
+<p>进来的连接数超过这个值时，新连接的包会被丢弃。</p>
+
+<pre><code class="language-sh">sudo sysctl net.netfilter.nf_conntrack_max
+# 默认 nf_conntrack_buckets * 4
+
+# max 是 bucket 的多少倍决定了每个桶里的链表有多长，因此默认链表长度为 4
+</code></pre>
+
+<p>比较现代的系统（Ubuntu 16+, CentOS 7+）里，64 位，8G 内存的机器，max 通常默认为 262144，bucket 为 65536。随着内存大小翻倍这 2 个值也翻倍。</p>
+
+<p>【注意】云服务厂商可能有不同的默认设置：</p>
+
+<ul>
+<li>AWS 8G 以上这 2 个值似乎不再增加，64G 内存的机器和 8G 内存的机器一样。</li>
+<li>阿里云目前（2018年）CentOS 7+ 的机器上似乎还在用 07 年 CentOS 5 时代的默认配置：max 为 65536，bucket 为 16384。因此如果生产环境用阿里云服务器又没人了解这块的话，陷阱会来得特别早。</li>
+</ul>
+
+<h4 id="查看-netfilter-模块加载时的默认值">查看 netfilter 模块加载时的默认值</h4>
+
+<pre><code class="language-sh">sudo dmesg | grep conntrack
+# 找类似这样的记录：
+# nf_conntrack version 0.5.0 (65536 buckets, 262144 max)
+</code></pre>
+
+<h3 id="哈希表使用情况">哈希表使用情况</h3>
+
+<pre><code class="language-bash">sudo sysctl net.netfilter.nf_conntrack_count
+# 只读
+
+# 这个值跟 sudo conntrack -L 或 /proc/net/nf_conntrack （如果有这文件）里的条目数一致
+</code></pre>
+
+<p>这个值跟 <code>net.netfilter.nf_conntrack_buckets</code> 的值比较。</p>
+
+<p>当哈希表大部分桶不为空时（<a href="https://stackoverflow.com/a/31401836">计算</a> 得出约 69%，Python 的 dict 用 2/3，Java 的 HashMap 用 75%）哈希冲突的概率会增大，性能从 O(1) 退化为读链表的 O(n)，建议及时扩容。</p>
+
+<p>网上有说法 “<code>nf_conntrack_count</code> 的值持续超过 <code>nf_conntrack_max</code> 的 20% 就该考虑扩容”也是这原因。因为 bucket 的值默认是 max 的 25%，用了 max 的 20% 也就是 80% 的桶都有元素了（假设没冲突）。</p>
+
+<h4 id="跟踪连接记录">跟踪连接记录</h4>
+
+<pre><code class="language-sh"># Ubuntu 通常没有 /proc/net/nf_conntrack 文件，用 conntrack 命令代替，输出一样
+sudo conntrack -L -o extended | tail -n 50
+# CentOS：
+sudo tail -n 50 /proc/net/nf_conntrack
+
+# 输出例：
+# ipv4     2 tcp      6 431999 ESTABLISHED src=10.0.13.67 dst=10.0.13.109 sport=63473 dport=22 src=10.0.13.109 dst=10.0.13.67 sport=22 dport=63473 [ASSURED] mark=0 secctx=system_u:object_r:unlabeled_t:s0 zone=0 use=2
+
+# 记录格式：
+# 网络层协议名、网络层协议编号、传输层协议名、传输层协议编号、记录失效前剩余秒数、连接状态（不是所有协议都有）
+# 之后都是 key=value 或 flag 格式，1 行里最多 2 个同名 key（如 src 和 dst），第 1 次出现的来自请求，第 2 次出现的来自响应
+
+# flag：
+# [ASSURED]  请求和响应都有流量
+# [UNREPLIED]  没收到响应，哈希表满的时候这些连接先扔掉
+</code></pre>
+
+<p>四层协议类型和连接数：</p>
+
+<pre><code class="language-sh">sudo conntrack -L -o extended | awk '{sum[$3]++} END {for(i in sum) print i, sum[i]}'
+# 或：
+sudo cat /proc/net/nf_conntrack | awk '{sum[$3]++} END {for(i in sum) print i, sum[i]}'
+</code></pre>
+
+<p>TCP 连接各状态对应的条数：</p>
+
+<pre><code class="language-sh">sudo conntrack -L -o extended | awk '/^.*tcp.*$/ {sum[$6]++} END {for(i in sum) print i, sum[i]}'
+# 或：
+sudo cat /proc/net/nf_conntrack | awk '/^.*tcp.*$/ {sum[$6]++} END {for(i in sum) print i, sum[i]}'
+</code></pre>
+
+<p>三层协议类型和连接数：</p>
+
+<pre><code class="language-sh">sudo conntrack -L -o extended | awk '{sum[$1]++} END {for(i in sum) print i, sum[i]}'
+# 或：
+sudo cat /proc/net/nf_conntrack | awk '{sum[$1]++} END {for(i in sum) print i, sum[i]}'
+</code></pre>
+
+<p>连接数最多的 10 个 IP 地址：</p>
+
+<pre><code class="language-sh">sudo conntrack -L -o extended | awk '{print $7}' | cut -d &quot;=&quot; -f 2 | sort | uniq -c | sort -nr | head -n 10
+# 或：
+sudo cat /proc/net/nf_conntrack | awk '{print $7}' | cut -d &quot;=&quot; -f 2 | sort | uniq -c | sort -nr | head -n 10
+</code></pre>
+
+<blockquote>
+<p>stackoverflow - <a href="http://stackoverflow.com/questions/16034698/details-of-proc-net-ip-conntrack-nf-conntrack">details of /proc/net/ip_conntrack / nf_conntrack</a></p>
+</blockquote>
+
+<hr />
+
+<h2 id="配置">配置</h2>
+
+<h3 id="a-关闭使用-nat-的程序">A. 关闭使用 NAT 的程序</h3>
+
+<p>最常见的是防火墙，目前第 2 常见的可能是 docker。依赖 netfilter 模块的服务关掉之后，通常 <code>sudo sysctl -a | grep conntrack</code> 就找不到相关的参数了。</p>
+
+<p>对不直接暴露在公网，也不使用 NAT 转发的服务器来说，关闭 Linux 防火墙是最简单的办法，还避免了防火墙/netfilter 成为网络瓶颈。使用公有云的话可以用厂商提供的安全服务，通常是独立于你租的云服务器的，不消耗资源，比自己用系统防火墙设一大堆规则好得多。</p>
+
+<h4 id="ubuntu-防火墙">Ubuntu 防火墙</h4>
+
+<pre><code class="language-sh">sudo ufw disable
+</code></pre>
+
+<h4 id="firewalld">firewalld</h4>
+
+<p>CentOS 7.x 默认安装。</p>
+
+<pre><code class="language-sh">sudo systemctl stop firewalld
+sudo systemctl disable firewalld
+</code></pre>
+
+<h4 id="iptables">iptables</h4>
+
+<p>CentOS 6.x 默认安装。</p>
+
+<pre><code class="language-sh"># 使用 SystemV init 管理的旧系统：
+sudo service iptables stop
+sudo chkconfig --del iptables
+# 网上有些老文章说关了 iptables 之后，用 &quot;iptables -L -n&quot; 等命令查看防火墙规则也会导致 nf_conntrack 重新加载，实测并不会
+
+# 使用 systemd 管理的新系统：
+sudo systemctl stop iptables
+sudo systemctl disable iptables
+</code></pre>
+
+<hr />
+
+<h4 id="dockerd">dockerd</h4>
+
+<p>系统是最小安装的话应该不会自带。如果发现系统里有 docker 的网卡在，又确定没有地方用到 docker 的话就关掉：</p>
+
+<pre><code class="language-sh">sudo systemctl stop docker
+sudo systemctl disable docker
+</code></pre>
+
+<hr />
+
+<p>如果 conntrack 相关参数还没消失，看看模块是不是还在：</p>
+
+<pre><code class="language-sh">lsmod | egrep &quot;Module|ip_table|iptable|ip6|ipt|nat|conntrack&quot;
+
+# 有可能会匹配到不相关的，最好对照一下这里
+find /lib/modules/$(uname -r) -type f -name '*.ko*' | grep netfilter
+
+# 查看模块详细信息
+modinfo &lt;module&gt;
+</code></pre>
+
+<p>禁用模块：</p>
+
+<pre><code class="language-sh">sudo modprobe [-f] -r &lt;module&gt; [&lt;module2&gt; ...]
+# 或：
+sudo rmmod [-f] &lt;module&gt;
+
+# 未使用（Used by 栏为 0）的模块才能禁用。
+# 如果 Used by 不为 0，先禁用后面列出的模块。
+
+# 如果后面没模块名，就是被进程使用。
+# 没有简单的方法能查到调用这些模块的都是什么进程，基本靠猜。
+
+# 查看启动信息，看有没有有用的线索（多半没有）
+dmesg | egrep &quot;ip_table|netfilter|conn&quot;
+</code></pre>
+
+<hr />
+
+<h3 id="b-调整内核参数">B. 调整内核参数</h3>
+
+<p>如果调用 netfilter 的进程不能关，或查不出什么进程在用，就要靠调整参数来尽量推迟出问题的时间。</p>
+
+<p>主要设置项：</p>
+
+<ul>
+<li>哈希表扩容（<code>nf_conntrack_buckets</code>、<code>nf_conntrack_max</code>）</li>
+<li>让里面的元素尽快释放（超时相关参数）</li>
+</ul>
+
+<h4 id="nf-conntrack-buckets-和-nf-conntrack-max-的默认值怎么来的"><code>nf_conntrack_buckets</code> 和 <code>nf_conntrack_max</code> 的默认值怎么来的</h4>
+
+<p>根据这篇 08 年的 <a href="https://wiki.khnet.info/index.php/Conntrack_tuning">wiki</a>，<code>nf_conntrack_max</code> 的默认值算法为：</p>
+
+<pre><code class="language-sh">CONNTRACK_MAX = RAMSIZE (in bytes) / 16384 / (ARCH / 32) 
+</code></pre>
+
+<ul>
+<li>其中 <code>ARCH</code> 为 CPU 架构，值为 32 或 64。</li>
+<li>即：32 位系统使用内存的 1/16384，64 位系统再减半。</li>
+<li>对于 64 位 8G 内存的机器：<code>(8 * 1024^3) / 16384 / (64 / 32) = 262144</code></li>
+</ul>
+
+<p><code>nf_conntrack_buckets</code> 默认值算法为：</p>
+
+<pre><code class="language-sh">HASHSIZE = CONNTRACK_MAX / 4
+# 比较早的版本是除以 8
+# 这里的 4 或 8 就是每个桶里的链表最大长度
+</code></pre>
+
+<ul>
+<li>对于 64 位 8G 内存的机器：<code>262144 / 4 = 65536</code></li>
+</ul>
+
+<h4 id="给哈希表扩容的影响">给哈希表扩容的影响</h4>
+
+<p>主要是内存使用增加。32 位系统还要关心内核态的地址空间够不够。</p>
+
+<p>netfilter 的哈希表存储在内核态的内存空间，这部分内存不能 swap，操作系统为了兼容 32 位，默认值往往比较保守。</p>
+
+<ul>
+<li>32 位系统的虚拟地址空间最多 4G，其中内核态最多 1G，通常能用的只有前 896M。
+
+<ul>
+<li>给 netfilter 分配太多地址空间可能会导致其他内核进程不够分配。1 条跟踪记录 300 字节左右，因此当年 <code>nf_conntrack_max</code> 默认 65535 条，占 20多MB。</li>
+</ul></li>
+<li>64 位系统的虚拟地址空间有 256TB，内核态能用一半，只需要关心物理内存的使用情况。</li>
+</ul>
+
+<p>计算内存使用的公式还是来自上面的 wiki：</p>
+
+<pre><code class="language-sh">size_of_mem_used_by_conntrack (in bytes) = CONNTRACK_MAX * sizeof(struct ip_conntrack) + HASHSIZE * sizeof(struct list_head)
+</code></pre>
+
+<ul>
+<li><code>sizeof(struct ip_conntrack)</code> 在不同架构、内核版本、编译选项下不一样。这里按 352 字节算。
+
+<ul>
+<li>老文章说模块启动时会在 syslog 里打印这个值，但现在没有。</li>
+</ul></li>
+<li><code>sizeof(struct list_head) = 2 * size_of_a_pointer</code>（32 位系统的指针大小是 4 字节，64 位是 8 字节）</li>
+<li>64 位系统，8G 内存的机器，按默认 <code>CONNTRACK_MAX</code> 为 262144，<code>HASHSIZE</code> 为 65536 时：<code>262144 * 352 + 65536 * 8 = 92798976</code>（88.5 MB）</li>
+</ul>
+
+<p>互联网公司的服务器通常内存没那么紧张，可以放开点：</p>
+
+<ul>
+<li><code>CONNTRACK_MAX</code> 为 1048576，<code>HASHSIZE</code> 为 262144 ：<code>1048576 * 352 + 262144 * 8 = 371195904</code>（354 MB）</li>
+</ul>
+
+<p>等业务发展到 <code>nf_conntrack_count</code> 经常保持在 18万（bucket 的 2/3）以上时再考虑翻倍。</p>
+
+<p>（测试方法：压测工具不用 keep-alive 发请求，调大 <code>nf_conntrack_tcp_timeout_time_wait</code>，单机跑一段时间就能填满哈希表。观察响应时间的变化和服务器内存的使用情况。）</p>
+
+<h4 id="调整哪些超时时间">调整哪些超时时间</h4>
+
+<p>如果你的程序需要读取 conntrack 记录，或者服务器设了复杂的 iptables 规则（同样需要读取 conntrack 记录），超时时间的设置需要非常谨慎：</p>
+
+<blockquote>
+<p><a href="http://bbs.51cto.com/thread-1147888-1-1.html">iptables的nf_conntrack相关参数引起两个问题 </a>, 2015-03<br />
+dog250 - <a href="https://blog.csdn.net/dog250/article/details/9373715">Operation not permitted引发的惊魂72小时</a>, 2013-07 （前面全是错误的排查方向，拉到第 6 点开始入正题）<br />
+dog250 - <a href="https://blog.csdn.net/dog250/article/details/7262619">再次深入到ip_conntrack的conntrack full问题</a>, 2012-02</p>
+</blockquote>
+
+<p>如果 conntrack 记录对你不重要，用之前的命令查一下哪种协议哪种状态的连接最多，尝试把对应的超时参数调小。占比很少或根本用不到的可以不管。</p>
+
+<p>例如 Nginx 服务器上可能会看到 90% 以上的记录都是 TIME_WAIT 状态（Nginx 连后端服务默认用短连接）。</p>
+
+<p>对于通外网的服务器，考虑调整以下参数，减少 DDoS 的危害：</p>
+
+<ul>
+<li><code>net.netfilter.nf_conntrack_tcp_timeout_established</code>：默认 432000 （5天）
+
+<ul>
+<li>这个值对应的场景是 “双方建立了连接后一直不发包，直到 5 天后才发” ……</li>
+<li>但默认 keep-alive 超时时间只有 2 小时 11 分（<code>net.ipv4.tcp_keepalive_time + net.ipv4.tcp_keepalive_intvl * net.ipv4.tcp_keepalive_probes</code>），由于超时关 socket 不发包，conntrack 无法根据包头的标识知道状态的变化，记录会一直处于 ESTABLISHED 状态，直到 5 天后倒计时结束才删掉。</li>
+<li>空连接攻击的最佳目标。攻击者把 IP 包头的源地址改成随机 IP，握完手就关 socket，用一台机发请求就能把你的哈希表填满。</li>
+</ul></li>
+<li><code>net.netfilter.nf_conntrack_tcp_timeout_syn_recv</code>：默认 60
+
+<ul>
+<li>类似，故意不发握手的 ACK 即可。但这个超时时间没那么夸张，系统也有 syn cookie 机制来缓解 syn flood 攻击。</li>
+</ul></li>
+</ul>
+
+<p>其他值得注意的参数：</p>
+
+<ul>
+<li><code>net.netfilter.nf_conntrack_tcp_timeout_syn_sent</code>：默认 120
+
+<ul>
+<li>你的程序的 connect timeout 有这么长吗？</li>
+</ul></li>
+<li><code>net.netfilter.nf_conntrack_tcp_timeout_fin_wait</code>：默认 120
+
+<ul>
+<li><code>net.ipv4.tcp_fin_timeout</code> 默认 60 秒，通常还会参考 BSD 和 macOS 设成更小的值。这里往往也没必要这么大。</li>
+</ul></li>
+<li><code>net.netfilter.nf_conntrack_icmp_timeout</code>：默认 30
+
+<ul>
+<li>哪里的 ping 会等 30 秒才超时？</li>
+</ul></li>
+</ul>
+
+<p>这几个倒是比较合理，小于等于可能遇到的极端情况，但如果不想半关闭的连接的记录继续占着宝贵的哈希表，提早清了似乎也没什么问题：</p>
+
+<ul>
+<li><code>net.netfilter.nf_conntrack_tcp_timeout_time_wait</code>：默认 120
+
+<ul>
+<li>Linux 里的 MSL 写死 60 秒（而不是 TCP 标准里拍脑袋的 120 秒），TIME_WAIT 要等 2MSL，这里 120 算是个合理的值。</li>
+<li>但现在默认有 PAWS（<code>net.ipv4.tcp_timestamps</code>），不会出现标准制定时担心的迷途报文回来碰巧污染了序列号相同的新连接的数据的情况， 互联网公司基本都开 <code>net.ipv4.tcp_tw_reuse</code>，既然半连接都不留这么久，记录似乎也不需要留这么久。</li>
+</ul></li>
+<li><code>net.netfilter.nf_conntrack_tcp_timeout_close_wait</code>：默认 60
+
+<ul>
+<li>CLOSE_WAIT 状态是让被动关闭方把该传的数据传完。如果程序写得不好，这里抛了未捕捉的异常，也许就走不到发 FIN 那步了，一直停在这里。</li>
+</ul></li>
+<li><code>net.netfilter.nf_conntrack_tcp_timeout_last_ack</code>：默认 30
+
+<ul>
+<li>被动关闭方发 FIN 后如果一直收不到对面的 ACK 或 RST，会不断重发，直到超时才 CLOSE。<code>net.ipv4.tcp_retries2</code> 的默认值是 15，最多要等 924.6 秒……不过一般都会调小这个值。</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h4 id="tl-dr">TL;DR</h4>
+
+<p>除了有关联的参数，尽量一次只改一处，记录下默认值和上次改的值，效果不明显或更差就还原。修改完要多观察一段时间，确保不会影响业务。</p>
+
+<p><code>net.netfilter.nf_conntrack_buckets</code>  参数是只读的，不能直接改，需要修改模块的设置：</p>
+
+<pre><code class="language-sh"># 改为 262144
+echo 262144 | sudo tee /sys/module/nf_conntrack/parameters/hashsize
+
+# 再查看，此时 bucket 已经变成刚才设置的值
+sudo sysctl net.netfilter.nf_conntrack_buckets
+</code></pre>
+
+<p><code>net.netfilter.nf_conntrack_max</code> 参考默认值，设为桶的 4 倍：</p>
+
+<pre><code class="language-sh">sudo sysctl net.netfilter.nf_conntrack_max=1048576
+# 改完可以看到 net.netfilter.nf_conntrack_max 和 net.nf_conntrack_max 都变了
+</code></pre>
+
+<p>超时的值要根据业务和网络环境设置，这里只是举例，不要照抄（参考了 <a href="https://forum.mikrotik.com/viewtopic.php?t=85039">这个做路由器的公司的设置</a>）：</p>
+
+<pre><code class="language-sh">sudo sysctl net.netfilter.nf_conntrack_icmp_timeout=10
+
+sudo sysctl net.netfilter.nf_conntrack_tcp_timeout_syn_recv=5
+sudo sysctl net.netfilter.nf_conntrack_tcp_timeout_syn_sent=5
+
+sudo sysctl net.netfilter.nf_conntrack_tcp_timeout_established=600
+
+sudo sysctl net.netfilter.nf_conntrack_tcp_timeout_fin_wait=10
+sudo sysctl net.netfilter.nf_conntrack_tcp_timeout_time_wait=10
+
+sudo sysctl net.netfilter.nf_conntrack_tcp_timeout_close_wait=10
+sudo sysctl net.netfilter.nf_conntrack_tcp_timeout_last_ack=10
+</code></pre>
+
+<p>用 <code>sysctl [-w]</code> 或 <code>echo xxx &gt; /pro/sys/net/netfilter/XXX</code> 做的修改在重启后会失效。如果测试过没问题，在 <code>/etc/sysctl.d/</code> 下新建配置文件，这里以 <code>90-conntrack.conf</code> 为例（CentOS 6 等旧系统编辑 <code>/etc/sysctl.conf</code>），系统启动时会加载里面的设置：</p>
+
+<pre><code class="language-sh"># 格式：&lt;参数&gt;=&lt;值&gt;，等号两边可以空格，支持 # 注释
+net.netfilter.nf_conntrack_max=1048576
+
+net.netfilter.nf_conntrack_icmp_timeout=10
+net.netfilter.nf_conntrack_tcp_timeout_syn_recv=5
+net.netfilter.nf_conntrack_tcp_timeout_syn_sent=5
+net.netfilter.nf_conntrack_tcp_timeout_established=600
+net.netfilter.nf_conntrack_tcp_timeout_fin_wait=10
+net.netfilter.nf_conntrack_tcp_timeout_time_wait=10
+net.netfilter.nf_conntrack_tcp_timeout_close_wait=10
+net.netfilter.nf_conntrack_tcp_timeout_last_ack=10
+</code></pre>
+
+<p>如果修改了配置文件，要马上应用配置文件里的设置：</p>
+
+<pre><code class="language-sh">sudo sysctl -p /etc/sysctl.d/90-conntrack.conf
+# 不传文件路径默认加载 /etc/sysctl.conf
+</code></pre>
+
+<hr />
+
+<h3 id="c-设置不跟踪连接的规则">C. 设置不跟踪连接的规则</h3>
+
+<p>对需要防火墙的机器，可以设置 <code>NOTRACK</code> 规则，减少要跟踪的连接数。</p>
+
+<p>（注意：以下未经仔细测试，当时我们生产环境选择直接关防火墙。）</p>
+
+<p>以 iptables 为例，查看所有规则：</p>
+
+<pre><code class="language-sh">sudo iptables-save
+</code></pre>
+
+<p>这个必须插在第1条，凡是不跟踪的肯定是你想放行的：</p>
+
+<pre><code class="language-sh">sudo iptables -I INPUT 1 -m state --state UNTRACKED -j ACCEPT
+# 设置成不跟踪的连接无法拿到状态，包含状态（-m state --state）的规则统统失效。
+# iptables 处理规则的顺序是从上到下，如果这条加的位置不对，可能导致请求无法通过防火墙。
+</code></pre>
+
+<p>不跟踪本地连接：</p>
+
+<pre><code class="language-sh">sudo iptables -t raw -A PREROUTING -i lo -j NOTRACK
+sudo iptables -t raw -A OUTPUT -o lo -j NOTRACK
+
+# 假如 Nginx 和应用部署在同一台机子上，增加这规则的收益极为明显。
+# Nginx 连各种 upstream 使得连接数起码翻了倍，不跟踪本地连接一下干掉一大半。
+</code></pre>
+
+<ul>
+<li><code>-t raw</code> 会加载 <code>iptable_raw</code> 模块（kernel 2.6+ 都有）<br /></li>
+<li><code>raw</code> 表基本就干一件事，通过 <code>-j NOTRACK</code> 给不需要被连接跟踪的包打标记（<code>UNTRACKED</code> 状态），告诉 nf_conntrack 不要跟踪连接</li>
+<li><code>raw</code> 的优先级大于 <code>filter</code>，<code>mangle</code>，<code>nat</code>，包含 <code>PREROUTING</code>（针对进入本机的包） 和 <code>OUTPUT</code>（针对从本机出去的包） 链</li>
+</ul>
+
+<p>不跟踪某些端口的连接：</p>
+
+<pre><code class="language-sh">sudo iptables -t raw -A PREROUTING -p tcp -m multiport --dports 80,443 -j NOTRACK
+sudo iptables -t raw -A OUTPUT -p tcp -m multiport --sports 80,443 -j NOTRACK
+</code></pre>
+
+<p>配完防火墙规则记得留意后台服务还能不能连得上、响应时间有没有异常、某些 TCP 状态有没有异常增加……</p>
+
+<p>确定没问题就保存规则（否则重启服务后失效）：</p>
+
+<pre><code class="language-sh"># CentOS 6 等使用 SystemV init 的旧系统：
+sudo service iptables save
+# 其实就是把 iptables-save 的内容存到 /etc/sysconfig/iptables
+</code></pre>
+
+<p>比较新的发行版参考以下：（未验证过）</p>
+
+<blockquote>
+<p><a href="https://dev-notes.eu/2016/08/persistent-iptables-rules-in-ubuntu-16-04-xenial-xerus/">Persistent Iptables Rules in Ubuntu 16.04 Xenial Xerus</a>, 2016-08<br />
+<a href="https://serverfault.com/questions/626521/centos-7-save-iptables-settings">https://serverfault.com/questions/626521/centos-7-save-iptables-settings</a></p>
+</blockquote>
+
+<hr />
+
+<h2 id="参考">参考</h2>
+
+<blockquote>
+<p><a href="https://www.netfilter.org/documentation/">https://www.netfilter.org/documentation/</a><br />
+<a href="https://www.kernel.org/doc/Documentation/networking/nf_conntrack-sysctl.txt">官方参数说明</a>（说得很不清楚……）<br />
+<a href="http://staff.ustc.edu.cn/~james/linux/conntrack.html">Linux连接跟踪源码分析</a> &amp;  <a href="http://lxr.free-electrons.com/source/net/netfilter/?v=3.12">源码目录</a><br />
+<a href="http://netfilter-devel.vger.kernel.narkive.com/DqtqhLtJ/ram-and-conntrack-performance">RAM and conntrack performance</a> (netfilter 开发者的答疑，原页面可能已失效，看 <a href="http://webcache.googleusercontent.com/search?q=cache:ELKtEAiSvzUJ:netfilter-devel.vger.kernel.narkive.com/DqtqhLtJ/ram-and-conntrack-performance+&amp;cd=2&amp;hl=en&amp;ct=clnk">Google cache</a>)<br />
+wikipedia - <a href="https://en.wikipedia.org/wiki/Netfilter#Connection_Tracking">Netfilter#Connection_Tracking</a></p>
+</blockquote>
+
+<p>这里是简单粗暴的排查和解决方法，基本不涉及原理：</p>
+
+<blockquote>
+<p>stackexchange - <a href="https://security.stackexchange.com/questions/43205/nf-conntrack-table-full-dropping-packet">nf_conntrack: table full, dropping packet</a><br />
+<a href="http://i-admin.blogspot.com/2014/02/caveats-about-linux-connection-tracking.html">Caveats about Linux connection tracking and high traffic servers</a>, 2014-02<br />
+<a href="http://jerrypeng.me/2014/12/08/dreadful-nf-conntrack-table-full-issue/">解决恶心的 Nf_conntrack: Table Full 问题</a>, 2014<br />
+<a href="http://blog.sina.com.cn/s/blog_8e5d24890102wbt8.html">nf_conntrack: table full, dropping packet. 终结篇</a>, 2015 （还不错，然而并不是终结）<br />
+<a href="https://blog.yorkgu.me/2012/02/09/kernel-nf_conntrack-table-full-dropping-packet/">kernel nf_conntrack: table full, dropping packet 解决办法</a>, 2012<br />
+<a href="http://jaseywang.me/2012/08/16/%E8%A7%A3%E5%86%B3-nf_conntrack-table-full-dropping-packet-%E7%9A%84%E5%87%A0%E7%A7%8D%E6%80%9D%E8%B7%AF/">解决 nf_conntrack: table full, dropping packet 的几种思路</a>, 2012<br />
+<a href="http://jaseywang.me/2012/11/18/%E9%80%9A%E8%BF%87-modprobe-%E5%BD%BB%E5%BA%95%E7%A6%81%E7%94%A8-netfilter/">通过 modprobe 彻底禁用 netfilter</a>, 2012<br />
+<a href="https://mwclearning.com/?p=1506">nf_conntrack: table full, dropping packet on Nessus server</a>, 2014<br />
+<a href="https://ioflood.com/blog/2015/02/19/nf_conntrack-table-full-dropping-packet-a-solution-for-centos-dedicated-servers/">nf_conntrack: table full, dropping packet — A solution for CentOS Dedicated Servers</a>, 2015<br />
+<a href="http://www.pc-freak.net/blog/resolving-nf_conntrack-table-full-dropping-packet-flood-message-in-dmesg-linux-kernel-log/">Resolving “nf_conntrack: table full, dropping packet.” flood message in dmesg Linux kernel log</a>, 2012 （翻墙）<br />
+<a href="http://serverfault.com/questions/72366/how-do-i-disable-the-nf-conntrack-kernel-module-in-centos-5-3-without-recompilin">how do I disable the nf_conntrack kernel module in CentOS 5.3 without recompiling the kernel</a>, 2009</p>
+</blockquote>
+
+<p>以下文章的作者是 dog250，搞内核网络协议栈开发的，他的博客有很多非常深入的讲网络的文章。想进一步了解 conntrack 原理的推荐过一遍下面文章的文字和图例部分：（部分内容是关于 nf_conntrack 的前身 ip_conntrack 的）</p>
+
+<blockquote>
+<p><a href="https://blog.csdn.net/dog250/article/details/78372576">一个复杂的nf_conntrack实例全景解析</a>, 2017-10<br />
+<a href="https://blog.csdn.net/dog250/article/details/78301259">Linux基于mark的策略路由以及nf_conntrack RELATED</a>, 2017-10<br />
+<a href="https://blog.csdn.net/dog250/article/details/77920696">SYNPROXY抵御DDoS攻击的原理和优化</a>, 2017-09<br />
+<a href="https://blog.csdn.net/dog250/article/details/51289489">悲哀！作为服务器，Top 1却是fib_table_lookup</a>, 2016-05<br />
+<a href="https://blog.csdn.net/dog250/article/details/14642755">ip_conntrack的TCP状态机</a>, 2013-11<br />
+<a href="https://blog.csdn.net/dog250/article/details/47193113">一个Netfilter nf_conntrack流表查找的优化-为conntrack增加一个per cpu cache</a>, 2015-08<br />
+<a href="https://blog.csdn.net/dog250/article/details/41175615">Linux协议栈优化之Netfilter分类conntrack</a>, 2014-11<br />
+<a href="https://blog.csdn.net/dog250/article/details/7266082">linux之ip_conntrack容易混淆的问题点滴</a>, 2012-02<br />
+<a href="https://blog.csdn.net/dog250/article/details/7294262">Linux的ip_conntrack半景</a>, 2012-02<br />
+<a href="http://blog.csdn.net/dog250/article/details/7107537">不要盲目增加ip_conntrack_max-理解Linux内核内存</a>, 2011-12</p>
+</blockquote>
+
+<p>更多 ip_conntrack 的资料（CentOS 5、6）：</p>
+
+<blockquote>
+<p><a href="http://www.ttlsa.com/linux/ip_conntrack-table-full-dropping-packet-solution/">ip_conntrack table full dropping packet解决方案</a>, 2013-08<br />
+<a href="http://storysky.blog.51cto.com/628458/243835/">一次由ip_conntrack跟踪连接库满导致的大量丢包现象排除</a>, 2009-12<br />
+<a href="http://linux.chinaunix.net/techdoc/net/2007/11/12/972046.shtml">关于ip_conntrack的几点认识</a>, 2007-11<br />
+<a href="http://www.jb51.net/os/RedHat/61570.html">CentOS ip_conntrack: table full, dropping packet 的解决方法</a></p>
+
+<p><a href="http://cailin.iteye.com/blog/2008747">ip_conntrack的作用</a>, 2014-01<br />
+<a href="http://blog.csdn.net/dog250/article/details/5695002">linux内核netfilter之ip_conntrack模块的作用&ndash;抽象总结</a>, 2010-06</p>
+</blockquote>
+
+<p>其他：</p>
+
+<blockquote>
+<p>stackoverflow - <a href="https://stackoverflow.com/questions/21150868/linux-64-bits-memory-space-size">linux 64 bits memory space size?</a><br />
+<a href="https://tech.xing.com/a-reason-for-unexplained-connection-timeouts-on-kubernetes-docker-abd041cf7e02">A reason for unexplained connection timeouts on Kubernetes/Docker</a>, 2015-02 （里面有介绍 Docker 怎么用到 SNAT）</p>
+</blockquote>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Keith Mo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2018-08-25</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a></span>
+  </p>
+</div>
+
+    
+    
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/wechat.png">
+        <span>微信打赏</span>
+      </label>
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/alipay.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div>
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/netfilter/">netfilter</a>
+          
+          <a href="/tags/conntrack/">conntrack</a>
+          
+          <a href="/tags/Ops/">Ops</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/2018/03/05/ngrinder-groovy-script-guide/">
+            <span class="next-text nav-default">nGrinder - Groovy 脚本指南</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitment@0.0.3/style/default.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitment@0.0.3/dist/gitment.browser.min.js" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: '2018-08-25 11:29:37 \x2b0800 CST',
+    title: '[踩坑总结] nf_conntrack: table full, dropping packet',
+    link: decodeURI(location.href),
+    desc: '更新： 2018-08：补充 AWS 上的 Ubuntu 16.04 相关资料，补充更多介绍原理的参考链接 2017-02：过年出线上故障，写完报告改了一下，发到了 TesterHome netfilter\/conntrack 相关内核',
+    owner: 'keithmork',
+    repo: 'hugo-blog',
+    oauth: {
+      client_id: '9c5fb60edf9211e8d9cd',
+      client_secret: 'b86a009c4f2b00f4dce2d80cf94f8eb8ff63382c'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/keithmork" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.douban.com/people/keithmo/" class="iconfont icon-douban" title="douban"></a>
+      <a href="https://www.zhihu.com/people/keithmork" class="iconfont icon-zhihu" title="zhihu"></a>
+  <a href="http://keithmo.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+    <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2016 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Keith Mo</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+<script>  
+  var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+  timeago().render(document.querySelectorAll('.timeago'), languageCode);
+  timeago.cancel();  
+</script>
+
+<script></script>
+<script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script>
+<script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.min.js?v=3.1.1"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-81240089-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

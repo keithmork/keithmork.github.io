@@ -1,0 +1,99 @@
+- client: AWS c5.2xlarge * 1, 8C16G, 10Gbps
+- server: AWS c5.2xlarge * 1, 8C16G, 10Gbps
+
+$ loadtest -V
+Loadtest version: 3.0.3
+
+
+$ loadtest -n 2000000 -c 200 -k -d 2 "http://172.31.10.3/nginx-status"
+
+[Sat Jun 16 2018 19:13:04 GMT+0000 (UTC)] INFO Requests: 0 (0%), requests per second: 0, mean latency: 0 ms
+[Sat Jun 16 2018 19:13:09 GMT+0000 (UTC)] INFO Requests: 61125 (3%), requests per second: 12229, mean latency: 16.4 ms
+[Sat Jun 16 2018 19:13:09 GMT+0000 (UTC)] INFO Errors: 49324, accumulated errors: 49324, 80.7% of total requests
+[Sat Jun 16 2018 19:13:14 GMT+0000 (UTC)] INFO Requests: 128344 (6%), requests per second: 13462, mean latency: 14.9 ms
+[Sat Jun 16 2018 19:13:14 GMT+0000 (UTC)] INFO Errors: 53305, accumulated errors: 102629, 80% of total requests
+[Sat Jun 16 2018 19:13:19 GMT+0000 (UTC)] INFO Requests: 195681 (10%), requests per second: 13461, mean latency: 14.9 ms
+[Sat Jun 16 2018 19:13:19 GMT+0000 (UTC)] INFO Errors: 50626, accumulated errors: 153255, 78.3% of total requests
+[Sat Jun 16 2018 19:13:24 GMT+0000 (UTC)] INFO Requests: 263506 (13%), requests per second: 13567, mean latency: 14.7 ms
+[Sat Jun 16 2018 19:13:24 GMT+0000 (UTC)] INFO Errors: 48251, accumulated errors: 201506, 76.5% of total requests
+[Sat Jun 16 2018 19:13:29 GMT+0000 (UTC)] INFO Requests: 330791 (17%), requests per second: 13445, mean latency: 14.9 ms
+[Sat Jun 16 2018 19:13:29 GMT+0000 (UTC)] INFO Errors: 58579, accumulated errors: 260085, 78.6% of total requests
+[Sat Jun 16 2018 19:13:34 GMT+0000 (UTC)] INFO Requests: 396450 (20%), requests per second: 13145, mean latency: 15.2 ms
+[Sat Jun 16 2018 19:13:34 GMT+0000 (UTC)] INFO Errors: 52834, accumulated errors: 312919, 78.9% of total requests
+[Sat Jun 16 2018 19:13:39 GMT+0000 (UTC)] INFO Requests: 464522 (23%), requests per second: 13599, mean latency: 14.7 ms
+[Sat Jun 16 2018 19:13:39 GMT+0000 (UTC)] INFO Errors: 50377, accumulated errors: 363296, 78.2% of total requests
+[Sat Jun 16 2018 19:13:44 GMT+0000 (UTC)] INFO Requests: 532256 (27%), requests per second: 13558, mean latency: 14.7 ms
+[Sat Jun 16 2018 19:13:44 GMT+0000 (UTC)] INFO Errors: 46776, accumulated errors: 410072, 77% of total requests
+[Sat Jun 16 2018 19:13:49 GMT+0000 (UTC)] INFO Requests: 599534 (30%), requests per second: 13466, mean latency: 14.9 ms
+[Sat Jun 16 2018 19:13:49 GMT+0000 (UTC)] INFO Errors: 51403, accumulated errors: 461475, 77% of total requests
+[Sat Jun 16 2018 19:13:54 GMT+0000 (UTC)] INFO Requests: 666652 (33%), requests per second: 13436, mean latency: 14.9 ms
+[Sat Jun 16 2018 19:13:54 GMT+0000 (UTC)] INFO Errors: 51126, accumulated errors: 512601, 76.9% of total requests
+[Sat Jun 16 2018 19:13:59 GMT+0000 (UTC)] INFO Requests: 730333 (37%), requests per second: 12704, mean latency: 15.7 ms
+[Sat Jun 16 2018 19:13:59 GMT+0000 (UTC)] INFO Errors: 48154, accumulated errors: 560755, 76.8% of total requests
+[Sat Jun 16 2018 19:14:04 GMT+0000 (UTC)] INFO Requests: 797722 (40%), requests per second: 13505, mean latency: 14.8 ms
+[Sat Jun 16 2018 19:14:04 GMT+0000 (UTC)] INFO Errors: 54905, accumulated errors: 615660, 77.2% of total requests
+[Sat Jun 16 2018 19:14:09 GMT+0000 (UTC)] INFO Requests: 865733 (43%), requests per second: 13610, mean latency: 14.7 ms
+[Sat Jun 16 2018 19:14:09 GMT+0000 (UTC)] INFO Errors: 53827, accumulated errors: 669487, 77.3% of total requests
+[Sat Jun 16 2018 19:14:14 GMT+0000 (UTC)] INFO Requests: 932910 (47%), requests per second: 13402, mean latency: 14.9 ms
+[Sat Jun 16 2018 19:14:14 GMT+0000 (UTC)] INFO Errors: 51701, accumulated errors: 721188, 77.3% of total requests
+[Sat Jun 16 2018 19:14:19 GMT+0000 (UTC)] INFO Requests: 1000911 (50%), requests per second: 13611, mean latency: 14.7 ms
+[Sat Jun 16 2018 19:14:19 GMT+0000 (UTC)] INFO Errors: 52637, accumulated errors: 773825, 77.3% of total requests
+[Sat Jun 16 2018 19:14:24 GMT+0000 (UTC)] INFO Requests: 1068046 (53%), requests per second: 13426, mean latency: 14.9 ms
+[Sat Jun 16 2018 19:14:24 GMT+0000 (UTC)] INFO Errors: 50572, accumulated errors: 824397, 77.2% of total requests
+[Sat Jun 16 2018 19:14:29 GMT+0000 (UTC)] INFO Requests: 1135714 (57%), requests per second: 13555, mean latency: 14.7 ms
+[Sat Jun 16 2018 19:14:29 GMT+0000 (UTC)] INFO Errors: 55795, accumulated errors: 880192, 77.5% of total requests
+[Sat Jun 16 2018 19:14:34 GMT+0000 (UTC)] INFO Requests: 1203461 (60%), requests per second: 13539, mean latency: 14.8 ms
+[Sat Jun 16 2018 19:14:34 GMT+0000 (UTC)] INFO Errors: 61353, accumulated errors: 941545, 78.2% of total requests
+[Sat Jun 16 2018 19:14:39 GMT+0000 (UTC)] INFO Requests: 1269915 (63%), requests per second: 13277, mean latency: 15.1 ms
+[Sat Jun 16 2018 19:14:39 GMT+0000 (UTC)] INFO Errors: 50395, accumulated errors: 991940, 78.1% of total requests
+[Sat Jun 16 2018 19:14:44 GMT+0000 (UTC)] INFO Requests: 1336534 (67%), requests per second: 13359, mean latency: 15 ms
+[Sat Jun 16 2018 19:14:44 GMT+0000 (UTC)] INFO Errors: 46014, accumulated errors: 1037954, 77.7% of total requests
+[Sat Jun 16 2018 19:14:49 GMT+0000 (UTC)] INFO Requests: 1398078 (70%), requests per second: 11832, mean latency: 16.7 ms
+[Sat Jun 16 2018 19:14:49 GMT+0000 (UTC)] INFO Errors: 46246, accumulated errors: 1084200, 77.5% of total requests
+[Sat Jun 16 2018 19:14:54 GMT+0000 (UTC)] INFO Requests: 1462451 (73%), requests per second: 13397, mean latency: 15.1 ms
+[Sat Jun 16 2018 19:14:54 GMT+0000 (UTC)] INFO Errors: 51340, accumulated errors: 1135540, 77.6% of total requests
+[Sat Jun 16 2018 19:14:59 GMT+0000 (UTC)] INFO Requests: 1529861 (76%), requests per second: 13469, mean latency: 14.8 ms
+[Sat Jun 16 2018 19:14:59 GMT+0000 (UTC)] INFO Errors: 50709, accumulated errors: 1186249, 77.5% of total requests
+[Sat Jun 16 2018 19:15:04 GMT+0000 (UTC)] INFO Requests: 1597361 (80%), requests per second: 13505, mean latency: 14.8 ms
+[Sat Jun 16 2018 19:15:04 GMT+0000 (UTC)] INFO Errors: 49606, accumulated errors: 1235855, 77.4% of total requests
+[Sat Jun 16 2018 19:15:09 GMT+0000 (UTC)] INFO Requests: 1664829 (83%), requests per second: 13486, mean latency: 14.8 ms
+[Sat Jun 16 2018 19:15:09 GMT+0000 (UTC)] INFO Errors: 61537, accumulated errors: 1297392, 77.9% of total requests
+[Sat Jun 16 2018 19:15:14 GMT+0000 (UTC)] INFO Requests: 1731739 (87%), requests per second: 13399, mean latency: 14.9 ms
+[Sat Jun 16 2018 19:15:14 GMT+0000 (UTC)] INFO Errors: 55067, accumulated errors: 1352459, 78.1% of total requests
+[Sat Jun 16 2018 19:15:19 GMT+0000 (UTC)] INFO Requests: 1798673 (90%), requests per second: 13386, mean latency: 14.9 ms
+[Sat Jun 16 2018 19:15:19 GMT+0000 (UTC)] INFO Errors: 62805, accumulated errors: 1415264, 78.7% of total requests
+[Sat Jun 16 2018 19:15:24 GMT+0000 (UTC)] INFO Requests: 1865896 (93%), requests per second: 13435, mean latency: 14.9 ms
+[Sat Jun 16 2018 19:15:24 GMT+0000 (UTC)] INFO Errors: 62082, accumulated errors: 1477346, 79.2% of total requests
+[Sat Jun 16 2018 19:15:29 GMT+0000 (UTC)] INFO Requests: 1932666 (97%), requests per second: 13367, mean latency: 15 ms
+[Sat Jun 16 2018 19:15:29 GMT+0000 (UTC)] INFO Errors: 59302, accumulated errors: 1536648, 79.5% of total requests
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO Requests: 1996901 (100%), requests per second: 12851, mean latency: 15.6 ms
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO Errors: 58510, accumulated errors: 1595158, 79.9% of total requests
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO Target URL:          http://172.31.10.3/nginx-status
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO Max requests:        2000000
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO Concurrency level:   200
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO Agent:               keepalive
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO Completed requests:  2000000
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO Total errors:        1598148
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO Total time:          150.274488161 s
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO Requests per second: 13309
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO Mean latency:        15 ms
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO Percentage of the requests served within a certain time
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO   50%      14 ms
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO   90%      20 ms
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO   95%      22 ms
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO   99%      26 ms
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO  100%      1026 ms (longest request)
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO  100%      1026 ms (longest request)
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO
+[Sat Jun 16 2018 19:15:34 GMT+0000 (UTC)] INFO    -1:   1598148 errors
+
+
+---
+
+PS: Example of error messages(using --debug option):
+
+[Sat Jun 16 2018 19:16:47 GMT+0000 (UTC)] DEBUG Message id 1bd3a841c0dff8114de9ef85602c9108b3bf672abfd7f771200f10f60c77145a not found

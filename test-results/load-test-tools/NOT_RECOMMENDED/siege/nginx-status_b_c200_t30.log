@@ -1,0 +1,55 @@
+- client: AWS c5.2xlarge * 1, 8C16G, 10Gbps
+- server: AWS c5.2xlarge * 1, 8C16G, 10Gbps
+
+$ siege -V
+SIEGE 3.1.4
+
+Copyright (C) 2015 by Jeffrey Fulmer, et al.
+This is free software; see the source for copying conditions.
+There is NO warranty; not even for MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.
+
+
+$ siege -b -c 200 -t 30s http://172.31.10.3/nginx-status
+
+** SIEGE 3.1.4
+** Preparing 200 concurrent users for battle.
+The server is now under siege...
+Lifting the server siege..      done.
+
+Transactions:            4382590 hits
+Availability:             100.00 %
+Elapsed time:              30.00 secs
+Data transferred:         501.55 MB
+Response time:              0.00 secs
+Transaction rate:      146086.33 trans/sec
+Throughput:            16.72 MB/sec
+Concurrency:              198.47
+Successful transactions:     4382590
+Failed transactions:               0
+Longest transaction:            0.07
+Shortest transaction:           0.00
+
+LOG FILE: /home/ubuntu/.siege/siege.log
+You can disable this log file notification by editing
+/home/ubuntu/.siege/siege.conf and changing 'show-logfile' to false.
+
+
+---
+
+$ siege -C
+
+...
+verbose:                        false
+...
+connection:                     keep-alive
+...
+log file:                       /home/ubuntu/.siege/siege.log
+...
+
+---
+
+$ cat /home/ubuntu/.siege/siege.log
+
+      Date & Time,  Trans,  Elap Time,  Data Trans,  Resp Time,  Trans Rate,  Throughput,  Concurrent,    OKAY,   Failed
+2018-06-17 10:30:37,4378806,      29.95,         501,       0.00,   146203.88,       16.73,      198.15, 4378806,       0
