@@ -21,15 +21,6 @@
     </item>
     
     <item>
-      <title>Games</title>
-      <link>http://keithmo.me/categories/Games/</link>
-      <pubDate>Mon, 11 Dec 2017 19:45:10 +0800</pubDate>
-      
-      <guid>http://keithmo.me/categories/Games/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Linux</title>
       <link>http://keithmo.me/categories/Linux/</link>
       <pubDate>Sat, 25 Aug 2018 11:29:37 +0800</pubDate>
@@ -44,6 +35,15 @@
       <pubDate>Mon, 05 Mar 2018 18:20:48 +0800</pubDate>
       
       <guid>http://keithmo.me/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Games</title>
+      <link>http://keithmo.me/categories/Games/</link>
+      <pubDate>Mon, 11 Dec 2017 19:45:10 +0800</pubDate>
+      
+      <guid>http://keithmo.me/categories/Games/</guid>
       <description></description>
     </item>
     
