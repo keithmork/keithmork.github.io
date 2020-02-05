@@ -1,3 +1,2 @@
 User-agent: *
-Sitemap: http://keithmo.me/sitemap.xml
-Crawl-delay: 10
+Sitemap: https://keithmo.me/sitemap.xml
